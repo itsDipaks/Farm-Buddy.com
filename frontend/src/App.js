@@ -10,7 +10,7 @@ function App() {
       <h1>FarmEasy.in</h1> 
     {/* <AdminSign/> */}
     {/* <AdminLogin/> */}
-    {/* <Dashboard/> */}
+     <Dashboard/> 
     <ProductsPage/>
     <div className="App">
     </div>
