@@ -7,7 +7,7 @@ import ProductsPage from './Pages/ProductsPage';
 function App() {
   return (
     <>
-      {/* <h1>FarmEasy.in</h1> */}
+      <h1>FarmEasy.in</h1> 
     {/* <AdminSign/> */}
     {/* <AdminLogin/> */}
     {/* <Dashboard/> */}
