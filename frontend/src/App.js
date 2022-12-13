@@ -2,7 +2,6 @@ import './App.css';
 import AdminLogin from './Components/Admin/AdminLogin';
 import AdminSign from './Components/Admin/AdminSign';
 import Dashboard from './Pages/AdminPages/Dashboard';
-import ProductsPage from './Pages/ProductsPage';
 
 function App() {
   return (
