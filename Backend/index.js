@@ -4,6 +4,7 @@ const cors=require("cors")
 const { connection } = require("./src/Config/db")
 const { adminRouter } = require("./src/Routes/Admin.route")
 const { UserAuthRouter } = require("./src/Routes/UserAuth.route")
+const { ProductRouter } = require("./src/Routes/Product.route")
 const app=express()
 
 app.use(cors())
@@ -15,6 +16,7 @@ app.use(express.json())
 
 
 app.use("/userauth",UserAuthRouter)
+app.use("/product",ProductRouter)
 // app.use('/',adminRouter)
 
 app.listen(8400,async()=>{
