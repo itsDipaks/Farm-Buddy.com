@@ -6,7 +6,7 @@ import Dashboard from './Pages/AdminPages/Dashboard';
 function App() {
   return (
     <>
-      <h1>FarmEasy.in</h1>
+      {/* <h1>FarmEasy.in</h1> */}
     {/* <AdminSign/> */}
     {/* <AdminLogin/> */}
     <Dashboard/>
