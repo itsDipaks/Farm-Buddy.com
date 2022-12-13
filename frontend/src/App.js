@@ -10,7 +10,7 @@ function App() {
     <>
       {/* <h1>FarmEasy.in</h1> */}
       <Navbar/>
-    {/* <AdminSign/> */}
+          {/* <AdminSign/> */}
     {/* <AdminLogin/> */}
     {/* <Dashboard/> */}
     <div className="App">

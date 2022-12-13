@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken")
 
 const {AdminModel} = require("../Modles/Admin.modles")
 const adminRouter = express.Router()
+const {Adminauthenticate}= require("../middelwares/AdminAutenticate")
 
 
 // Admin Signup Method Here
@@ -54,6 +55,58 @@ adminRouter.post("/login",async(req,res)=>{
     catch(err){
         console.log(err)
         res.status(404).send({"msg":"Something Went wrong"})
+    }
+})
+
+
+
+//          Rough work don't delete
+
+// const Adminauthenticate = (req,res,next)=>{
+//     const token = req.headers?.authorization?.split(" ")[1]
+//     if(token){
+//         const decoded = jwt.verify(token,'ravi')
+//         if(decoded){
+//             const adminID  = decoded.adminID
+//             req.body.adminID = adminID
+//             next()
+//         }
+//         else{
+//             res.send("Please Login ")
+//         }
+//     }
+//     else{
+//         res.send('Please Login')
+//     }
+// }
+
+
+//     Admin Profile get Method
+
+adminRouter.get("/adminDetails",Adminauthenticate,async(req,res)=>{
+         const adminID = req.body.adminID
+    try{
+        const admin = await AdminModel.find({_id:adminID})
+        res.status(200).send({"msg":"Admin Details Are","Data":admin})
+    }
+    catch(err){
+        console.log(err)
+        res.status(200).send({'err':"Something went wrong"})
+    }
+})
+
+//    Admin Profile update method
+
+adminRouter.patch("/adminUpdate",Adminauthenticate,async(req,res)=>{
+    const adminID = req.body.adminID
+    console.log(req.body)
+    try{
+        const updateAdmin = await AdminModel.findByIdAndUpdate({_id:adminID},req.body)
+        res.status(200).send({'msg':"Profile Updated"})
+    }
+    catch(err){
+        console.log(err)
+        res.status(200).send({'err':"Something went wrong"})
     }
 })
 

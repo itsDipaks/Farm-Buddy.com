@@ -1,0 +1,39 @@
+Auth.action.js
+Auth.reducer.js
+Auth.types.js
+
+Cart.action.js
+Cart.reducer.js
+Cart.types.js
+
+DashAdmin.action.js
+DashAdmin.reducer.js
+DashAdmin.types.js
+
+DashFetures.action.js
+DashFetures.reducer.js
+DashFetures.types.js
+
+Product.action.js
+Product.reducer.js
+Product.types.js
+
+
+export const GET_CART_LOADING="cart/get/loading"
+export const GET_CART_SUCCSESS="cart/get/sucsess"
+export const GET_CART_ERROR="cart/get/error"
+
+
+export const GET_DASHADMIN_LOADING="dasshadmin/get/loading"
+export const GET_DASHADMIN_SUCCSESS="dasshadmin/get/sucsess"
+export const GET_DASHADMIN_ERROR="dasshadmin/get/error"
+
+
+export const GET_DASHFETURES_LOADING="dashfeatures/get/loading"
+export const GET_DASHFETURES_SUCCSESS="dashfeatures/get/sucsess"
+export const GET_DASHFETURES_ERROR="dashfeatures/get/error"
+
+
+export const GET_PRODUCT_LOADING="product/get/loading"
+export const GET_PRODUCT_SUCCSESS="product/get/sucsess"
+export const GET_PRODUCT_ERROR="product/get/error"
