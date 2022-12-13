@@ -11,8 +11,7 @@ function App() {
     {/* <AdminSign/> */}
     {/* <AdminLogin/> */}
      <Dashboard/> 
-    <ProductsPage/>
-    <div className="App">
+      <div className="App">
     </div>
     </>
   );
