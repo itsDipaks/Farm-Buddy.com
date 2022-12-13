@@ -2,14 +2,16 @@ import './App.css';
 import AdminLogin from './Components/Admin/AdminLogin';
 import AdminSign from './Components/Admin/AdminSign';
 import Dashboard from './Pages/AdminPages/Dashboard';
+import ProductsPage from './Pages/ProductsPage';
 
 function App() {
   return (
     <>
-      <h1>FarmEasy.in</h1>
+      {/* <h1>FarmEasy.in</h1> */}
     {/* <AdminSign/> */}
     {/* <AdminLogin/> */}
-    <Dashboard/>
+    {/* <Dashboard/> */}
+    <ProductsPage/>
     <div className="App">
     </div>
     </>
