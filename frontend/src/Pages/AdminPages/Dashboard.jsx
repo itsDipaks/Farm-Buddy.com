@@ -7,6 +7,9 @@ import {CiDiscount1} from 'react-icons/ci'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import axios from "axios"
+import UsersPage from './UsersPage'
+import ProductPage from './ProductPage'
+import OrdersPage from './OrdersPage'
 
 
 const Dashboard = () => {
@@ -16,8 +19,7 @@ const Dashboard = () => {
   const [lastname,setLastName]=useState("")
   const [role,setRole]=useState("")
   const [avtar,setAvtar]=useState("")
-
-
+  const [show,setShow]=useState("")
 
 // Fetching Admin Profile data from here
 
@@ -28,6 +30,7 @@ const Dashboard = () => {
       }
     })
     .then((res)=>{
+      console.log(res.data.Data)
         setAdminProfile(res.data.Data)
     })
     .catch(function (err){
@@ -107,19 +110,19 @@ const handleUpdate=()=>{
                                {/* Side Bar */}
 
         <Box id='linkBox'>
-          <Flex id='usersBox' p='7px 17px' className='linkItem linkActive'>
+          <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(1)}>
           <FaUserAlt/>
           <Text pl='15px'>Users</Text>
           </Flex>
-          <Flex id='usersBox' p='7px 17px' className='linkItem'>
+          <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(2)}>
           <BsTagsFill />  
           <Text pl='15px'>Products</Text>
           </Flex>
-          <Flex id='usersBox' p='7px 17px' className='linkItem'>
+          <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(3)}>
           <FaRupeeSign/>  
           <Text pl='15px'>Orders</Text>
           </Flex>
-          <Flex id='usersBox' p='7px 17px' className='linkItem'>
+          <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(4)}>
           <CiDiscount1/>
           <Text pl='15px'>Discounts</Text>
           </Flex>
@@ -136,9 +139,13 @@ const handleUpdate=()=>{
             <Button _hover={{bg:"rgb(134, 130, 238)",color:"white"}} mb={2} >Log Out</Button>
           </Flex>
         </Box>
+      <Box id='rhsBody' m='30px' p='30px'>
 
-      <Box id='rhsBody' m='30px' p='30px' h='100vh'>
-
+        {
+          show===1?<UsersPage/>:show==2?<ProductPage/>:show==3?<OrdersPage/>:<h1>Discounts Page</h1>
+        }
+          
+        
       </Box>
       </Box>
     </Flex>
