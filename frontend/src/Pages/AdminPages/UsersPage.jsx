@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
 import "./Dashboard.css"
-import { DeleteIcon} from '@chakra-ui/icons'
+// import { DeleteIcon} from '@chakra-ui/icons'
 import { Link } from 'react-router-dom'
 import { Flex,Button,Text,Table, Th, Thead, Tr,Tbody,Td,Image,Box } from '@chakra-ui/react'
 
@@ -97,7 +97,7 @@ const handleActive=()=>{
                             :<Box onClick={handleActive} _hover={{cursor:"pointer"}} ml="10px" textAlign="center" p="1px" w="75px" bg="rgb(238, 68, 68);" borderRadius="30px" color="white">InActive</Box>}
                         </Td>
                         <Td>
-                            <DeleteIcon onClick={()=>handleDelete(ele._id)} w="25px" h="25px" _hover={{color:"red",cursor:"pointer"}} />
+                            {/* <DeleteIcon onClick={()=>handleDelete(ele._id)} w="25px" h="25px" _hover={{color:"red",cursor:"pointer"}} /> */}
                         </Td>
                     </Tr>
                     </>
