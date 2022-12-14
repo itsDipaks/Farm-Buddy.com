@@ -9,14 +9,14 @@ function App() {
       {/* <Navbar/> */}
       <AllRoutes/>
 
-    <>
-className="App">
+    {/* <> */}
+{/* className="App"> */}
       {/* <h1>FarmEasy.in</h1> */}
-      <Navbar/>
+      {/* <Navbar/> */}
           {/* <AdminSign/> */}
     {/* <AdminLogin/> */}
     {/* <Dashboard/> */}
-    <div className="App">
+    {/* <div className="App"> */}
     </div>
   );
 }
