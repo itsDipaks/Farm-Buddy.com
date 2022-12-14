@@ -11,28 +11,26 @@ import {
   Input,
   Image,
   Stack,
-  HStack,
-  PinInput,
-  PinInputField,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverBody,
+  // HStack,
+  // PinInput,
+  // PinInputField,
+  // Popover,
+  // PopoverTrigger,
+  // PopoverContent,
+  // PopoverBody,
   Select,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
+// import { useEffect } from "react";
+// import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
-  const [email, setEmail] = useState({ email: "" });
   const [show, setShow] = useState(true);
-  // const [otp, setOtp] = useState("");
   const [hello, setHello] = useState("Hello, Log in");
-  const [changeComp, setChangeComp] = useState(true);
+  // const [changeComp, setChangeComp] = useState(true);
 
   // const handleChange = (e) => {
   //   let { name, value } = e.target;
@@ -45,59 +43,64 @@ const Login = () => {
     console.log("User Selected Value - ", event.target.value);
   };
 
-  const handleClick = async () => {
-    if (
-      email === ""
-    ) {
-      alert("Incorrect Email Id");
-      setShow(true);
-    } else {
-      setShow(false);
-    }
-    // let res = await axios.post("#", email);
-    // console.log(res);
-  };
-
-  // const handleOTP = (value) => {
-  //   setOtp(+value);
-  // };
-
-  // const Signup = async () => {
-  //   let res = await axios.post("#", {
-  //     email: email,
-  //   });
-  //   console.log("before res", res);
-  //   if ((res.data.msg = "Verified successfully")) {
-  //     console.log(res);
-  //     let signup = await axios.post("#", {
-  //       email: email.email,
-  //     });
-  //     console.log(signup);
-  //     if (signup.data[0].username !== undefined)
-  //       setHello(`Hello ${signup.data[0].username}`);
-  //     else setHello(`Hello user`);
-  //     localStorage.setItem("userdetail", JSON.stringify(signup.data[0]));
-  //     onClose();
+  // const handleClick = async () => {
+  //   if (
+  //     email === ""
+  //   ) {
+  //     alert("Incorrect Email Id");
   //     setShow(true);
-  //     setChangeComp(false);
+  //   } else {
+  //     setShow(false);
   //   }
+  //   // let res = await axios.post("#", email);
+  //   // console.log(res);
   // };
 
+  const [values,setValues] = useState({
+    username:"",
+    name:"",
+    email:"",
+    password:"",
+    gender:"",
+    age:"",
+    profileimage:"",
+})
+const handleChange = (e) => {
+    setValues({...values,[e.target.name]:e.target.value})
+}
 
-  useEffect(() => {
-    let data = JSON.parse(localStorage.getItem("userdetail")) || {
-      username: "Log in",
-    };
-    setHello(`Hello ${data.username || "user"}`);
-    if (data.username !== "Log in") {
-      setShow(true);
-      setChangeComp(false);
+
+  const handleSignUp = () => {
+
+   
+
+    const payload = {
+      username:values.username,
+      name:values.name,
+      email:values.email,
+      password:values.password,
+      gender:values.gender,
+      age:values.age,
+      profileimage:values.profileimage,
+
     }
-  }, [window.location.reload]);
+    console.log("@@@@@@@@@@@@@@"+values)
+    axios.post("http://localhost:8400/userauth/signup", payload).then((r) => {
+        if (r.status === 200) {
+          setShow(false);
+          console.log("Success")
+          console.log(r)
+        }
+        else{
+          alert("Incorrect Email Id");
+          setShow(true);
+        }
+    })
+}
 
 
   const logout = () => {
-    setChangeComp(true);
+    // setChangeComp(true);
     setHello("Hello, Log in");
     localStorage.removeItem("userdetail");
     navigate("/");
@@ -153,9 +156,19 @@ const Login = () => {
                         height="40px"
                         borderColor="#767676"
                         _hover="none"
+                
+                        placeholder="Enter your username"
+                        onChange={handleChange}
+                        name="username"
+                      />
+                      <Input
+                        borderRadius="8px"
+                        height="40px"
+                        borderColor="#767676"
+                        _hover="none"
                         type={"email"}
                         placeholder="Enter your email address"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                         name="email"
                       />
                       <Input
@@ -165,7 +178,7 @@ const Login = () => {
                         _hover="none"
                         type={"password"}
                         placeholder="Enter Password"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                         name="password"
                       />
                       <Input
@@ -175,7 +188,7 @@ const Login = () => {
                         _hover="none"
                         type={"name"}
                         placeholder="Enter Your Name"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                         name="name"
                       />
                       <Input
@@ -185,12 +198,13 @@ const Login = () => {
                         borderColor="#767676"
                         _hover="none"
                         type={"file"}
-                        name="file"
+                        onChange={handleChange}
+                        name="profileimage"
                       />
-                      <Select onChange={onOptionChangeHandler}>
+                      <Select name="gender"  onChange={handleChange}>
                         <option>Select Gender</option>
                         {options.map((option, index) => {
-                          return <option key={index}>{option}</option>;
+                          return <option key={index} value={option} >{option}</option>;
                         })}
                       </Select>
                       <Input
@@ -198,6 +212,7 @@ const Login = () => {
                         height="40px"
                         borderColor="#767676"
                         _hover="none"
+                        onChange={handleChange}
                         placeholder="Enter Your Age"
                         type={"number"}
                         name="age"
@@ -209,7 +224,7 @@ const Login = () => {
                         fontWeight="700"
                         fontSize="15px"
                         _hover="none"
-                        onClick={handleClick}
+                        onClick={handleSignUp}
                       >
                         Regiter Now
                       </Button>

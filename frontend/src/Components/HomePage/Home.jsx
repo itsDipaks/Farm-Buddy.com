@@ -1,16 +1,12 @@
 
 
 
-import Footer from './components/Footer/footer';
-
+import Footer from "./Footer/Footer"
 
 function Home() {
   return (
     <div >
-
-   
      <Footer/>
-    
     </div>
   );
 }
