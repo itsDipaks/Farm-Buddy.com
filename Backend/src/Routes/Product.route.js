@@ -5,8 +5,8 @@ const { ProductController } = require("../Controller/Product.cntroller")
 
 const GetProductRouter=Router()
 
-GetProductRouter.get("/AllProducts",ProductController.GetAllAvilableProducts)
-GetProductRouter.get("/mensProducts",ProductController.GetMensCareProduct)
+GetProductRouter.get("/getproducts",ProductController.GetProducts)
+
 
 module.exports={GetProductRouter}
 

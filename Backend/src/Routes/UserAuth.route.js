@@ -2,14 +2,30 @@ const {Router} = require("express");
 const {UserModel} = require("../Modles/Users.model");
 const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
+const multer=require("multer")
 const UserAuthRouter = Router();
+
+
 require("dotenv").config();
 
 const PrivateKey = process.env.PRIVATEKEY;
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null,`${__dirname}/../ProfileImages`)
+  },
+  filename: function (req, file, cb) {
+    cb(null,file.originalname)
+  }
+})
 
-UserAuthRouter.post("/signup", async (req, res) => {
-  const {username, name, email, password, gender, age, profileimage} = req.body;
+const uploads = multer({ storage:storage})
+
+
+UserAuthRouter.post("/signup",uploads.single("profilepic") ,async (req, res) => {
+  const {username, name, email, password, gender, age} = req.body;
+
+  const profileImagePath=req.file.originalname
   try {
     const UserExist = await UserModel.findOne({email});
     if (UserExist) {
@@ -25,7 +41,7 @@ UserAuthRouter.post("/signup", async (req, res) => {
             password: hashedpassword,
             gender,
             age,
-            profileimage,
+            profileimage:profileImagePath
           });
           await AddUser.save();
           res.send({msg: "User Signup Successfully"});
