@@ -5,6 +5,7 @@ import Dashboard from './Pages/AdminPages/Dashboard';
 import Navbar from './Pages/Navbar/Navbar';
 import Login from './Pages/Login/Login';
 import ProductsPage from './Pages/ProductsPage'
+import SingleProduct from './Pages/SingleProduct/SingleProduct';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
           {/* <AdminSign/> */}
     {/* <AdminLogin/> */}
     {/* <Dashboard/> */}
-    <ProductsPage/>
+    {/* <ProductsPage/> */}
+    <SingleProduct/>
     <div className="App">
     </div>
     </>
