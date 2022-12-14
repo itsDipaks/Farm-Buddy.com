@@ -4,16 +4,18 @@ import AdminSign from './Components/Admin/AdminSign';
 import Dashboard from './Pages/AdminPages/Dashboard';
 import Navbar from './Pages/Navbar/Navbar';
 import Login from './Pages/Login/Login';
+import ProductsPage from './Pages/ProductsPage'
 
 function App() {
   return (
     <>
-className="App">
+
       {/* <h1>FarmEasy.in</h1> */}
-      <Navbar/>
+      {/* <Navbar/> */}
           {/* <AdminSign/> */}
     {/* <AdminLogin/> */}
     {/* <Dashboard/> */}
+    <ProductsPage/>
     <div className="App">
     </div>
     </>
