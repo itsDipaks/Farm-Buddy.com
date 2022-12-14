@@ -31,7 +31,7 @@ const handleSubmit=()=>{
       password
     }
     // Signup request with payload
-axios.post("http://localhost:8400/signup",payload)
+axios.post("http://localhost:8400/adminsignup",payload)
 .then((res)=>{
   alert(res.data.msg)
 })

@@ -11,91 +11,103 @@ import {
   Input,
   Image,
   Stack,
-  HStack,
-  PinInput,
-  PinInputField,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverBody,
+  // HStack,
+  // PinInput,
+  // PinInputField,
+  // Popover,
+  // PopoverTrigger,
+  // PopoverContent,
+  // PopoverBody,
+  Select,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
+// import { useEffect } from "react";
+// import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
-  const [email, setEmail] = useState({ email: "" });
   const [show, setShow] = useState(true);
-  const [otp, setOtp] = useState("");
   const [hello, setHello] = useState("Hello, Log in");
-  const [changeComp, setChangeComp] = useState(true);
+  // const [changeComp, setChangeComp] = useState(true);
 
-  const handleChange = (e) => {
-    let { name, value } = e.target;
-    setEmail({ ...email, [name]: value });
+  // const handleChange = (e) => {
+  //   let { name, value } = e.target;
+  //   setEmail({ ...email, [name]: value });
+  // };
+
+
+  const options = ["Male", "Female", "Prefer Not To Say"];
+  const onOptionChangeHandler = (event) => {
+    console.log("User Selected Value - ", event.target.value);
   };
 
-  const handleClick = async () => {
-    if (
-      email.email === "" ||
-      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.email)
-    ) {
-      alert("Incorrect Email Id");
-      setShow(true);
-    } else {
-      setShow(false);
+  // const handleClick = async () => {
+  //   if (
+  //     email === ""
+  //   ) {
+  //     alert("Incorrect Email Id");
+  //     setShow(true);
+  //   } else {
+  //     setShow(false);
+  //   }
+  //   // let res = await axios.post("#", email);
+  //   // console.log(res);
+  // };
+
+  const [values,setValues] = useState({
+    username:"",
+    name:"",
+    email:"",
+    password:"",
+    gender:"",
+    age:"",
+    profileimage:"",
+})
+const handleChange = (e) => {
+    setValues({...values,[e.target.name]:e.target.value})
+}
+
+
+  const handleSignUp = () => {
+
+   
+
+    const payload = {
+      username:values.username,
+      name:values.name,
+      email:values.email,
+      password:values.password,
+      gender:values.gender,
+      age:values.age,
+      profileimage:values.profileimage,
+
     }
-    let res = await axios.post("#", email);
-    console.log(res);
-  };
+    console.log("@@@@@@@@@@@@@@"+values)
+    axios.post("http://localhost:8400/userauth/signup", payload).then((r) => {
+        if (r.status === 200) {
+          setShow(false);
+          console.log("Success")
+          console.log(r)
+        }
+        else{
+          alert("Incorrect Email Id");
+          setShow(true);
+        }
+    })
+}
 
-  const handleOTP = (value) => {
-    setOtp(+value);
-  };
 
-  const Signup = async () => {
-    let res = await axios.post("#", {
-      email: email.email,
-      otp: otp,
-    });
-    console.log("before res", res);
-    if ((res.data.msg = "Verified successfully")) {
-      console.log(res);
-      let signup = await axios.post("#", {
-        email: email.email,
-      });
-      console.log(signup);
-      if (signup.data[0].username !== undefined)
-        setHello(`Hello ${signup.data[0].username}`);
-      else setHello(`Hello user`);
-      localStorage.setItem("userdetail", JSON.stringify(signup.data[0]));
-      onClose();
-      setShow(true);
-      setChangeComp(false);
-    }
-  };
-  useEffect(() => {
-    let data = JSON.parse(localStorage.getItem("userdetail")) || {
-      username: "Log in",
-    };
-    setHello(`Hello ${data.username || "user"}`);
-    if (data.username !== "Log in") {
-      setShow(true);
-      setChangeComp(false);
-    }
-  }, [window.location.reload]);
   const logout = () => {
-    setChangeComp(true);
+    // setChangeComp(true);
     setHello("Hello, Log in");
     localStorage.removeItem("userdetail");
     navigate("/");
   };
   return (
     <div>
-      {changeComp ? (
+      {/* {changeComp ? ( */}
         <div>
           <Button
             ref={btnRef}
@@ -141,13 +153,69 @@ const Login = () => {
                     <Stack gap="10px">
                       <Input
                         borderRadius="8px"
-                        height="50px"
+                        height="40px"
+                        borderColor="#767676"
+                        _hover="none"
+                
+                        placeholder="Enter your username"
+                        onChange={handleChange}
+                        name="username"
+                      />
+                      <Input
+                        borderRadius="8px"
+                        height="40px"
                         borderColor="#767676"
                         _hover="none"
                         type={"email"}
                         placeholder="Enter your email address"
                         onChange={handleChange}
                         name="email"
+                      />
+                      <Input
+                        borderRadius="8px"
+                        height="40px"
+                        borderColor="#767676"
+                        _hover="none"
+                        type={"password"}
+                        placeholder="Enter Password"
+                        onChange={handleChange}
+                        name="password"
+                      />
+                      <Input
+                        borderRadius="8px"
+                        height="40px"
+                        borderColor="#767676"
+                        _hover="none"
+                        type={"name"}
+                        placeholder="Enter Your Name"
+                        onChange={handleChange}
+                        name="name"
+                      />
+                      <Input
+                      placeholder="Profile Picture"
+                        borderRadius="8px"
+                        border="none"
+                        borderColor="#767676"
+                        _hover="none"
+                        type={"file"}
+                        onChange={handleChange}
+                        name="profileimage"
+                      />
+                      <Select name="gender"  onChange={handleChange}>
+                        <option>Select Gender</option>
+                        {options.map((option, index) => {
+                          return <option key={index} value={option} >{option}</option>;
+                        })}
+                      </Select>
+                      <Input
+                        borderRadius="8px"
+                        height="40px"
+                        borderColor="#767676"
+                        _hover="none"
+                        onChange={handleChange}
+                        placeholder="Enter Your Age"
+                        type={"number"}
+                        name="age"
                       />
                       <Button
                         height="50px"
@@ -156,9 +224,9 @@ const Login = () => {
                         fontWeight="700"
                         fontSize="15px"
                         _hover="none"
-                        onClick={handleClick}
+                        onClick={handleSignUp}
                       >
-                        Send OTP
+                        Regiter Now
                       </Button>
                       <p style={{ fontSize: "13px" }}>
                         By clicking continue, you agree with our
@@ -173,7 +241,7 @@ const Login = () => {
               ) : (
                 <div>
                   <DrawerHeader fontSize="16px" fontWeight="700">
-                    Enter OTP sent to {email.email}
+                   Login From Here...
                   </DrawerHeader>
 
                   <DrawerBody>
@@ -188,20 +256,31 @@ const Login = () => {
                     onChange={handleChange}
                     name="email"
                   /> */}
-                      <HStack justifyContent={"space-between"}>
-                        <PinInput
-                          type="alphanumeric"
-                          size={"lg"}
-                          name="otp"
-                          onChange={(value) => handleOTP(value)}
-                          mask
-                        >
-                          <PinInputField />
-                          <PinInputField />
-                          <PinInputField />
-                          <PinInputField />
-                        </PinInput>
-                      </HStack>
+                      <Stack gap={5}>
+                      
+                      <Input
+                        borderRadius="8px"
+                        height="50px"
+                        borderColor="#767676"
+                        _hover="none"
+                        type={"email"}
+                        placeholder="Enter your email address"
+                        // onChange={handleChange}
+                        name="email"
+                      />
+
+                      <Input
+                        borderRadius="8px"
+                        height="50px"
+                        borderColor="#767676"
+                        _hover="none"
+                        type={"password"}
+                        placeholder="Enter Password"
+                        // onChange={handleChange}
+                        name="password"
+                      />
+
+                      </Stack>
                       <Button
                         height="50px"
                         bg="#37857e"
@@ -209,7 +288,7 @@ const Login = () => {
                         fontWeight="700"
                         fontSize="15px"
                         _hover="none"
-                        onClick={Signup}
+                        // onClick={Signup}
                       >
                         Continue
                       </Button>
@@ -227,7 +306,8 @@ const Login = () => {
             </DrawerContent>
           </Drawer>
         </div>
-      ) : (
+      {/* )
+       : (
         <div>
           <Popover trigger="hover">
             <PopoverTrigger>
@@ -308,7 +388,7 @@ const Login = () => {
                   variant="ghost"
                   width={"100%"}
                   justifyContent="flex-start"
-                  onClick={logout}
+                  // onClick={logout}
                 >
                   Log Out
                 </Button>
@@ -316,7 +396,7 @@ const Login = () => {
             </PopoverContent>
           </Popover>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

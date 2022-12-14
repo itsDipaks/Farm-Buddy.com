@@ -1,18 +1,12 @@
 const {Router}=require("express")
-const { ProductModel } = require("../Modles/Product.model")
-
-const ProductRouter=Router()
+const { ProductController } = require("../Controller/Product.cntroller")
 
 
-ProductRouter.post("/addproduct",async(req,res)=>{
-    const {name}=req.body
-    
-    const addproduct=new ProductModel({
-        name
-    })
 
-    await addproduct.save()
-})
+const GetProductRouter=Router()
 
+GetProductRouter.get("/AllProducts",ProductController.GetAllAvilableProducts)
+GetProductRouter.get("/mensProducts",ProductController.GetMensCareProduct)
 
-module.exports={ProductRouter}
+module.exports={GetProductRouter}
+

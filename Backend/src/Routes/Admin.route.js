@@ -5,11 +5,12 @@ const jwt = require("jsonwebtoken")
 const {AdminModel} = require("../Modles/Admin.modles")
 const adminRouter = express.Router()
 const {Adminauthenticate}= require("../middelwares/AdminAutenticate")
+const { UserModel } = require("../Modles/Users.model")
 
 
-// Admin Signup Method Here
+  //.................... Admin Signup Method .....................//
 
-adminRouter.post("/signup",async(req,res)=>{
+adminRouter.post("/adminsignup",async(req,res)=>{
     const {email,password,firstname,lastname,role,avtar}= req.body
     try{
         let existingUser = await AdminModel.findOne({email})
@@ -31,9 +32,9 @@ adminRouter.post("/signup",async(req,res)=>{
 
 
 
-// Admin Login Method Here
+  //.................... Admin Login Method .....................//
 
-adminRouter.post("/login",async(req,res)=>{
+adminRouter.post("/adminlogin",async(req,res)=>{
     const {email,password}= req.body
     try{
         let admin = await AdminModel.find({email})
@@ -58,30 +59,7 @@ adminRouter.post("/login",async(req,res)=>{
     }
 })
 
-
-
-//          Rough work don't delete
-
-// const Adminauthenticate = (req,res,next)=>{
-//     const token = req.headers?.authorization?.split(" ")[1]
-//     if(token){
-//         const decoded = jwt.verify(token,'ravi')
-//         if(decoded){
-//             const adminID  = decoded.adminID
-//             req.body.adminID = adminID
-//             next()
-//         }
-//         else{
-//             res.send("Please Login ")
-//         }
-//     }
-//     else{
-//         res.send('Please Login')
-//     }
-// }
-
-
-//     Admin Profile get Method
+  //.................... Admin Profile Get Method .....................//
 
 adminRouter.get("/adminDetails",Adminauthenticate,async(req,res)=>{
          const adminID = req.body.adminID
@@ -95,7 +73,7 @@ adminRouter.get("/adminDetails",Adminauthenticate,async(req,res)=>{
     }
 })
 
-//    Admin Profile update method
+  //.................... Admin Profile Update Method .....................//
 
 adminRouter.patch("/adminUpdate",Adminauthenticate,async(req,res)=>{
     const adminID = req.body.adminID
@@ -109,6 +87,38 @@ adminRouter.patch("/adminUpdate",Adminauthenticate,async(req,res)=>{
         res.status(200).send({'err':"Something went wrong"})
     }
 })
+
+
+  //.................... All Users Get Method .....................//
+
+adminRouter.get("/allusers",async(req,res)=>{
+    try{
+        const users = await UserModel.find()
+        res.status(200).send({"msg":"All Users Data","Data":users})
+    }
+    catch(err){
+        console.log(err)
+        res.status(200).send({'err':"Something went wrong"})
+    }
+})
+
+
+  //....................  Users Delete Method .....................//
+
+adminRouter.delete('/deleteuser/:userID',async(req,res)=>{
+        const userID = req.params.userID
+    try{
+        await UserModel.findByIdAndDelete({_id:userID})
+        res.status(200).send({"msg":"User Delete Successfully"})
+    }
+    catch(err){
+        console.log(err)
+        res.status(200).send({'err':"Something went wrong"})
+    }
+})
+
+
+
 
 module.exports={
     adminRouter

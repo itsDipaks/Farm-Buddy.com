@@ -6,6 +6,8 @@ const UserAuthRouter = Router();
 require("dotenv").config();
 
 const PrivateKey = process.env.PRIVATEKEY;
+
+
 UserAuthRouter.post("/signup", async (req, res) => {
   const {username, name, email, password, gender, age, profileimage} = req.body;
   try {
@@ -36,6 +38,9 @@ UserAuthRouter.post("/signup", async (req, res) => {
     res.send({msg: "Something Wents Wrong please Try Again ", err});
   }
 });
+
+
+
 
 UserAuthRouter.post("/login", async (req, res) => {
   const {email, password} = req.body;
