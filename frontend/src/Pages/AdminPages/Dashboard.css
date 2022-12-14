@@ -68,3 +68,35 @@ body{
     color: rgb(134, 130, 238);
     background-color: #f3f4f6;
 }
+
+table{
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+table thead tr {
+    font-size: 13px;
+    font-weight: 300;
+    color: grey;
+    height: 40px;
+    border-bottom: 1px solid #e5e7eb;
+    border-top: 1px solid #e5e7eb;
+}
+td,
+th{
+  padding: 5px;
+}
+table tbody tr {
+    font-size: 13px;
+    font-weight: 400;
+    color: black;
+    height: 70px;
+    border-bottom: 1px solid #e5e7eb;
+    border-top: 1px solid #e5e7eb;
+  }
+  .userRow{
+    background-color: white;
+  }
+  .userRow:hover{
+    background-color: rgb(216, 215, 247);
+  }
