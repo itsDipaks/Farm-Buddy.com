@@ -15,9 +15,6 @@ app.use(express.json())
 //     res.status(200).send("Welcome To PharmBuddy API")
 // })
 
-
-
-
 app.use("/userauth",UserAuthRouter)
 app.use("/Dashproduct",DashProductRouter)
 app.use("/product",GetProductRouter)

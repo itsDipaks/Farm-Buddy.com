@@ -24,12 +24,12 @@ const handleSubmit=()=>{
         email,
         password
     }
-axios.post("http://localhost:8400/login",payload)
+axios.post("http://localhost:8400/adminlogin",payload)
 .then((res)=>{
     console.log(res.data.token)
     alert(res.data.msg)
     localStorage.setItem("admintoken",res.data.token)
-    // navigate("/dashboard")
+    navigate("/")
 })
 .catch(function (err){
     alert(err.response.data.msg)
@@ -50,7 +50,7 @@ axios.post("http://localhost:8400/login",payload)
       <FormLabel>Password*</FormLabel>
       <Input type="password" placeholder='Password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
       <Button mt="15px" mb={5} _hover={{ bg: "rgb(65, 63, 63)" }} w="100%" color="white"  bg="black" onClick={handleSubmit}>Login</Button>
-      <Link to="/admin">
+      <Link to="/adminsign">
       <Button w='100%' _hover={{ bg: "rgb(65, 63, 63)",color:'white' }} m='auto'> Don't have an Account SignUp</Button>
       </Link>
     </FormControl>
