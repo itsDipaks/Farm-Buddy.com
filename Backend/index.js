@@ -16,6 +16,9 @@ app.use(express.json())
 
 
 app.use("/userauth",UserAuthRouter)
+
+app.use('/',adminRouter)
+
 app.use("/product",ProductRouter)
 // app.use('/',adminRouter)
 
