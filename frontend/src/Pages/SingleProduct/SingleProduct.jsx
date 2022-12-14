@@ -1,4 +1,5 @@
 import React from "react";
+import Style from './SingleProduct.module.css'
 import {
   Box,
   Text,
@@ -10,6 +11,7 @@ import {
   Select,
   UnorderedList,
   ListItem,
+  Divider
 } from "@chakra-ui/react";
 import { BsStarFill } from "react-icons/bs";
 
@@ -20,22 +22,25 @@ const SingleProduct = () => {
   };
   return (
     <>
-      <Box border="1px solid black" w="90%" m="auto">
-        <Text>Horlicks Health & Nutrition Drink Plastic Container 2 Kg</Text>
+      <Box  w="90%"  m="auto" mt='40px' className={Style.containter}>
+        <Text className={Style.heading}>Horlicks Health & Nutrition Drink Plastic Container 2 Kg</Text>
     {/* Main box */}
-        <Box mt="30px" display='flex'>
-          <Box border="1px solid red" w="70%">
+        <Box mt="30px" display='flex' className={Style.main_box}>
+          <Box  w="70%" className={Style.main_box1}>
 
             {/* Image and Description box */}
-            <Box display='flex'>
-              <Box border="1px solid red" w="30%" h="280px" p="10px">
-                <Image
+            <Box display='flex' className={Style.img_desc_box}>
+              <Box w="30%" h="280px"  className={Style.img_box}>
+                <Image className={Style.imgg}
+                border="1px solid gray" 
+                borderRadius='8px'
+                p="10px"
                   h="100%"
                   src="https://cdn01.pharmeasy.in/dam/products_otc/Q28452/horlicks-health-nutrition-drink-plastic-container-2-kg-2-1655880678.jpg?dim=700x0&dpr=1&q=100"
                   alt="Dan Abramov"
                 />
               </Box>
-              <Box border="1px solid red" w="70%" p="20px">
+              <Box  w="70%" p="20px" ml='10px' className={Style.desc}>
                 <Heading
                   size="sm"
                   fontSize="20px"
@@ -48,8 +53,10 @@ const SingleProduct = () => {
                 <Text mt="10px" mb="10px" color="teal">
                   Visit HORLIC store{" "}
                 </Text>
-                <Flex border="1px solid red">
-                  <Box border="1px solid black">
+
+                {/* Rating and price box */}
+                <Box display='flex'  className={Style.rating_price}>
+                  <Box >
                     <Box display="flex" mt="15px" mb="15px" alignItems="center">
                       {Array(5)
                         .fill("")
@@ -93,9 +100,16 @@ const SingleProduct = () => {
                     <Text fontSize="15px"> Delivery by 17 Dec - 18 Dec</Text>
                   </Box>
                   <Spacer />
-                  <Box mt="25px" mr="100px">
-                    {/* <Button colorScheme='teal' p='6' fontSize='20px'>Add To Cart    </Button> */}
-                    <Select placeholder="Select option" w="150px">
+                  <Box display="flex" className={Style.buttons}>
+                    <Box mt='25px' className={Style.view_cart}>
+
+                        {/* View cart button 1 */}
+                   <Button colorScheme='teal'  fontSize='20px' w='100%' >View Cart    </Button> 
+                   </Box>
+                  <Box mt="25px" mr="100px"  className={Style.select_option}>
+                   
+                   
+                    <Select placeholder="Select option" w="100%" >
                       <option value="option1"> 1</option>
                       <option value="option2"> 2</option>
                       <option value="option3"> 3</option>
@@ -104,14 +118,16 @@ const SingleProduct = () => {
                       <option value="option6"> 6</option>
                     </Select>
                   </Box>
-                </Flex>
+                  </Box>
+                </Box>
               </Box>
             </Box>
 
 
-            {/* Descripion in bottom section   */} 
+            {/* Description in bottom section   */} 
+            <Divider mt='50px'/>
 
-            <Box border="1px solid black" p="20px">
+            <Box  p="20px" mt='50px'>
               <Heading
                 size="sm"
                 fontSize="18px"
@@ -144,22 +160,22 @@ const SingleProduct = () => {
                 Benefits
               </Heading>
               <UnorderedList>
-                <ListItem>
+                <ListItem mt='10px'>
                   It is a great health drink that has nutrients to support
                   immunity.
                 </ListItem>
-                <ListItem>
+                <ListItem mt='10px'>
                   Horlicks Classic is clinically proven to improve 5 signs of
                   growth. Horlicks increase the density of minerals such as
                   calcium in bones to give children bigger and stronger bones.
                 </ListItem>
-                <ListItem>Horlicks Classic Malt is also clinically proven to make kids taller & stronger. It helps to increase lean tissue which makes children stronger. Horlicks contains important micronutrients (vitamin B6, B12, C, D, calcium, copper, folic acid, iron, selenium and zinc amongst others) and is clinically proven to help children grow taller and stronger when included as part of their regular diet</ListItem>
-                <ListItem>Helps improve attention and concentration to make your child sharper</ListItem>
-                <ListItem>Horlicks Nutrition Drink improves the power of milk</ListItem>
+                <ListItem mt='10px'>Horlicks Classic Malt is also clinically proven to make kids taller & stronger. It helps to increase lean tissue which makes children stronger. Horlicks contains important micronutrients (vitamin B6, B12, C, D, calcium, copper, folic acid, iron, selenium and zinc amongst others) and is clinically proven to help children grow taller and stronger when included as part of their regular diet</ListItem>
+                <ListItem mt='10px'>Helps improve attention and concentration to make your child sharper</ListItem>
+                <ListItem mt='10px'>Horlicks Nutrition Drink improves the power of milk</ListItem>
               </UnorderedList>
             </Box>
           </Box>
-          <Box border="1px solid green" w="30%" p="20px" >
+          <Box  w="30%" p="20px" className={Style.view_cart2}>
             <Heading
               size="sm"
               fontSize="20px"
@@ -169,9 +185,13 @@ const SingleProduct = () => {
             >
               3 Items in Cart
             </Heading>
-            <Button colorScheme="teal" w="100%" fontSize="20px" mt="20px">
+            {/* view cart buttton 2 */}
+       
+            <Button colorScheme="teal" w="100%" fontSize="20px" mt="20px" >
               View Cart{" "}
             </Button>
+        
+           
           </Box>
         </Box>
       </Box>
