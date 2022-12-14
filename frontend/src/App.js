@@ -4,20 +4,10 @@ import AllRoutes from './Components/Routes/AllRoutes';
 
 function App() {
   return (
-
-    <div>
-      {/* <Navbar/> */}
+    <>
+      <Navbar/> 
       <AllRoutes/>
-
-    {/* <> */}
-{/* className="App"> */}
-      {/* <h1>FarmEasy.in</h1> */}
-      {/* <Navbar/> */}
-          {/* <AdminSign/> */}
-    {/* <AdminLogin/> */}
-    {/* <Dashboard/> */}
-    {/* <div className="App"> */}
-    </div>
+    <>
   );
 }
 
