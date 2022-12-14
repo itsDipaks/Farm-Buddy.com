@@ -5,11 +5,11 @@ const { Adminauthenticate } = require("../middelwares/AdminAutenticate")
 const DashProductRouter=Router()
 
 
-DashProductRouter.post("/addproduct",DashProductController.AddNewproduct)
+DashProductRouter.post("/addproduct",Adminauthenticate,DashProductController.AddNewproduct)
 
-DashProductRouter.delete("/delproduct/:prodid",DashProductController.DeleteProduct)
+DashProductRouter.delete("/delproduct/:prodid",Adminauthenticate,DashProductController.DeleteProduct)
 
-DashProductRouter.patch("/edite/:prodid",DashProductController.EditProduct)
+DashProductRouter.patch("/edite/:prodid",Adminauthenticate,DashProductController.EditProduct)
 
 
 module.exports={DashProductRouter}

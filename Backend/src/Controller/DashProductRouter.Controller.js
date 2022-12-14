@@ -2,6 +2,7 @@ const {ProductModel} = require("../Modles/Product.model");
 
 const AddNewproduct = async (req, res) => {
   
+
   
     const {productName, salePrice, listPrice, category, type, description} =
     req.body;
@@ -48,6 +49,8 @@ const DeleteProduct = async (req, res) => {
   } catch (err) {
     res.status(502).send({msg: "Something Wents Wrong Please Try Again", err});
   }
+
+  
 };
 
 const EditProduct = async (req, res) => {
