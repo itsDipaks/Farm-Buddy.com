@@ -15,7 +15,7 @@ app.use(express.json())
 
 
 app.use("/userauth",UserAuthRouter)
-// app.use('/',adminRouter)
+app.use('/',adminRouter)
 
 app.listen(8400,async()=>{
 try{
