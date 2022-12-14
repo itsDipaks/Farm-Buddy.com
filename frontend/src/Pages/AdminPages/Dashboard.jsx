@@ -1,26 +1,30 @@
-import { Box,Text,Flex,Button,Image, useDisclosure,Modal,ModalOverlay,ModalHeader,ModalContent,ModalCloseButton,ModalBody,Input } from '@chakra-ui/react'
+import { Box,Text,Flex,Button,Image} from '@chakra-ui/react'
 import React from 'react'
 import "./Dashboard.css"
 import {BsTagsFill} from 'react-icons/bs'
 import {FaRupeeSign,FaUserAlt} from 'react-icons/fa'
 import {CiDiscount1} from 'react-icons/ci'
+import {FcSalesPerformance} from "react-icons/fc"
+import {SiSimpleanalytics} from "react-icons/si"
 import { useEffect } from 'react'
+import {IoBarChartSharp} from "react-icons/io5"
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import {AiOutlineTeam} from 'react-icons/ai'
 import axios from "axios"
+import {RiAdminFill} from "react-icons/ri"
 import UsersPage from './UsersPage'
 import ProductPage from './ProductPage'
 import OrdersPage from './OrdersPage'
+import AllAdminPage from './AllAdminPage'
 
 
 const Dashboard = () => {
-  const {isOpen,onOpen,onClose}=useDisclosure()
   const [adminProfile,setAdminProfile]=useState("")
-  const [firstname,setFirstName]=useState("")
-  const [lastname,setLastName]=useState("")
-  const [role,setRole]=useState("")
-  const [avtar,setAvtar]=useState("")
   const [show,setShow]=useState("")
 
+
+  
 // Fetching Admin Profile data from here
 
   const getProfile=()=>{
@@ -43,40 +47,16 @@ const Dashboard = () => {
   },[])
 
 
-  // Update Admin Profile Data Method
-
-const handleUpdate=()=>{
-  const payload={
-    firstname,
-    lastname,
-    role,
-    avtar
-  }
-  axios.patch("http://localhost:8400/adminUpdate",payload,{
-    headers:{
-      authorization:`Bearer ${localStorage.getItem("admintoken")}`
-    }
-  })
-  .then((res)=>{
-    console.log(res)
-    getProfile()
-  })
-  .catch(function (err){
-    console.log(err)
-  })
-}
-
-
   return (
     <Flex w='100%'>
 
                        {/*  Profile Section */}
-
       <Box id='lhsBox' w='16%' h='100vh' p='20px'>
+        <Link to="/adminprofile">
           {
             adminProfile && adminProfile.map((data)=>{
               return(
-                <Flex id='titleBox' p='0px 10px' mb='40px' onClick={onOpen} key={data._id}>
+                <Flex id='titleBox' p='0px 10px' mb='40px' key={data._id}>
                 <Image src={data.avtar} w='45px' borderRadius='50%'/>
                 <Box>
                 <Text pl={5} fontWeight='bold'>{data.firstname}</Text>
@@ -86,34 +66,19 @@ const handleUpdate=()=>{
               )
             })
           }
-              <Modal isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
-                    <ModalOverlay />
-                    <ModalContent>
-                    <ModalHeader>Update Profile</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody mt='-8'>
-                        <Flex direction="column" gap="10px" mt="50px">
-                        <label>First-Name</label>
-                        <Input type="text" placeholder="New First Name" value={firstname} onChange={(e)=>setFirstName(e.target.value)}/>
-                        <label>Last-Name</label>
-                        <Input type="text" placeholder="New Last Name" value={lastname} onChange={(e)=>setLastName(e.target.value)}/>
-                        <label>Role</label>
-                        <Input type="text" placeholder="New Role" value={role} onChange={(e)=>setRole(e.target.value)}/>
-                        <label>Profile Photo</label>
-                        <Input type="text" placeholder="Enter New Name" value={avtar} onChange={(e)=>setAvtar(e.target.value)}/>
-                        <Button onClick={handleUpdate} mb="25px" color="white" bg="black" _hover={{bg:"grey"}} >Update</Button>
-                        </Flex> 
-                    </ModalBody>
-                    </ModalContent>
-                </Modal>
-
+          </Link>
                                {/* Side Bar */}
 
         <Box id='linkBox'>
-          <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(1)}>
+          <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow("AllAdmin")}>
+          <RiAdminFill/>
+          <Text pl='15px'>All Admins</Text>
+          </Flex>
+          <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow("Users")}>
           <FaUserAlt/>
           <Text pl='15px'>Users</Text>
           </Flex>
+          <hr />
           <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(2)}>
           <BsTagsFill />  
           <Text pl='15px'>Products</Text>
@@ -122,9 +87,26 @@ const handleUpdate=()=>{
           <FaRupeeSign/>  
           <Text pl='15px'>Orders</Text>
           </Flex>
-          <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(4)}>
+          <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow('Discounts')}>
           <CiDiscount1/>
           <Text pl='15px'>Discounts</Text>
+          </Flex>
+          <hr />
+          <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow("SalesTeams")}>
+          <AiOutlineTeam/>
+          <Text pl='15px'>Sales Teams</Text>
+          </Flex>
+          <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(4)}>
+          <FcSalesPerformance/>
+          <Text pl='15px'>Highest Sales</Text>
+          </Flex>
+          <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(4)}>
+          <IoBarChartSharp/>
+          <Text pl='15px'>Sales Charts</Text>
+          </Flex>
+          <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(4)}>
+          <SiSimpleanalytics/>
+          <Text pl='15px'>Month Report</Text>
           </Flex>
         </Box>
       </Box>
@@ -142,9 +124,8 @@ const handleUpdate=()=>{
       <Box id='rhsBody' m='30px' p='30px'>
 
         {
-          show===1?<UsersPage/>:show==2?<ProductPage/>:show==3?<OrdersPage/>:<h1>Discounts Page</h1>
+          show==="Users"?<UsersPage/>:show==2?<ProductPage/>:show==3?<OrdersPage/>:show=="AllAdmin"?<AllAdminPage/>:show=="SalesTeams"?<h1>Sales Team Page</h1>:show=="Discounts"?<h1>Discounts Page</h1>:<h1>r</h1>
         }
-          
         
       </Box>
       </Box>
