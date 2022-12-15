@@ -10,7 +10,7 @@ import PincodeDrawer from "../PincodeDrawer/PincodeDrawer";
 import Login from "../Login/Login";
 import { Box, Button, Hide, Link } from "@chakra-ui/react";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const navigate = useNavigate();
   const GoToHomePage = () => {
     navigate("/");

@@ -5,6 +5,7 @@ import AdminLogin from "../Admin/AdminLogin"
 import Dashboard from '../../Pages/AdminPages/Dashboard'
 import UserProfilePage from '../../Pages/AdminPages/UserProfilePage'
 import AdminProfile from '../../Pages/AdminPages/AdminProfile'
+import Lab from '../../Pages/LabTest/Lab'
 
 const AllRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const AllRoutes = () => {
       <Route path="/userprofile" element={<UserProfilePage/>}></Route>
       <Route path="/" element={<Dashboard/>}></Route>
       <Route path="/adminprofile" element={<AdminProfile/>}></Route>
+      <Route path="/labtest" element={<Lab/>}></Route>
     </Routes>
   )
 }
