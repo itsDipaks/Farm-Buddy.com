@@ -13,8 +13,6 @@ const PrivateKey = process.env.PRIVATEKEY;
 
 UserAuthRouter.post("/signup",async (req, res) => {
   const {username, name, email, password, gender, age} = req.body;
-
-  const profileImagePath=req.file.originalname
   try {
     const UserExist = await UserModel.findOne({email});
     if (UserExist) {
