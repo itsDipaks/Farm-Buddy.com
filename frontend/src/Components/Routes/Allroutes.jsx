@@ -21,6 +21,7 @@ const AllRoutes = () => {
       <Route path="/labtest" element={<Lab/>}></Route>
     </Routes>
   )
+  
 }
 
 export default AllRoutes
