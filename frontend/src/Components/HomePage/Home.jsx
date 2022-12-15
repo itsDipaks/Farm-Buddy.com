@@ -1,7 +1,7 @@
 
 
 
-import Footer from "./Footer/Footer"
+import Footer from "./Footer/footer"
 
 function Home() {
   return (

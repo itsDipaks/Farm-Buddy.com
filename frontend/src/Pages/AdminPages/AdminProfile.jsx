@@ -61,6 +61,8 @@ useEffect(()=>{
       console.log(err)
     })
   }
+ {/* ..................  Logout method Here ........................ */}
+
 
 const handleLogout=()=>{
     const emptyToken=""
@@ -94,7 +96,7 @@ const handleLogout=()=>{
                         <Heading>{data.firstname}</Heading>
                         <Button onClick={onOpen} >Edit Profile</Button>
                         </Flex>
-                        <Modal isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
+                    <Modal isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
                     <ModalOverlay />
                     <ModalContent>
                     <ModalHeader>Update Profile</ModalHeader>

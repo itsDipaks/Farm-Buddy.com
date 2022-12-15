@@ -9,7 +9,7 @@ import {SiSimpleanalytics} from "react-icons/si"
 import { useEffect } from 'react'
 import {IoBarChartSharp} from "react-icons/io5"
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {AiOutlineTeam} from 'react-icons/ai'
 import axios from "axios"
 import {RiAdminFill} from "react-icons/ri"
@@ -17,11 +17,14 @@ import UsersPage from './UsersPage'
 import ProductPage from './ProductPage'
 import OrdersPage from './OrdersPage'
 import AllAdminPage from './AllAdminPage'
+import SalesTeam from './SalesTeam'
+import Discounts from './Discounts'
 
 
 const Dashboard = () => {
   const [adminProfile,setAdminProfile]=useState("")
-  const [show,setShow]=useState("")
+  const [show,setShow]=useState("Users")
+  const navigate = useNavigate()
 
 
   
@@ -46,19 +49,25 @@ const Dashboard = () => {
    getProfile()
   },[])
 
+  const handleLogout=()=>{
+    localStorage.setItem("admintoken","")
+    navigate("/adminlogin")
+  }
+
+
 
   return (
     <Flex w='100%'>
 
                        {/*  Profile Section */}
-      <Box id='lhsBox' w='16%' h='100vh' p='20px'>
+      <Box id='lhsBox' w={["5%","10%","16%"]} h='100vh' p={["0px","0px",'20px']}>
         <Link to="/adminprofile">
           {
             adminProfile && adminProfile.map((data)=>{
               return(
                 <Flex id='titleBox' p='0px 10px' mb='40px' key={data._id}>
                 <Image src={data.avtar} w='45px' borderRadius='50%'/>
-                <Box>
+                <Box ml={["0px","-12px","0px"]}>
                 <Text pl={5} fontWeight='bold'>{data.firstname}</Text>
                 <Text pl={5} >{data.role}</Text>
                 </Box>
@@ -72,7 +81,7 @@ const Dashboard = () => {
         <Box id='linkBox'>
           <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow("AllAdmin")}>
           <RiAdminFill/>
-          <Text pl='15px'>All Admins</Text>
+          <Text pl='15px'>Admins</Text>
           </Flex>
           <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow("Users")}>
           <FaUserAlt/>
@@ -118,13 +127,13 @@ const Dashboard = () => {
         <Box id='navbarBox'  p='0px 40px'>
           <Flex justifyContent='space-between' pt={3} mb={3}>
             <Text fontWeight='bold'>PharmBuddy Admin</Text>
-            <Button _hover={{bg:"rgb(134, 130, 238)",color:"white"}} mb={2} >Log Out</Button>
+            <Button onClick={handleLogout} _hover={{bg:"rgb(134, 130, 238)",color:"white"}} mb={2} >Log Out</Button>
           </Flex>
         </Box>
       <Box id='rhsBody' m='30px' p='30px'>
 
         {
-          show==="Users"?<UsersPage/>:show==2?<ProductPage/>:show==3?<OrdersPage/>:show=="AllAdmin"?<AllAdminPage/>:show=="SalesTeams"?<h1>Sales Team Page</h1>:show=="Discounts"?<h1>Discounts Page</h1>:<h1>r</h1>
+          show==="Users"?<UsersPage/>:show==2?<ProductPage/>:show==3?<OrdersPage/>:show=="AllAdmin"?<AllAdminPage/>:show=="SalesTeams"?<SalesTeam/>:show=="Discounts"?<Discounts/>:<h1>r</h1>
         }
         
       </Box>

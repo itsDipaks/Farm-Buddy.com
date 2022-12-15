@@ -56,18 +56,10 @@ const DeleteProduct = async (req, res) => {
 const EditProduct = async (req, res) => {
   const {prodid} = req.params;
   const data = req.body;
-
   if (prodid && data) {
     try {
-      const EditedProduct = await ProductModel.findOneAndUpdate(
-        {_id: prodid},
-        {...data}
-      );
-      if (EditedProduct) {
+         await ProductModel.findByIdAndUpdate({_id: prodid},req.body);
         res.send({msg: "Product Update Successfull"});
-      } else {
-        res.send({msg: "Product not added"});
-      }
     } catch (err) {
       res.send({msg: "Something Wents Wrong Please Try Again", err: err});
     }

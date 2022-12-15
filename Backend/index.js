@@ -18,7 +18,7 @@ app.use(express.json())
 app.use("/userauth",UserAuthRouter)
 app.use("/Dashproduct",DashProductRouter)
 app.use("/product",GetProductRouter)
-// app.use('/',adminRouter)
+app.use('/',adminRouter)
 
 app.listen(8400,async()=>{
 try{

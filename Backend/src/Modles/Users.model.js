@@ -15,6 +15,7 @@ const UserSchema=new mongoose.Schema({
     UserSignupDate:{type:String,required:true,default:{GetCurrent1Date}},
     UserSignupTime:{type:String,required:true ,default:{GetCurrent1Time}},
     profileimage:{type:String,required:true},
+    status:{type:String,default:"active"}
 })
 
 
