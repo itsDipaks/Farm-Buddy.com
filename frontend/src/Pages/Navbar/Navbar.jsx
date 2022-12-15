@@ -5,7 +5,7 @@ import styles from "./navbar.module.css";
 import { useNavigate } from "react-router-dom";
 import { BsCart2 } from "react-icons/bs";
 import { HiOutlineUser } from "react-icons/hi";
-import { TbDiscount2 } from "react-icons/tb";
+import { TbDiscount2, TbPrescription } from "react-icons/tb";
 import PincodeDrawer from "../PincodeDrawer/PincodeDrawer";
 import Login from "../Login/Login";
 import { Box, Button, Hide, Link } from "@chakra-ui/react";
@@ -69,9 +69,9 @@ const Navbar = () => {
             </div>
             </Hide>
             <div className={styles.links2Icons}>
-              <TbDiscount2 style={{ fontSize: "20px", marginRight: "10px" }} />
+              <TbPrescription style={{ fontSize: "20px", marginRight: "10px" }} />
               <Link _hover={{ 'text-decoration-line': 'underline','text-decoration-style': 'dotted'}} href="#offers" style={{ fontSize: "14px", fontWeight: "500" }}>
-                Offers
+                Admin
               </Link>
             </div>
             <div className={styles.links2Icons}>
