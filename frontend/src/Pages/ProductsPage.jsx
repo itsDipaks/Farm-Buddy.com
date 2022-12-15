@@ -30,22 +30,24 @@ const ProductsPage = () => {
   const [value, setValue] = React.useState('1')
 
  
-  const pro = useSelector((state) => state.product.data);
+  const product = useSelector((state) => state.product.data);
   const dispatch = useDispatch();
   
   useEffect(() => {
     dispatch(GetProducts());
   }, [dispatch]);
   
-  console.log(pro)
+  console.log(product)
 
  
   return (<>
-    
+     
+       
     <Box border="1px solid black" display="flex" w="70%" m="auto" className={Style.main}>
       <Box  height="500px" w="30%" padding='25px' className={Style.main1}>
         <Box w='90%'>
-
+       
+      
       <Heading size="sm" fontSize="30px" color='rgb(79,88,104)'>
                 Filter
               </Heading>
@@ -110,10 +112,10 @@ const ProductsPage = () => {
               <Flex className={Style.select}>
                 <Text fontSize='18px' mr='20px' mt='5px' className={Style.sortBy}>Sort By:</Text>
                
-                <Select placeholder="Select option" w='250px' >
-                  <option value="option1">Option 1</option>
-                  <option value="option2">Option 2</option>
-                  <option value="option3">Option 3</option>
+                <Select placeholder="Popularity" w='250px' >
+                  <option value="option1">Relevance</option>
+                  <option value="option2">Price high to low</option>
+                  <option value="option3">Price low to high</option>
                 </Select>
               </Flex>
             </Box>
@@ -175,10 +177,13 @@ const ProductsPage = () => {
     </Box>
   
         <SimpleGrid columns={[1, 2, 3]} spacing="10px">
+        {
+      product.map((el)=>(
+        
           <Box
             border="1px"
             borderColor="gray.300"
-            height="340px"
+           
             padding="8px"
             borderRadius="6px"
             mt="10px"
@@ -188,14 +193,14 @@ const ProductsPage = () => {
               m="auto"
               mt="5px"
               height="200px"
-              src="https://cdn01.pharmeasy.in/dam/products_otc/I07006/vicks-vaporub-110ml-relief-from-cold-cough-headache-and-body-pain-2-1669635048.jpg"
+              src={el.productImage}
               alt="Vicks"
             />
             <Heading size="sm" fontSize="17px" fontWeight="bold" mt="6px" color='rgb(79,88,104)'>
-              Vick Vaporub 110ml Relief from cold and cough
+              {el.productName}
             </Heading>
             <Flex mt="10px">
-              <Text color='gray.500'>MRP ₹{`123`}</Text>
+              <Text color='gray.500'>MRP ₹{el.listPrice}</Text>
               <Text
                 ml="10px"
                 bg="rgb(249,140,142)"
@@ -203,194 +208,21 @@ const ProductsPage = () => {
                 pr="5px"
                 color="white"
               >
-                4% OFF
+                {el.discountPercent}
               </Text>
             </Flex>
 
-            <Heading size="sm">₹{`254.40`}</Heading>
+            <Heading size="sm">₹{el.salePrice}</Heading>
           </Box>
+              ) )}
+         
           
-          <Box
-            border="1px"
-            borderColor="gray.300"
-            height="340px"
-            padding="8px"
-            borderRadius="6px"
-            mt="10px"
-            className={Style.main2}
-          >
-            <Image
-              m="auto"
-              mt="5px"
-              height="200px"
-              src="https://cdn01.pharmeasy.in/dam/products_otc/I07006/vicks-vaporub-110ml-relief-from-cold-cough-headache-and-body-pain-2-1669635048.jpg"
-              alt="Vicks"
-            />
-            <Heading size="sm" fontSize="17px" fontWeight="bold" mt="6px" color='rgb(79,88,104)'>
-              Vick Vaporub 110ml Relief from cold and cough
-            </Heading>
-            <Flex mt="10px">
-              <Text color='gray.500'>MRP ₹{`123`}</Text>
-              <Text
-                ml="10px"
-                bg="rgb(249,140,142)"
-                pl="5px"
-                pr="5px"
-                color="white"
-              >
-                4% OFF
-              </Text>
-            </Flex>
-
-            <Heading size="sm">₹{`254.40`}</Heading>
-          </Box>
-          
-          <Box
-            border="1px"
-            borderColor="gray.300"
-            height="340px"
-            padding="8px"
-            borderRadius="6px"
-            mt="10px"
-            className={Style.main2}
-          >
-            <Image
-              m="auto"
-              mt="5px"
-              height="200px"
-              src="https://cdn01.pharmeasy.in/dam/products_otc/I07006/vicks-vaporub-110ml-relief-from-cold-cough-headache-and-body-pain-2-1669635048.jpg"
-              alt="Vicks"
-            />
-            <Heading size="sm" fontSize="17px" fontWeight="bold" mt="6px" color='rgb(79,88,104)'>
-              Vick Vaporub 110ml Relief from cold and cough
-            </Heading>
-            <Flex mt="10px">
-              <Text color='gray.500'>MRP ₹{`123`}</Text>
-              <Text
-                ml="10px"
-                bg="rgb(249,140,142)"
-                pl="5px"
-                pr="5px"
-                color="white"
-              >
-                4% OFF
-              </Text>
-            </Flex>
-
-            <Heading size="sm">₹{`254.40`}</Heading>
-          </Box>
-          
-          <Box
-            border="1px"
-            borderColor="gray.300"
-            height="340px"
-            padding="8px"
-            borderRadius="6px"
-            mt="10px"
-            className={Style.main2}
-          >
-            <Image
-              m="auto"
-              mt="5px"
-              height="200px"
-              src="https://cdn01.pharmeasy.in/dam/products_otc/I07006/vicks-vaporub-110ml-relief-from-cold-cough-headache-and-body-pain-2-1669635048.jpg"
-              alt="Vicks"
-            />
-            <Heading size="sm" fontSize="17px" fontWeight="bold" mt="6px" color='rgb(79,88,104)'>
-              Vick Vaporub 110ml Relief from cold and cough
-            </Heading>
-            <Flex mt="10px">
-              <Text color='gray.500'>MRP ₹{`123`}</Text>
-              <Text
-                ml="10px"
-                bg="rgb(249,140,142)"
-                pl="5px"
-                pr="5px"
-                color="white"
-              >
-                4% OFF
-              </Text>
-            </Flex>
-
-            <Heading size="sm">₹{`254.40`}</Heading>
-          </Box>
-          
-          <Box
-            border="1px"
-            borderColor="gray.300"
-            height="340px"
-            padding="8px"
-            borderRadius="6px"
-            mt="10px"
-            className={Style.main2}
-          >
-            <Image
-              m="auto"
-              mt="5px"
-              height="200px"
-              src="https://cdn01.pharmeasy.in/dam/products_otc/I07006/vicks-vaporub-110ml-relief-from-cold-cough-headache-and-body-pain-2-1669635048.jpg"
-              alt="Vicks"
-            />
-            <Heading size="sm" fontSize="17px" fontWeight="bold" mt="6px" color='rgb(79,88,104)'>
-              Vick Vaporub 110ml Relief from cold and cough
-            </Heading>
-            <Flex mt="10px">
-              <Text color='gray.500'>MRP ₹{`123`}</Text>
-              <Text
-                ml="10px"
-                bg="rgb(249,140,142)"
-                pl="5px"
-                pr="5px"
-                color="white"
-              >
-                4% OFF
-              </Text>
-            </Flex>
-
-            <Heading size="sm">₹{`254.40`}</Heading>
-          </Box>
-          
-          <Box
-            border="1px"
-            borderColor="gray.300"
-            height="340px"
-            padding="8px"
-            borderRadius="6px"
-            mt="10px"
-            className={Style.main2}
-          >
-            <Image
-              m="auto"
-              mt="5px"
-              height="200px"
-              src="https://cdn01.pharmeasy.in/dam/products_otc/I07006/vicks-vaporub-110ml-relief-from-cold-cough-headache-and-body-pain-2-1669635048.jpg"
-              alt="Vicks"
-            />
-            <Heading size="sm" fontSize="17px" fontWeight="bold" mt="6px" color='rgb(79,88,104)'>
-              Vick Vaporub 110ml Relief from cold and cough
-            </Heading>
-            <Flex mt="10px">
-              <Text color='gray.500'>MRP ₹{`123`}</Text>
-              <Text
-                ml="10px"
-                bg="rgb(249,140,142)"
-                pl="5px"
-                pr="5px"
-                color="white"
-              >
-                4% OFF
-              </Text>
-            </Flex>
-
-            <Heading size="sm">₹{`254.40`}</Heading>
-          </Box>
-          
-          
-          
+       
         </SimpleGrid>
       </Box>
     </Box>
-  </>);
+
+</>);
 };
 
 export default ProductsPage;
