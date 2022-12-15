@@ -20,7 +20,7 @@ import {
   // PopoverBody,
   Select,
   Text,
-  Link,
+  // Link,
 } from "@chakra-ui/react";
 import axios from "axios";
 // import { useEffect } from "react";
@@ -32,7 +32,7 @@ const Login = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
   const [show, setShow] = useState(true);
-  const [hello, setHello] = useState("Hello, Log in");
+  const [hello, setHello] = useState("Log in");
   // const [changeComp, setChangeComp] = useState(true);
 
   // const handleChange = (e) => {
@@ -66,7 +66,7 @@ const Login = () => {
     password:"",
     gender:"",
     age:"",
-    profileimage:"",
+    // profileimage:"",
 })
 const handleChange = (e) => {
     setValues({...values,[e.target.name]:e.target.value})
@@ -87,13 +87,13 @@ const Loginscreen = () =>{
       password: values.password,
       gender: values.gender,
       age: values.age,
-      profileimage: values.profileimage,
+      // profileimage: values.profileimage,
     };
     axios.post("http://localhost:8400/userauth/signup", payload).then((r) => {
       if (r.status === 200) {
         setShow(false);
         console.log("Success");
-        console.log(r);
+        console.log(r); 
       } else {
         alert("Incorrect Email Id");
         setShow(true);
@@ -107,8 +107,10 @@ const Loginscreen = () =>{
     email: "",
     password: "",
   });
+
+
   const LoginhandleChange = (e) => {
-    setValuess({ ...values, [e.target.name]: e.target.value });
+    setValuess({ ...valuess, [e.target.name]: e.target.value });
   };
   const handleLogin = () => {
     const payload = {
@@ -116,12 +118,19 @@ const Loginscreen = () =>{
       password: valuess.password,
     };
 
+
     axios.post("http://localhost:8400/userauth/login", payload).then((r) => {
       if (r.status === 200) {
-        console.log("Success");
+        console.log('success');
         console.log(r);
+        // console.log(r.data);
+        // console.log(r.data.username);
+        setHello(r.data.username)
+
+        onClose()
+        // var usernamess = r.data.username;
       } else {
-        alert("Incorrect Email Id");
+        alert("Incorrect Email Id or Password");
       }
     });
   };
@@ -148,7 +157,7 @@ const Loginscreen = () =>{
           fontSize={"14px"}
           colorScheme="gray"
         >
-          {hello}
+         Hello {hello}
         </Button>
         <Drawer
           isOpen={isOpen}
@@ -219,7 +228,7 @@ const Loginscreen = () =>{
                       onChange={handleChange}
                       name="name"
                     />
-                    <Input
+                    {/* <Input
                       placeholder="Profile Picture"
                       borderRadius="8px"
                       border="none"
@@ -228,7 +237,7 @@ const Loginscreen = () =>{
                       type={"file"}
                       onChange={handleChange}
                       name="profileimage"
-                    />
+                    /> */}
                     <Select name="gender" onChange={handleChange}>
                       <option>Select Gender</option>
                       {options.map((option, index) => {
