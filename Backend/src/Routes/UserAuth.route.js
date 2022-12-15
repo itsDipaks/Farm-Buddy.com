@@ -65,6 +65,7 @@ UserAuthRouter.post("/login", async (req, res) => {
       const isSignup = await UserModel.findOne({email});
       if (isSignup) {
         const signup_user_password = isSignup.password;
+        const {username}=isSignup
         const user_id = isSignup._id;
         bcrypt.compare(password, signup_user_password).then(function (result) {
           if (result) {
@@ -78,6 +79,7 @@ UserAuthRouter.post("/login", async (req, res) => {
             res.send({
               msg: "Login Sucessfully welcome To FarmEasy",
               token: token,
+              username:username
             });
           } else {
             res.send({msg: "Password Is Wrong "});
@@ -93,5 +95,7 @@ UserAuthRouter.post("/login", async (req, res) => {
     res.send({msg: "SomeThing Wents Wrong please Try Again", err});
   }
 });
+
+
 
 module.exports = {UserAuthRouter};
