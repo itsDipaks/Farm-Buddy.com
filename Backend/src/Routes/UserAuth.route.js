@@ -57,7 +57,7 @@ UserAuthRouter.post("/login", async (req, res) => {
           if (result) {
             let token = jwt.sign(
               {
-                exp: Math.floor(Date.now() / 1000) + 60 * 60,
+                exp: Math.floor(Date.now() / 1000) + 60 * 360,
                 user_id: user_id,
               },
               PrivateKey
