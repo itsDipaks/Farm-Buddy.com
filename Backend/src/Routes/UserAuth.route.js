@@ -2,7 +2,6 @@ const {Router} = require("express");
 const {UserModel} = require("../Modles/Users.model");
 const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
-const multer=require("multer")
 const UserAuthRouter = Router();
 
 
@@ -10,22 +9,10 @@ require("dotenv").config();
 
 const PrivateKey = process.env.PRIVATEKEY;
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null,`${__dirname}/../ProfileImages`)
-  },
-  filename: function (req, file, cb) {
-    cb(null,file.originalname)
-  }
-})
-
-const uploads = multer({ storage:storage})
 
 
-UserAuthRouter.post("/signup",uploads.single("profilepic") ,async (req, res) => {
+UserAuthRouter.post("/signup",async (req, res) => {
   const {username, name, email, password, gender, age} = req.body;
-
-  const profileImagePath=req.file.originalname
   try {
     const UserExist = await UserModel.findOne({email});
     if (UserExist) {
@@ -40,8 +27,7 @@ UserAuthRouter.post("/signup",uploads.single("profilepic") ,async (req, res) => 
             email,
             password: hashedpassword,
             gender,
-            age,
-            profileimage:profileImagePath
+            age
           });
           await AddUser.save();
           res.send({msg: "User Signup Successfully"});
@@ -65,12 +51,13 @@ UserAuthRouter.post("/login", async (req, res) => {
       const isSignup = await UserModel.findOne({email});
       if (isSignup) {
         const signup_user_password = isSignup.password;
+        const {username}=isSignup
         const user_id = isSignup._id;
         bcrypt.compare(password, signup_user_password).then(function (result) {
           if (result) {
             let token = jwt.sign(
               {
-                exp: Math.floor(Date.now() / 1000) + 60 * 60,
+                exp: Math.floor(Date.now() / 1000) + 60 * 360,
                 user_id: user_id,
               },
               PrivateKey
@@ -78,6 +65,7 @@ UserAuthRouter.post("/login", async (req, res) => {
             res.send({
               msg: "Login Sucessfully welcome To FarmEasy",
               token: token,
+              username:username
             });
           } else {
             res.send({msg: "Password Is Wrong "});
@@ -93,5 +81,7 @@ UserAuthRouter.post("/login", async (req, res) => {
     res.send({msg: "SomeThing Wents Wrong please Try Again", err});
   }
 });
+
+
 
 module.exports = {UserAuthRouter};

@@ -28,7 +28,6 @@ const GetProducts = async (req, res) => {
         }
 
     } else if (filterbyCategory) {
-
         if(sortbyprice){
             if(sortbyprice=="asc"){
                 products = await ProductModel.find({category: filterbyCategory}).sort({salePrice:1})

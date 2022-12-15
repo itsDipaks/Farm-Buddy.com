@@ -1,4 +1,6 @@
-import React from "react";
+import React,{useEffect} from "react";
+import {useSelector,useDispatch} from 'react-redux'
+import { GetProducts } from "../Redux/Product/Product.action";
 import {
   Box,
   Text,
@@ -28,6 +30,15 @@ const ProductsPage = () => {
   const [value, setValue] = React.useState('1')
 
  
+  const pro = useSelector((state) => state.product.data);
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(GetProducts());
+  }, [dispatch]);
+  
+  console.log(pro)
+
  
   return (<>
     

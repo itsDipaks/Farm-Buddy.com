@@ -13,12 +13,21 @@ const AllRoutes = () => {
     <Routes>
       {/* <Route path="/" element={<Home/>}></Route> */}
       {/* <Route path="/" element={<Home/>}></Route>   */}
+import Cartpage from '../../Pages/Cartpage/Cartpage'
+import Paymentpage from '../../Pages/Paymentpage/Paymentpage'
+import Lab from '../../Pages/LabTest/Lab'
+const AllRoutes = () => {
+  return (
+    <Routes>
       <Route path="/adminsign" element={<AdminSign/>}></Route>
       <Route path="/adminlogin" element={<AdminLogin/>}></Route>
       <Route path="/" element={<Dashboard/>}></Route>
       <Route path="/userprofile" element={<UserProfilePage/>}></Route>
       <Route path="/adminprofile" element={<AdminProfile/>}></Route>
       <Route path="/adminsingleP" element={<SingleProductpage/>}></Route>
+      <Route path="/cartpage" element={<Cartpage/>}></Route>
+      <Route path="/payment" element={<Paymentpage/>}></Route>
+      <Route path="/labtest" element={<Lab/>}></Route>
     </Routes>
   )
 }
