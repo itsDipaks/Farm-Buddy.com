@@ -4,7 +4,8 @@ const cors=require("cors")
 const { connection } = require("./src/Config/db")
 const { adminRouter } = require("./src/Routes/Admin.route")
 const { UserAuthRouter } = require("./src/Routes/UserAuth.route")
-const { ProductRouter } = require("./src/Routes/Product.route")
+const { DashProductRouter } = require("./src/Routes/DashProduct.route")
+const { GetProductRouter } = require("./src/Routes/Product.route")
 const app=express()
 
 app.use(cors())
@@ -14,12 +15,9 @@ app.use(express.json())
 //     res.status(200).send("Welcome To PharmBuddy API")
 // })
 
-
 app.use("/userauth",UserAuthRouter)
-
-app.use('/',adminRouter)
-
-app.use("/product",ProductRouter)
+app.use("/Dashproduct",DashProductRouter)
+app.use("/product",GetProductRouter)
 // app.use('/',adminRouter)
 
 app.listen(8400,async()=>{
