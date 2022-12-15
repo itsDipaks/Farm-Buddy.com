@@ -13,3 +13,5 @@ const RootReducer=combineReducers({
 })
 const createComposer= compose;
 export const store=legacy_createStore(RootReducer,createComposer(applyMiddleware(thunk)))
+
+
