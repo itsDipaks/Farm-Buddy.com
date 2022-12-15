@@ -1,0 +1,15 @@
+.nav{
+    height: 6rem;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #10847e;
+    color: white;
+    align-items: center;
+}
+.nav>img{
+    width: 10%;
+}
+
+.nav>h1{
+    font-size: 1.2rem;
+}
