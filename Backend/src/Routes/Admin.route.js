@@ -89,6 +89,24 @@ adminRouter.patch("/adminUpdate",Adminauthenticate,async(req,res)=>{
 })
 
 
+  //.................... All Admins Get Method .....................//
+
+adminRouter.get('/alladmins',async(req,res)=>{
+    try{
+      const admins =  await AdminModel.find()
+      res.status(200).send({"msg":"All Admins Data","Data":admins})
+    }
+    catch(err){
+        console.log(err)
+        res.status(200).send({'err':"Something went wrong"})
+    }
+})
+
+
+
+
+
+
   //.................... All Users Get Method .....................//
 
 adminRouter.get("/allusers",async(req,res)=>{
