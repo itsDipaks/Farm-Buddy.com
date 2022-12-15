@@ -81,7 +81,7 @@ const handleLogout=()=>{
                  </Flex>
                  </Box>
                  <Link to="/">
-                  <Text pt={5} pb={5}>Dashboard > {data.firstname}</Text>
+                  <Text pt={5} pb={5}>Dashboard {data.firstname}</Text>
                   </Link>
                 <Flex w='85%' m='auto' boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px">
                     <Box w='30%' m='auto'>
