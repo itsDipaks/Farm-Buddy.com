@@ -7,7 +7,7 @@ import UserProfilePage from '../../Pages/AdminPages/UserProfilePage'
 import AdminProfile from '../../Pages/AdminPages/AdminProfile'
 import Cartpage from '../../Pages/Cartpage/Cartpage'
 import Paymentpage from '../../Pages/Paymentpage/Paymentpage'
-
+import Lab from '../../Pages/LabTest/Lab'
 const AllRoutes = () => {
   return (
     <Routes>
@@ -18,6 +18,7 @@ const AllRoutes = () => {
       <Route path="/adminprofile" element={<AdminProfile/>}></Route>
       <Route path="/cartpage" element={<Cartpage/>}></Route>
       <Route path="/payment" element={<Paymentpage/>}></Route>
+      <Route path="/labtest" element={<Lab/>}></Route>
     </Routes>
   )
 }
