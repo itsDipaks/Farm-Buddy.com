@@ -47,6 +47,8 @@ const handlePrevPage=()=>{
   }, []);
 
 
+
+
   const hanldleSelect=()=>{
     console.log("v",Select.value)
   }
@@ -151,7 +153,7 @@ const handlePrevPage=()=>{
                   </Select>
                   
           
-                    <Button colorScheme='teal' >Add To Cart</Button>
+                    <Button colorScheme='teal' onClick={()=>addToCart()}>Add To Cart</Button>
                   
                   </Box>
                   </Box>
