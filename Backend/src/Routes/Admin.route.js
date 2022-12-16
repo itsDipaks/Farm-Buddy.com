@@ -77,7 +77,6 @@ adminRouter.get("/adminDetails",Adminauthenticate,async(req,res)=>{
 
 adminRouter.patch("/adminUpdate",Adminauthenticate,async(req,res)=>{
     const adminID = req.body.adminID
-    console.log(req.body)
     try{
         const updateAdmin = await AdminModel.findByIdAndUpdate({_id:adminID},req.body)
         res.status(200).send({'msg':"Profile Updated"})
