@@ -1,4 +1,6 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
+import axios from 'axios'
+
 import Style from './SingleProduct.module.css'
 import {
   Box,
@@ -14,12 +16,31 @@ import {
   Divider
 } from "@chakra-ui/react";
 import { BsStarFill } from "react-icons/bs";
+import { useParams } from "react-router-dom";
 
 const SingleProduct = () => {
   const property = {
     reviewCount: 242,
     rating: 3,
   };
+
+ const [item,setItem]=useState()
+  const {_id}=useParams() 
+  //console.log("productId",_id)
+
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8400/product/singleproduct/${_id}`)
+      .then((res) => {
+        setItem(res.data.product);
+        console.log(item)
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  }, []);
+
   return (
     <>
       <Box  w="90%"  m="auto" mt='40px' className={Style.containter}>
@@ -114,8 +135,6 @@ const SingleProduct = () => {
                       <option value="option2"> 2</option>
                       <option value="option3"> 3</option>
                       <option value="option4"> 4</option>
-                      <option value="option5"> 5</option>
-                      <option value="option6"> 6</option>
                     </Select>
                   </Box>
                   </Box>

@@ -6,7 +6,8 @@ import ProductPage from './Pages/ProductsPage';
 function App() {
   return (
     <> 
-      {/* <AllRoutes/> */}
+      <AllRoutes/>
+      {/* <SinglgeProduct/> */}
       <ProductPage/>
     </>
 
