@@ -7,6 +7,7 @@ import Brands from "./Brands/Brands";
 import DayDeals from './components/DayDeals/DayDeals';
 import OffersBanner from "./OffersBanner/OffersBanner";
 import HealthConcern from "./HealthConcern/HealthConcern";
+import PaymentOffers from "./PaymentOffers/PaymentOffers";
 
 
 function Home() {
@@ -15,6 +16,7 @@ function Home() {
     <Brands/>
     <OffersBanner/>
     <HealthConcern/>
+    <PaymentOffers/>
     <DayDeals/>
     <ShopByCategories/>
      <Offers/>
