@@ -17,6 +17,8 @@ import {
 } from "@chakra-ui/react";
 import { BsStarFill } from "react-icons/bs";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
 
 const SingleProduct = () => {
   const property = {
@@ -26,25 +28,37 @@ const SingleProduct = () => {
 
  const [item,setItem]=useState()
   const {_id}=useParams() 
+  const navigate=useNavigate()
   //console.log("productId",_id)
-
+const handlePrevPage=()=>{
+  navigate('/productspage')
+}
 
   useEffect(() => {
     axios
       .get(`http://localhost:8400/product/singleproduct/${_id}`)
       .then((res) => {
-        setItem(res.data.product);
-        console.log(item)
+        setItem(res.data);
+        console.log(res.data)
       })
       .catch((err) => {
         console.log("err", err);
       });
   }, []);
 
+
+  const hanldleSelect=()=>{
+    console.log("v",Select.value)
+  }
+
   return (
     <>
+    <Navbar/>
       <Box  w="90%"  m="auto" mt='40px' className={Style.containter}>
-        <Text className={Style.heading}>Horlicks Health & Nutrition Drink Plastic Container 2 Kg</Text>
+        <Text className={Style.heading}>
+        {item?.productName} 
+      
+          </Text>
     {/* Main box */}
         <Box mt="30px" display='flex' className={Style.main_box}>
           <Box  w="70%" className={Style.main_box1}>
@@ -57,7 +71,7 @@ const SingleProduct = () => {
                 borderRadius='8px'
                 p="10px"
                   h="100%"
-                  src="https://cdn01.pharmeasy.in/dam/products_otc/Q28452/horlicks-health-nutrition-drink-plastic-container-2-kg-2-1655880678.jpg?dim=700x0&dpr=1&q=100"
+                  src={item?.productImage}
                   alt="Dan Abramov"
                 />
               </Box>
@@ -69,10 +83,10 @@ const SingleProduct = () => {
                   mt="6px"
                   color="rgb(79,88,104)"
                 >
-                  Horlicks Health & Nutrition Drink Plastic Container 2 Kg
+                       {item?.productName} 
                 </Heading>
-                <Text mt="10px" mb="10px" color="teal">
-                  Visit HORLIC store{" "}
+                <Text mt="10px" mb="10px" color="teal" cursor='pointer' onClick={handlePrevPage}>
+                  Visit {item?.type} store{" "}
                 </Text>
 
                 {/* Rating and price box */}
@@ -97,12 +111,12 @@ const SingleProduct = () => {
 
                     <Flex mt="10px">
                       <Heading size="sm" fontWeight="bold" fontSize="20px">
-                        ₹{`254.40`}
+                        ₹{item?.salePrice}
                       </Heading>
                       <Text color="gray.500" ml="10px">
                         MRP{" "}
                         <span style={{ textDecoration: "line-through" }}>
-                          ₹{`123`}
+                          ₹{item?.listPrice}
                         </span>
                       </Text>
                       <Text
@@ -112,7 +126,7 @@ const SingleProduct = () => {
                         pr="5px"
                         color="white"
                       >
-                        4% OFF
+                        {item?.discountPercent}
                       </Text>
                     </Flex>
                     <Text fontSize="13px" color="gray.500">
@@ -129,13 +143,16 @@ const SingleProduct = () => {
                    </Box>
                   <Box mt="25px" mr="100px"  className={Style.select_option}>
                    
-                   
-                    <Select placeholder="Select option" w="100%" >
-                      <option value="option1"> 1</option>
-                      <option value="option2"> 2</option>
-                      <option value="option3"> 3</option>
-                      <option value="option4"> 4</option>
-                    </Select>
+                    <Select placeholder="Qty 0" w="100%"  onClick={()=>hanldleSelect()}>
+                    <option value="1"> 1</option>
+                    <option value="2"> 2</option>
+                    <option value="3"> 3</option>
+                    <option value="4"> 4</option>
+                  </Select>
+                  
+          
+                    <Button colorScheme='teal' >Add To Cart</Button>
+                  
                   </Box>
                   </Box>
                 </Box>

@@ -1,4 +1,3 @@
-import React from 'react'
 import {Routes,Route} from 'react-router-dom'
 import AdminSign from "../Admin/AdminSign"
 import Home from '../HomePage/Home'
@@ -7,12 +6,6 @@ import Dashboard from '../../Pages/AdminPages/Dashboard'
 import UserProfilePage from '../../Pages/AdminPages/UserProfilePage'
 import AdminProfile from '../../Pages/AdminPages/AdminProfile'
 import SingleProductpage from "../../Pages/AdminPages/SingleProductPage"
-
-const AllRoutes = () => {
-  return (
-    <Routes>
-      {/* <Route path="/" element={<Home/>}></Route> */}
-      {/* <Route path="/" element={<Home/>}></Route>   */}
 import Cartpage from '../../Pages/Cartpage/Cartpage'
 import Paymentpage from '../../Pages/Paymentpage/Paymentpage'
 import Lab from '../../Pages/LabTest/Lab'
@@ -20,6 +13,7 @@ import SingleProduct from '../../Pages/SingleProduct/SingleProduct'
 import ProductsPage from '../../Pages/ProductsPage'
 const AllRoutes = () => {
   return (
+  <>
     <Routes>
       <Route path="/adminsign" element={<AdminSign/>}></Route>
       <Route path="/adminlogin" element={<AdminLogin/>}></Route>
@@ -33,8 +27,9 @@ const AllRoutes = () => {
       <Route path="/productspage" element={<ProductsPage/>}></Route>
       <Route path='/singleproduct/:_id' element={<SingleProduct/>}>SingleProduct</Route>
     </Routes>
-  )
+    </>
+    )
   
-}
+  }
 
 export default AllRoutes
