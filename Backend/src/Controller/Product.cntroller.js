@@ -52,6 +52,23 @@ const GetProducts = async (req, res) => {
   }
 };
 
-const ProductController = {GetProducts};
+
+
+const GetSingleProduct=async(req,res)=>{
+    //Product Id From Params
+    const product_Id=req.params.product_Id
+    try{
+        const singlepraduct=await ProductModel.findOne({_id:product_Id})
+        if(singlepraduct){
+            res.send(singlepraduct)
+        }else{
+            res.send({msg:"Product Data Not Found Please Provide Correct id"})
+        }
+    }catch(err){
+        res.send({msg:"Something Wents Wrong Please Try Agin",err:err})
+    }
+
+}
+const ProductController = {GetProducts,GetSingleProduct};
 
 module.exports = {ProductController};

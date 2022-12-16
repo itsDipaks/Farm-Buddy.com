@@ -19,6 +19,8 @@ app.use(express.json())
 app.use("/userauth",UserAuthRouter)
 app.use("/Dashproduct",DashProductRouter)
 app.use("/product",GetProductRouter)
+
+app.use('/',adminRouter)
 app.use("/cart",CartRouter)
 // app.use('/',adminRouter)
 

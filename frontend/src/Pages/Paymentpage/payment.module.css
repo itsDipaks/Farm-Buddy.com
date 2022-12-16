@@ -1,0 +1,189 @@
+.butontitle {
+  width: 100%;
+  /* justify-content: space-between; */
+}
+.butontitle > img {
+  width: 3%;
+  border-radius: 10%;
+}
+.butontitle > h1 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 1rem;
+  color: rgb(94, 94, 94);
+}
+.accordinfobox {
+  margin-left: 5%;
+}
+.linkbtn {
+  padding: 1rem;
+  margin-top: 1rem;
+  background-color: #10847e;
+  color: white;
+}
+.upi_iconbox {
+  display: flex;
+  margin-left: 4%;
+  gap: 1%;
+}
+.upi_iconbox > img {
+  width: 8%;
+}
+.upi_form {
+  width: 70%;
+  margin-left: 4%;
+  display: flex;
+  align-items: center;
+  gap: 1%;
+}
+.upi_form > :nth-child(1) {
+  width: 50%;
+}
+.upi_form > :nth-child(2) {
+  padding: 1%;
+  width: 50%;
+}
+
+.cardbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+}
+.imagbox > img {
+  width: 80%;
+  margin-left: 5%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.card_icon {
+  width: 8%;
+  margin-left: 4%;
+  display: flex;
+  align-items: center;
+  gap: 1%;
+}
+.infobox > p {
+  font-size: 0.72rem;
+  color: gray;
+}
+.infobox > h1 {
+  font-size: 1.2rem;
+  margin: 1rem;
+}
+
+/* .................Drawer..... */
+
+.validbox {
+  display: flex;
+  gap: 1rem;
+}
+
+.lable {
+  margin: 1rem 0rem 0.51rem 0rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: rgb(187, 182, 182);
+}
+.drawerheader {
+  width: 90%;
+  margin: auto;
+  border-bottom: 1px solid rgb(165, 165, 165);
+}
+.inputfeild {
+  padding: 1.5rem;
+  color: grey;
+}
+.inputfeild>* {
+
+  color: rgb(255, 0, 0);
+}
+.checkbox>*{
+    margin-top: 1.5rem ;
+    font-size: 1.1rem;
+    color: grey;
+}
+
+
+.proceedbtn{
+    /* background-color: #10847e;; */
+    color:  #10847e;
+    width: 100%;
+    margin-top: 2rem;
+   padding: 1rem; 
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.outerdiv {
+  display: flex;
+  width: 90%;
+  margin: auto;
+  justify-content: space-between;
+}
+.outerdiv > :nth-child(1) {
+  width: 50%;
+  /* border: 1px solid grey; */
+}
+.outerdiv > :nth-child(2) {
+  /* border: 1px solid grey; */
+  width: 40%;
+}
+.title {
+  font-size: 1.52rem;
+  padding: 1rem;
+  font-weight: 600;
+  color: grey;
+}
+.linkbox {
+  margin: 1rem;
+
+  /* border: none; */
+  margin-bottom: 1px solid grey;
+}
+
+
+
+
+
+
+
+
+
+
+.pricebox{
+    width: 100%;
+    padding: 1rem;
+    /* border: 1px solid grey; */
+}
+
+.pricebox>h2{
+    display: flex;
+    line-height: 1.8rem;
+    justify-content: space-between;
+}
+.pricebox>:nth-child(4){
+  border: 1px dotted grey;
+  padding: 1rem ;
+}
+
+
+.title1{
+    font-size: 1rem;
+    padding: 1rem 0rem 1rem 0rem;
+    font-weight: 600;
+    color: grey;
+  }

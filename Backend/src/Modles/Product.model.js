@@ -10,8 +10,8 @@ const ProductSchema = new mongoose.Schema({
   category: {type: String, required: true},
   type: {type: String, required: true},
   description: {type: String, required: true},
- ProductAddeedonDate:{type:String,required:true,default:GetCurrent1Date},
- ProductAddeedTime:{type:String,required:true ,default:GetCurrent1Time}
+ ProductAddeedonDate:{type:String,default:GetCurrent1Date},
+ ProductAddeedTime:{type:String,default:GetCurrent1Time}
 });
 
 const ProductModel = mongoose.model("Product", ProductSchema);
