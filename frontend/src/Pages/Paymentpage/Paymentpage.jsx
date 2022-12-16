@@ -30,6 +30,7 @@ const Paymentpage = () => {
 
     <>
 
+
 <Paymentnavbar/>
 
     <div className={styles.outerdiv}>
@@ -59,7 +60,7 @@ const Paymentpage = () => {
                   Up to 3000 cashback points on a minimum transaction of Rs.599.
                   Valid once per user.
                 </Text>
-                <Button className={styles.linkbtn}>Link Wallet</Button>
+                <Button colorScheme='teal' className={styles.linkbtn}>Link Wallet</Button>
               </Box>
             </AccordionPanel>
           </AccordionItem>
@@ -86,7 +87,7 @@ const Paymentpage = () => {
                   Up to Rs.600 cashback on a minimum transaction of Rs.399.
                   Valid once per user.
                 </Text>
-                <Button className={styles.linkbtn}>Link Wallet</Button>
+                <Button colorScheme='teal' className={styles.linkbtn}>Link Wallet</Button>
               </Box>
             </AccordionPanel>
           </AccordionItem>
@@ -113,7 +114,7 @@ const Paymentpage = () => {
                   Up to Rs.650 cashback on Mobikwik. Code: MBK650. Valid only
                   once & on orders above Rs.800.
                 </Text>
-                <Button className={styles.linkbtn}>Link Wallet</Button>
+                <Button colorScheme='teal' className={styles.linkbtn}>Link Wallet</Button>
               </Box>
             </AccordionPanel>
           </AccordionItem>
@@ -164,7 +165,7 @@ const Paymentpage = () => {
               </Box>
               <Box className={styles.upi_form}>
                 <Input placeholder="eg.**0000@paytm" size="md" />
-                <Button>Place Order</Button>
+                <Button colorScheme='teal'>Place Order</Button>
               </Box>
             </AccordionPanel>
           </AccordionItem>
@@ -292,7 +293,7 @@ const Paymentpage = () => {
                   ₹25 will be charged for Cash on Delivery. Switch to online
                   payments to save on ₹25.
                 </Text>
-                <Button className={styles.linkbtn}>Place Order</Button>
+                <Button colorScheme='teal' className={styles.linkbtn}>Place Order</Button>
               </Box>
             </AccordionPanel>
           </AccordionItem>
