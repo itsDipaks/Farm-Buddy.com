@@ -100,3 +100,18 @@ table tbody tr {
   .userRow:hover{
     background-color: rgb(216, 215, 247);
   }
+  .productRow{
+    /* font-size: 15px; */
+    /* display: block; */
+    color: blue;
+  }
+
+  @media only screen and (min-width: 750px) and (max-width:1025px) {
+    .productRow{
+        color: red;
+        display: none;
+    }
+    #lhsBox{
+        padding: 0px;
+    }
+  }

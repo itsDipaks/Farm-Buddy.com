@@ -61,6 +61,8 @@ useEffect(()=>{
       console.log(err)
     })
   }
+ {/* ..................  Logout method Here ........................ */}
+
 
 const handleLogout=()=>{
     const emptyToken=""
@@ -81,7 +83,7 @@ const handleLogout=()=>{
                  </Flex>
                  </Box>
                  <Link to="/">
-                  <Text pt={5} pb={5}>Dashboard > {data.firstname}</Text>
+                  <Text pt={5} pb={5}>Dashboard {data.firstname}</Text>
                   </Link>
                 <Flex w='85%' m='auto' boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px">
                     <Box w='30%' m='auto'>
@@ -94,7 +96,7 @@ const handleLogout=()=>{
                         <Heading>{data.firstname}</Heading>
                         <Button onClick={onOpen} >Edit Profile</Button>
                         </Flex>
-                        <Modal isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
+                    <Modal isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
                     <ModalOverlay />
                     <ModalContent>
                     <ModalHeader>Update Profile</ModalHeader>

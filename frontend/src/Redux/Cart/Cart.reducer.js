@@ -3,7 +3,8 @@ import { GET_CART_ERROR, GET_CART_LOADING, GET_CART_SUCCSESS } from "./Cart.type
 const initial_state={
     loading:false,
     error:false,
-    data:[]
+    data:[],
+    
 }
 
 
