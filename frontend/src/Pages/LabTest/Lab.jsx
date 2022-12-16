@@ -3,7 +3,7 @@ import { Flex, Hide, Highlight, Image, Show, Text } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/react';
 import Faq from './Faq';
 import { useState } from 'react';
-import { Carousel } from '@trendyol-js/react-carousel';
+// import { Carousel } from '@trendyol-js/react-carousel';
 
 function Lab() {
 
@@ -69,7 +69,7 @@ function Lab() {
 </Show>
 
 <Faq/>
-<Carousel show={3.5} slide={3} swiping={true}>
+{/* <Carousel show={3.5} slide={3} swiping={true}>
     <Highlight color="#2d66c3">We love Web 🌐</Highlight>
     <Highlight color="#f44336">We love Developers 👩🏻‍</Highlight>
     <a target="_blank" href="https://github.com/trendyol/">
@@ -78,7 +78,7 @@ function Lab() {
     <a target="_blank" href="https://trendyol.com/">
         <Highlight color="#f27a1a">This is our website</Highlight>
     </a>
-</Carousel>
+</Carousel> */}
     </>
   )
 }

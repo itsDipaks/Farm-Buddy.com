@@ -60,7 +60,7 @@ const handleActive=()=>{
 
   return (
     <Box>
-      <Flex mb="30px" justifyContent="space-between" alignItems="center" > 
+      <Flex mb="30px" direction={['column','column','row']}  justifyContent="space-between" alignItems="center" > 
           <Text fontWeight='bold' pb={5}>All Users : {users.length}</Text>
           <Button bg="white" border="1px solid grey">+ Add User</Button>
           </Flex>

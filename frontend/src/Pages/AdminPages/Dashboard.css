@@ -103,15 +103,34 @@ table tbody tr {
   .productRow{
     /* font-size: 15px; */
     /* display: block; */
-    color: blue;
+    color: black;
   }
 
   @media only screen and (min-width: 750px) and (max-width:1025px) {
     .productRow{
-        color: red;
+        /* color: red; */
         display: none;
     }
     #lhsBox{
         padding: 0px;
+    }
+  }
+  @media only screen and (max-width:750px) {
+    .productRow{
+        /* color: red; */
+        display: none;
+    }
+    .productRow2{
+        display: none;
+    }
+    #lhsBox{
+        padding: 0px;
+        width: 50px;
+    }
+    .lhsName{
+        display: none;
+    }
+    #rhsBody{
+        margin: 5px;
     }
   }
