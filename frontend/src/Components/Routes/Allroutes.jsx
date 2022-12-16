@@ -12,7 +12,6 @@ import Lab from '../../Pages/LabTest/Lab'
 import SingleProduct from '../../Pages/SingleProduct/SingleProduct'
 import ProductsPage from '../../Pages/ProductsPage'
 const AllRoutes = () => {
-
   return (
   <>
     <Routes>
@@ -30,6 +29,5 @@ const AllRoutes = () => {
     </Routes>
     </>
     )
-  
   }
 export default AllRoutes
