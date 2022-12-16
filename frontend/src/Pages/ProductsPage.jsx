@@ -23,6 +23,8 @@ import {
   useDisclosure, RadioGroup, Stack, DrawerBody
 } from "@chakra-ui/react";
 import Style from "./ProductPage.module.css";
+import {useNavigate} from 'react-router-dom'
+import Navbar from "./Navbar/Navbar";
 
 const ProductsPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -32,16 +34,23 @@ const ProductsPage = () => {
  
   const product = useSelector((state) => state.product.data);
   const dispatch = useDispatch();
+  const navigate =useNavigate() 
   
   useEffect(() => {
     dispatch(GetProducts());
   }, [dispatch]);
   
-  console.log(product)
+  // console.log(product)
+
+
+  const handleClick=(el)=>{
+   //console.log(el._id)
+     navigate(`/singleproduct/${el._id}`)
+  }
 
  
   return (<>
-     
+     <Navbar/>
        
     <Box border="1px solid black" display="flex" w="70%" m="auto" className={Style.main}>
       <Box  height="500px" w="30%" padding='25px' className={Style.main1}>
@@ -188,6 +197,7 @@ const ProductsPage = () => {
             borderRadius="6px"
             mt="10px"
             className={Style.main2}
+            onClick={()=>handleClick(el)}
           >
             <Image
               m="auto"
