@@ -150,15 +150,6 @@ const handleLogout=()=>{
 
 
 
-
-
-                {/* <Flex id='titleBox' p='0px 10px' mb='40px' key={data._id}>
-                <Image src={data.avtar} w='45px' borderRadius='50%'/>
-                <Box>
-                <Text pl={5} fontWeight='bold'>{data.firstname}</Text>
-                <Text pl={5} >{data.role}</Text>
-                </Box>
-                </Flex> */}
                 </>
               )
             })
