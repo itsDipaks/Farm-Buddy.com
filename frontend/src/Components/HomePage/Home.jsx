@@ -6,6 +6,7 @@ import Offers from "./Offers/Offers";
 import Brands from "./Brands/Brands";
 import DayDeals from './components/DayDeals/DayDeals';
 import OffersBanner from "./OffersBanner/OffersBanner";
+import HealthConcern from "./HealthConcern/HealthConcern";
 
 
 function Home() {
@@ -13,6 +14,7 @@ function Home() {
     <div >
     <Brands/>
     <OffersBanner/>
+    <HealthConcern/>
     <DayDeals/>
     <ShopByCategories/>
      <Offers/>
