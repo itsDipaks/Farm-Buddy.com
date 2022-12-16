@@ -7,16 +7,12 @@ import Dashboard from '../../Pages/AdminPages/Dashboard'
 import UserProfilePage from '../../Pages/AdminPages/UserProfilePage'
 import AdminProfile from '../../Pages/AdminPages/AdminProfile'
 import SingleProductpage from "../../Pages/AdminPages/SingleProductPage"
-
-const AllRoutes = () => {
-  return (
-    <Routes>
-      {/* <Route path="/" element={<Home/>}></Route> */}
-      {/* <Route path="/" element={<Home/>}></Route>   */}
 import Cartpage from '../../Pages/Cartpage/Cartpage'
 import Paymentpage from '../../Pages/Paymentpage/Paymentpage'
 import Lab from '../../Pages/LabTest/Lab'
+
 const AllRoutes = () => {
+
   return (
     <Routes>
       <Route path="/adminsign" element={<AdminSign/>}></Route>
@@ -30,7 +26,7 @@ const AllRoutes = () => {
       <Route path="/labtest" element={<Lab/>}></Route>
     </Routes>
   )
-  
+
 }
 
 export default AllRoutes

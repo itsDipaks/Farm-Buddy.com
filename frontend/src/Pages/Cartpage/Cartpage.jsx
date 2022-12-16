@@ -14,6 +14,7 @@ import styles from "./cartpage.module.css";
 const Cartpage = () => {
   return (
     <>
+    
       <Box className={styles.mainbox}>
         <Box className={styles.leftbox}>
           <VStack className={styles.cartcount}>
