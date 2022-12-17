@@ -32,7 +32,7 @@ const AllAdminPage = () => {
 
   return (
     <Box>
-      <Flex mb="30px" justifyContent="space-between" alignItems="center" > 
+      <Flex mb="30px" justifyContent="space-between" direction={['column','column','row']} alignItems="center" > 
           <Text fontWeight='bold' pb={5}>All Admins: {admins.length}</Text>
           <Link to='/adminsign'>
           <Button bg="white" border="1px solid grey">+ Add Admin</Button>
@@ -45,7 +45,7 @@ const AllAdminPage = () => {
                   <Th>Name</Th>
                   <Th className="productRow">Role</Th>
                   <Th className="productRow">Contacts</Th>
-                  <Th>Remove</Th>
+                  <Th className='productRow2'>Remove</Th>
                 </Tr>
               </Thead>
               <Tbody id="product_tbody">
@@ -79,8 +79,8 @@ const AllAdminPage = () => {
                         <Td>
                         <Text fontSize={20} className="productRow">{ele.email}</Text>
                         </Td>
-                        <Td>
-                        <Button>Block {ele.firstname}</Button>
+                        <Td className='productRow2'>
+                        <Button >Block {ele.firstname}</Button>
                         </Td>
                     </Tr>
                     </>

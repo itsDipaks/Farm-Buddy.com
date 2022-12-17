@@ -39,7 +39,12 @@ console.log(itemIndex)
 };
 
 
+const GetUsersCart=async(req,res)=>{
+  const {user_id}=req.body;
 
+
+  const UserCart=await CartModel.findOne({user_id})
+}
 
 const Deletecartitem = async (req, res) => {
   const {prodid} = req.params;

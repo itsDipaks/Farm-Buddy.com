@@ -1,4 +1,3 @@
-import React from 'react'
 import {Routes,Route} from 'react-router-dom'
 import AdminSign from "../Admin/AdminSign"
 import Home from '../HomePage/Home'
@@ -11,8 +10,10 @@ import Cartpage from './../../Pages/Cartpage/Cartpage';
 import Paymentpage from './../../Pages/Paymentpage/Paymentpage';
 import Lab from '../../Pages/LabTest/Lab';
 
+
 const AllRoutes = () => {
   return (
+  <>
     <Routes>
       <Route path="/adminsign" element={<AdminSign/>}></Route>
       <Route path="/adminlogin" element={<AdminLogin/>}></Route>
@@ -24,9 +25,10 @@ const AllRoutes = () => {
       <Route path="/cartpage" element={<Cartpage/>}></Route>
       <Route path="/payment" element={<Paymentpage/>}></Route>
       <Route path="/labtest" element={<Lab/>}></Route>
+      <Route path="/productspage" element={<ProductsPage/>}></Route>
+      <Route path='/singleproduct/:_id' element={<SingleProduct/>}>SingleProduct</Route>
     </Routes>
-  )
-  
-}
-
+    </>
+    )
+  }
 export default AllRoutes

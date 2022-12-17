@@ -6,6 +6,7 @@ import { useState } from 'react';
 import Footer from '../../Components/HomePage/Footer/Footer';
 // import { Carousel } from '@trendyol-js/react-carousel';
 import { Grid, GridItem } from '@chakra-ui/react'
+// import { Carousel } from '@trendyol-js/react-carousel';
 
 function Lab() {
 
@@ -109,7 +110,6 @@ function Lab() {
         <Highlight color="#f27a1a">This is our website</Highlight>
     </a>
 </Carousel> */}
-{/* <Footer/> */}
     </>
   )
 }
