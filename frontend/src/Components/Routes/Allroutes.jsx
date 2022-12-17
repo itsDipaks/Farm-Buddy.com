@@ -9,6 +9,8 @@ import SingleProductpage from "../../Pages/AdminPages/SingleProductPage"
 import Cartpage from './../../Pages/Cartpage/Cartpage';
 import Paymentpage from './../../Pages/Paymentpage/Paymentpage';
 import Lab from '../../Pages/LabTest/Lab';
+import ProductsPage from './../../Pages/ProductsPage';
+import SingleProduct from '../../Pages/SingleProduct/SingleProduct'
 
 
 const AllRoutes = () => {
