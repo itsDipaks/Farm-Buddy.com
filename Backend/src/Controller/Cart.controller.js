@@ -1,12 +1,11 @@
 const { CartModel } = require("../Modles/Cart.model");
+const { ProductModel } = require("../Modles/Product.model");
 
 const Addtocart = async (req, res) => {
 
-  const { product_Id, quantity, name, price } = req.body;
-  const user_Id="639acae97436888e51183532"
+  const { product_Id, quantity, name, price,user_id } = req.body;
   try {
-    let cart = await CartModel.findOne({ user_Id });
-
+    let cart = await CartModel.findOne({ user_id });
     if (cart) {
       //cart exists for user
       let itemIndex = cart.products.findIndex(p => p.product_Id == product_Id);
@@ -16,6 +15,7 @@ console.log(itemIndex)
         let productItem = cart.products[itemIndex];
         productItem.quantity = quantity;
         cart.products[itemIndex] = productItem;
+
       } else {
         //product does not exists in cart, add new item
         cart.products.push({ product_Id, quantity, name, price });
@@ -24,26 +24,59 @@ console.log(itemIndex)
       return res.status(201).send(cart);
     } else {
       //no cart for user, create new cart
-      const newCart = await Cart.create({
-        userId,
-        products: [{ product_Id, quantity, name, price }]
+      const newCart = await CartModel.create({
+        user_id,
+        products: [{ product_Id, quantity, name, price }],
+        cartTotal:{price},
       });
-
       return res.status(201).send(newCart);
     }
   } catch (err) {
     console.log(err);
-    res.status(500).send("Something went wrong");
+    res.status(500).send({msg:"Something went wrong",err:err});
   }
 
+
+
+
+const Addtocart = async(req, res) => {
+  const { product_Id, quantity,user_id } = req.body;
+
+
+const cartpresent=CartModel.findOne({user_id})
+
+if(cartpresent){
+console.log("note exist")
+
+}else{
+
+  let mycart=CartModel({
+    product_Id,
+    quantity
+  })
+  await mycart.save()
+}
+
 };
+};
+
+
+
 
 
 const GetUsersCart=async(req,res)=>{
   const {user_id}=req.body;
-
-
+try{
   const UserCart=await CartModel.findOne({user_id})
+  if(UserCart){
+    res.send(UserCart)
+  }else{
+    res.send({msg:"Cart Is Empty Please Add Product To cart"})
+  }
+}catch(err){
+  res.send({msg:"Something Wents Wrong",err:err})
+}
+ 
 }
 
 const Deletecartitem = async (req, res) => {
@@ -71,6 +104,6 @@ const EditProduct = async (req, res) => {
 
 };
 
-const CartController = {Addtocart};
+const CartController = {Addtocart,GetUsersCart};
 
 module.exports = {CartController};
