@@ -1,27 +1,43 @@
 
-import ShopByCategories from "./Category/ShopByCategories"
-
-import Footer from "./Footer/footer"
-import Offers from "./Offers/Offers";
-import Brands from "./Brands/Brands";
+import './Home.css';
 import DayDeals from './components/DayDeals/DayDeals';
-import OffersBanner from "./OffersBanner/OffersBanner";
-import HealthConcern from "./HealthConcern/HealthConcern";
-import PaymentOffers from "./PaymentOffers/PaymentOffers";
+import Footer from './components/Footer/footer';
+import Brands from './components/Brands/Brands';
+import Carousel from './components/FrontOffer/FrontOffer';
+import LabTests from './components/LabTests/LabTests';
+import Offers from './components/Offers/Offers';
+import Reviews from './components/Reviews/Reviews';
+import HealthConcern from './components/HealthConcern/HealthConcern';
+import HealthArticles from './components/HealthArticles/HealthArticles';
+import ShopByCategories from './components/Category/ShopByCategories';
+import PaymentOffers from './components/PaymentOffers/PaymentOffers';
+import HomeDesc from './components/HomeDesc/HomeDesc';
+
+
+
+
 
 
 function Home() {
   return (
-    <div >
-    <Brands/>
-    <OffersBanner/>
+    <div className="Home">
+     <Offers/>
+    <Carousel/>
     <HealthConcern/>
     <PaymentOffers/>
-    <DayDeals/>
     <ShopByCategories/>
-     <Offers/>
+    <LabTests/>  
+    <Brands/>
+     <DayDeals/>
+     <HealthArticles/>
+     <Reviews/>
+     <HomeDesc/>
      <Footer/>
      
+      
+     
+      
+    
     </div>
   );
 }
