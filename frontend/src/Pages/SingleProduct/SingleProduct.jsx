@@ -1,6 +1,5 @@
 import React,{useEffect,useState} from "react";
 import axios from 'axios'
-
 import Style from './SingleProduct.module.css'
 import {
   Box,
@@ -30,11 +29,12 @@ const SingleProduct = () => {
  const [qty,setQty]=useState()
   const {_id}=useParams() 
   const navigate=useNavigate()
-  //console.log("productId",_id)
+
+  
 const handlePrevPage=()=>{
   navigate('/productspage')
 }
-
+//  ............ Get Single Product data............
   useEffect(() => {
     axios
       .get(`http://localhost:8400/product/singleproduct/${_id}`)
@@ -47,6 +47,7 @@ const handlePrevPage=()=>{
       });
   }, []);
 
+//  .............Add To Cart method ...............
 
 const addToCart=()=>{
   const payload={

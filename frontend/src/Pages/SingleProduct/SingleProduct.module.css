@@ -5,6 +5,9 @@
 .addCartBtn2{
     display: none !important;
 }
+
+ /* ........ For Medium Size Screen ......... */
+ 
    @media only screen and (max-width: 1190px){
     .containter{
         width: 100% !important;

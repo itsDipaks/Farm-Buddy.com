@@ -1,7 +1,6 @@
 import React,{useEffect} from "react";
 import {useSelector,useDispatch} from 'react-redux'
-import {GetBabyHelthCategory, GetFacecareCategory, GetProducts } from "../Redux/Product/Product.action";
-import axios from 'axios'
+import {GetHealthyFoodDrinksCategory,GetBabyHelthCategory, GetFacecareCategory, GetProducts } from "../Redux/Product/Product.action";
 import {
   Box,
   Text,
@@ -42,21 +41,33 @@ const ProductsPage = () => {
     dispatch(GetProducts());
   }, [dispatch]);
   
-  // console.log(product)
-
-
+  // ..........Single Product Route............
+ 
   const handleClick=(el)=>{
-  //  console.log(el._id)
      navigate(`/singleproduct/${el._id}`)
   }
-  const handleCat=(e)=>{
+
+  // ............. Face care category function............
+
+  const handleFaceCareCat=(e)=>{
    dispatch(GetFacecareCategory())
 }
+
+// .........Baby Health Care catogory function..................
   const handleBabyCat=(e)=>{
    dispatch(GetBabyHelthCategory())
 }
 
+
+// ...........Healthy Food And Drinks Category function...........
+
+const handleHealthyAndFoodCat=(e)=>{
+ dispatch(GetHealthyFoodDrinksCategory())
+}
   
+
+// .........Sorting method .............
+
     const handleSortData = (data,type) => {
       if (type === "lth") {
         const sorter = (a, b) => {
@@ -78,7 +89,7 @@ const ProductsPage = () => {
   return (<>
      <Navbar/>
        
-    <Box border="1px solid black" display="flex" w="70%" m="auto" className={Style.main}>
+    <Box display="flex" w="70%" m="auto" className={Style.main}>
       <Box  height="500px" w="30%" padding='25px' className={Style.main1}>
         <Box w='90%'>
        
@@ -87,16 +98,23 @@ const ProductsPage = () => {
                 Filter
               </Heading>
               <Text mt='20px' mb='15px' fontSize='20px'>Category</Text>
-              <Flex onClick={handleBabyCat}>
-              <Text>Babyhelth</Text>
+              <RadioGroup onChange={setValue} value={value}>
+              <Flex onClick={handleBabyCat} mb='10px'>
+              <Text>Baby Health</Text>
                <Spacer />
               <Radio  value='1'></Radio>
               </Flex>
-              <Flex onClick={handleCat}>
-              <Text>Facecare</Text>
+              <Flex onClick={handleHealthyAndFoodCat} mb='10px'>
+              <Text>Health And Food</Text>
                <Spacer />
               <Radio  value='2'></Radio>
               </Flex>
+              <Flex onClick={handleFaceCareCat}>
+              <Text>Face Care</Text>
+               <Spacer />
+              <Radio  value='3'></Radio>
+              </Flex>
+              </RadioGroup>
               <Divider mt='30px' />
               <Text mt='20px' mb='15px' fontSize='20px'>Sub category</Text>
               <Divider mt='30px' />
