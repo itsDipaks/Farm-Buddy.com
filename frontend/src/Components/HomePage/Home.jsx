@@ -1,7 +1,7 @@
 
 import ShopByCategories from "./Category/ShopByCategories"
 
-import Footer from "./Footer/footer"
+import Footer from "./Footer/Footer"
 import Offers from "./Offers/Offers";
 import Brands from "./Brands/Brands";
 import DayDeals from './components/DayDeals/DayDeals';

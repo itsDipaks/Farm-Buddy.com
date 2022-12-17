@@ -6,17 +6,18 @@ import Dashboard from '../../Pages/AdminPages/Dashboard'
 import UserProfilePage from '../../Pages/AdminPages/UserProfilePage'
 import AdminProfile from '../../Pages/AdminPages/AdminProfile'
 import SingleProductpage from "../../Pages/AdminPages/SingleProductPage"
-import Cartpage from '../../Pages/Cartpage/Cartpage'
-import Paymentpage from '../../Pages/Paymentpage/Paymentpage'
-import Lab from '../../Pages/LabTest/Lab'
-import SingleProduct from '../../Pages/SingleProduct/SingleProduct'
-import ProductsPage from '../../Pages/ProductsPage'
+import Cartpage from './../../Pages/Cartpage/Cartpage';
+import Paymentpage from './../../Pages/Paymentpage/Paymentpage';
+import Lab from '../../Pages/LabTest/Lab';
+
+
 const AllRoutes = () => {
   return (
   <>
     <Routes>
       <Route path="/adminsign" element={<AdminSign/>}></Route>
       <Route path="/adminlogin" element={<AdminLogin/>}></Route>
+      <Route path="/home" element={<Home/>}></Route>
       <Route path="/" element={<Dashboard/>}></Route>
       <Route path="/userprofile" element={<UserProfilePage/>}></Route>
       <Route path="/adminprofile" element={<AdminProfile/>}></Route>
