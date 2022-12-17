@@ -15,9 +15,6 @@ import HomeDesc from './components/HomeDesc/HomeDesc';
 
 
 
-
-
-
 function Home() {
   return (
     <div className="Home">

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const CartSchema = new mongoose.Schema(
   {
-    userId: {
+    user_id: {
       type: mongoose.Schema.Types.ObjectId
     },
     products: [
@@ -13,6 +13,7 @@ const CartSchema = new mongoose.Schema(
         price: {type:Number}
       }
     ],
+
     active: {
       type: Boolean,
       default: true
@@ -28,3 +29,30 @@ const CartSchema = new mongoose.Schema(
 const CartModel = mongoose.model("CartData", CartSchema);
 
 module.exports = {CartModel};
+
+
+// var mongoose = require('mongoose');
+
+// var Schema = mongoose.Schema;
+
+// var CartSchema = new Schema({
+//   user_id: {
+//         type: Schema.Types.ObjectId,
+//         required: true
+//     },
+//     products_Id: {
+//         type: Schema.Types.ObjectId,
+//         required: true
+//     },
+//     quantity: {
+//         type: Number,
+//         default:1,
+//         required: true
+//     },
+//     date: {
+//         type: Date,
+//         default: Date.now()
+//     }
+// });
+// const CartModel = mongoose.model("CartData", CartSchema);
+// module.exports ={CartModel}
