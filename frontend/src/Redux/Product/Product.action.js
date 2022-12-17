@@ -32,10 +32,23 @@ export const GetProducts=(params)=>(dispatch)=>{
     })
 
 }
-export const GetCategory=()=>(dispatch)=>{
+export const GetFacecareCategory=()=>(dispatch)=>{
     dispatch(productReuquest())
     return axios
     .get(`http://localhost:8400/product/getproducts?type=facecare`)
+    .then((res)=>{
+        dispatch(productSuccess(res.data))
+       //  console.log(res.data)
+    })
+    .catch((error)=>{
+        dispatch(productFailure(error))
+    })
+
+}
+export const GetBabyHelthCategory=()=>(dispatch)=>{
+    dispatch(productReuquest())
+    return axios
+    .get(`http://localhost:8400/product/getproducts?type=babyhelth`)
     .then((res)=>{
         dispatch(productSuccess(res.data))
        //  console.log(res.data)

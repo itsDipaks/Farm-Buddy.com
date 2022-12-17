@@ -40,7 +40,7 @@ const handlePrevPage=()=>{
       .get(`http://localhost:8400/product/singleproduct/${_id}`)
       .then((res) => {
         setItem(res.data);
-        //console.log(res.data)
+        console.log(res.data)
       })
       .catch((err) => {
         console.log("err", err);
@@ -174,10 +174,12 @@ const addToCart=()=>{
                   </Select>
                   
           
-                    <Button colorScheme='teal' onClick={()=>addToCart(_id)}>Add To Cart</Button>
+                    <Button colorScheme='teal'mt='15px'  fontSize='20px' onClick={()=>addToCart(_id)} className={Style.addCartBtn1}>Add To Cart</Button>
                   
                   </Box>
+                 
                   </Box>
+                  <Button colorScheme='teal'  fontSize='20px' onClick={()=>addToCart(_id)} className={Style.addCartBtn2}>Add To Cart</Button>
                 </Box>
               </Box>
             </Box>

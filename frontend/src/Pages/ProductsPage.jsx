@@ -1,6 +1,6 @@
 import React,{useEffect} from "react";
 import {useSelector,useDispatch} from 'react-redux'
-import { GetCategory, GetProducts } from "../Redux/Product/Product.action";
+import {GetBabyHelthCategory, GetFacecareCategory, GetProducts } from "../Redux/Product/Product.action";
 import axios from 'axios'
 import {
   Box,
@@ -46,13 +46,16 @@ const ProductsPage = () => {
 
 
   const handleClick=(el)=>{
-   //console.log(el._id)
+  //  console.log(el._id)
      navigate(`/singleproduct/${el._id}`)
   }
   const handleCat=(e)=>{
-   dispatch(GetCategory())
- 
+   dispatch(GetFacecareCategory())
 }
+  const handleBabyCat=(e)=>{
+   dispatch(GetBabyHelthCategory())
+}
+
   
     const handleSortData = (data,type) => {
       if (type === "lth") {
@@ -84,8 +87,8 @@ const ProductsPage = () => {
                 Filter
               </Heading>
               <Text mt='20px' mb='15px' fontSize='20px'>Category</Text>
-              <Flex>
-              <Text>Vicks</Text>
+              <Flex onClick={handleBabyCat}>
+              <Text>Babyhelth</Text>
                <Spacer />
               <Radio  value='1'></Radio>
               </Flex>
@@ -141,7 +144,7 @@ const ProductsPage = () => {
           <Flex mt='15px'>
             <Box>
               <Heading size="sm" fontSize="30px" color='rgb(79,88,104)' className={Style.heading}>
-                Vicks
+                Products
               </Heading>
             </Box>
             <Spacer/>
@@ -252,13 +255,11 @@ const ProductsPage = () => {
 
             <Heading size="sm">₹{el.salePrice}</Heading>
           </Box>
-              ) )}
-         
-          
-       
+               ) )} 
         </SimpleGrid>
       </Box>
     </Box>
+     
 
 </>);
 };
