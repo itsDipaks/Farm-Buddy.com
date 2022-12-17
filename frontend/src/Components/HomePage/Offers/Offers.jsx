@@ -25,22 +25,12 @@ const Offers = () => {
   const [show, setShow] = useState(false);
   const [data, setData] = useState([]);
 
-  // const handleChange = async (e) => {
-  //   if (e.target.value === "") {
-  //     return setShow(false);
-  //   }
-  //   setQuery(e.target.value);
-  //   setShow(true);
-  //   let res = await axios.get(
-  //     `https://pharmeasy-backend.onrender.com/products?name=${e.target.value}`
-  //   );
-  //   setData(res.data);
-  // };
+
 
   const element = document.querySelector("#box");
   console.log(element);
 
-  // if()
+ 
   return (
     <div>
       <div className={styles.backColor}>
