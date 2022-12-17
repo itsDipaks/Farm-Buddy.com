@@ -6,14 +6,17 @@ import { useState } from 'react';
 import Footer from '../../Components/HomePage/Footer/Footer';
 // import { Carousel } from '@trendyol-js/react-carousel';
 import { Grid, GridItem } from '@chakra-ui/react'
+import Texttt from './Texttt';
 // import { Carousel } from '@trendyol-js/react-carousel';
+import Navbar from './../Navbar/Navbar';
 
 function Lab() {
 
   return (
     <>
+    <Navbar/>
     <Hide breakpoint='(max-width: 600px)'>
-    <Flex margin='auto' w='80%' justifyContent={'space-evenly'}>
+    <Flex pt={'10'} margin='auto' w='96%' justifyContent={'space-evenly'}>
         <Flex pt={'6'} pl='10' pr='12'  textAlign='center' height={'20'}   borderRadius={'50px'} border={'1px solid #10847e'}>
             <Image h='8' src='https://assets.pharmeasy.in/web-assets/dist/6b3d644c.svg'></Image>
             <Text ml='4' as='b' color='grey' >
@@ -71,9 +74,15 @@ function Lab() {
     </Box>
 </Show>
 
+<Flex borderRadius={'5px'} pt='12px' pl='10px' pb='10px' bg='#8573e1' mt='10'  ml='20' mr='20' >
+<Image pl='10' src='https://assets.pharmeasy.in/web-assets/dist/3864b471.svg' ></Image>
+<Text pl='40px' color='white' >Save 5% on allopathic medicined, 50% on lab texts & get FREE delivery with PLUS membership</Text>
+</Flex>
+
+<Texttt/>
 <Faq/>
 
-<Box>
+<Box p='20'>
 <Grid templateColumns='repeat(4, 1fr)' gap={6}>
   <GridItem p='5'  w='100%'>
     <Image src='https://assets.pharmeasy.in/web-assets/dist/9407515b.svg?dim=0x72&dpr=1.5&q=100'></Image>
@@ -110,6 +119,7 @@ function Lab() {
         <Highlight color="#f27a1a">This is our website</Highlight>
     </a>
 </Carousel> */}
+<Footer/>
     </>
   )
 }
