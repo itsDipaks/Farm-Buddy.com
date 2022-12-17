@@ -2,6 +2,7 @@
 import { Box, color, Flex, Heading, Text } from '@chakra-ui/react'
 import React from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useMediaQuery } from "react-responsive";
 import { Navigation } from "swiper";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -28,6 +29,11 @@ const PaymentOffersData = [
 ]
 
 const PaymentOffers = () => {
+
+  const isBigScreen = useMediaQuery({ query: "(max-width: 100%)" });
+  const isTablet = useMediaQuery({ query: "(max-width: 992px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
+
   return (
     
 
@@ -37,7 +43,7 @@ const PaymentOffers = () => {
           
         <Flex justifyContent={"space-between"} p={5}>
          <Swiper 
-                    slidesPerView={3}
+                    slidesPerView={isBigScreen ? 3 : isTablet ? 1 : isMobile ? 1 : 3}
                     spaceBetween={20}
 
                     loop={true}
