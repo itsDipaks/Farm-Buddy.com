@@ -12,13 +12,80 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { OffersData } from "./OffersData";
 import styles from "./offers.module.css";
 import { GoNote } from "react-icons/go";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { BiSearchAlt } from "react-icons/bi";
-// import axios from "axios";
 import { Link } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
+import { Swiper, SwiperSlide } from "swiper/react";
+// import { Navigation } from "swiper";
+import "swiper/css/pagination";
+// import "swiper/css/navigation";
+import "swiper/css/bundle"
+
+const OffersData=[
+  {
+      img:"https://assets.pharmeasy.in/apothecary/images/medicine_ff.webp?dim=256x0",
+      heading:"Medicine",
+      discount:"UPTO 50% OFF"
+  },
+  {
+      img:"https://assets.pharmeasy.in/apothecary/images/healthcare_ff.webp?dim=256x0",
+      heading:"Healthcare",
+      discount:"UPTO 60% OFF"
+  },
+  {
+      img:"https://assets.pharmeasy.in/apothecary/images/labtest_ff.webp?dim=256x0",
+      heading:"Lab Tests",
+      discount:"UPTO 70% OFF"
+  },
+  {
+      img:"https://assets.pharmeasy.in/apothecary/images/health_blogs_ff.webp?dim=256x0",
+      heading:"Health Blogs",
+      discount:""
+  },
+  {
+      img:"https://assets.pharmeasy.in/apothecary/images/plus_ff.webp?dim=256x0",
+      heading:"PLUS",
+      discount:"SAVE 5% EXTRA"
+  },
+  {
+      img:"https://assets.pharmeasy.in/apothecary/images/offers_ff.webp?dim=256x0",
+      heading:"Offers",
+      discount:""
+  },
+  {
+      img:"https://assets.pharmeasy.in/apothecary/images/offers_1_ff.webp?dim=256x0",
+      heading:"Surgeries",
+      discount:""
+  },
+  {
+      img:"https://assets.pharmeasy.in/apothecary/images/value_store.png?dim=256x0",
+      heading:"Value Store",
+      discount:"UPTO 50% OFF"
+  },
+  {
+    img:"https://assets.pharmeasy.in/apothecary/images/medicine_ff.webp?dim=256x0",
+    heading:"Medicine",
+    discount:"UPTO 50% OFF"
+},
+{
+    img:"https://assets.pharmeasy.in/apothecary/images/healthcare_ff.webp?dim=256x0",
+    heading:"Healthcare",
+    discount:"UPTO 60% OFF"
+},
+{
+    img:"https://assets.pharmeasy.in/apothecary/images/labtest_ff.webp?dim=256x0",
+    heading:"Lab Tests",
+    discount:"UPTO 70% OFF"
+},
+{
+    img:"https://assets.pharmeasy.in/apothecary/images/health_blogs_ff.webp?dim=256x0",
+    heading:"Health Blogs",
+    discount:""
+}
+]
 
 const Offers = () => {
   const [query] = useState("");
@@ -26,26 +93,34 @@ const Offers = () => {
   const [data] = useState([]);
 
 
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1224px)",
+  });
+  const isBigScreen = useMediaQuery({ query: "(max-width: 100%)" });
+  const isTablet = useMediaQuery({ query: "(max-width: 992px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
+
+
 
   const element = document.querySelector("#box");
   console.log(element);
 
- 
+  // if()
   return (
-    <div>
+    <Box p={5} >
       <div className={styles.backColor}>
         <Stack
-          width={"60%"}
+          width={["20%","40%","60%"]}
           margin="auto"
           paddingTop="32px"
           // marginBottom={"40px"}
           gap="15px"
         >
           <Flex justifyContent={"space-between"}>
-            <Heading fontSize={"22px"}>What are you looking for?</Heading>
+            <Heading fontSize={"22px"} color={"#30363C"} fontFamily={'sans-serif'}>What are you looking for?</Heading>
             <Flex alignItems={"center"} gap="10px">
               <GoNote fontSize={"24px"} />
-              <Text fontSize={"14px"} fontWeight="500">
+              <Text fontSize={"14px"} fontWeight="500" color={"#30363C"} fontFamily={'sans-serif'}>
                 Order with prescription.
               </Text>
               <Text fontSize={"14px"} fontWeight="700" color={"#10847E"}>
@@ -116,6 +191,7 @@ const Offers = () => {
                 Showing results for {query}
               </Box>
               {data.map((el) => (
+               
                 <div
                   key={el._id}
                   style={{
@@ -141,29 +217,40 @@ const Offers = () => {
                     </Text>
                   </Link>
                 </div>
+                
               ))}
             </VStack>
           </Box>
         </div>
       ) : null}
       <div className={styles.container}>
-        <Stack
-          direction="horizontal"
-          justify="space-between"
-          width="95%"
-          margin="auto"
-        >
+      <Flex justifyContent={"space-between"} p={5}>
+   
+
+   <Swiper 
+           slidesPerView={isBigScreen ? 5 : isTablet ? 4 : isMobile ? 1 : 8}
+           spaceBetween={0}
+
+           loop={true}
+           loopFillGroupWithBlank={true}
+
+          //  navigation={true}
+          //  modules={[Navigation]}
+           className="mySwiper">
           {OffersData.map((item, i) => (
+            <SwiperSlide style={{ gap: "10px", color:"black" }}>
             <Box key={i} className={styles.box}>
               <img src={item.img} alt="" />
               <h5 className={styles.heading}>{item.heading}</h5>
               <h6 className={styles.discount}>{item.discount}</h6>
             </Box>
+            </SwiperSlide>
           ))}
-        </Stack>
-      </div>
+          </Swiper>
+          </Flex>
     </div>
-  );
-};
+    </Box>
+  
+)};
 
 export default Offers;

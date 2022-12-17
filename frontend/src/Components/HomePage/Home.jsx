@@ -33,11 +33,6 @@ function Home() {
      <Reviews/>
      <HomeDesc/>
      <Footer/>
-     
-      
-     
-      
-    
     </div>
   );
 }

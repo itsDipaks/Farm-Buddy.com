@@ -49,7 +49,11 @@ const Reviews = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
 
   return (
+    
     <Box p={5}>
+    <Box>
+      <img src={Playstore}/>
+    </Box>
       <Heading
         p={5}
         textAlign={"start"}
@@ -57,18 +61,10 @@ const Reviews = () => {
         color={"#30363C"}
         fontFamily={"sans-serif"}
       >
-        Featured Brands
+     What Our Customers have to Say
       </Heading>
 
-      <Text
-        pl={5}
-        textAlign={"start"}
-        size="md"
-        color={"#30363C"}
-        fontFamily={"sans-serif"}
-      >
-        Pick From Our Favourite Brands
-      </Text>
+     
 
       <Flex justifyContent={"space-between"} p={5} w={"100%"}>
         <Swiper

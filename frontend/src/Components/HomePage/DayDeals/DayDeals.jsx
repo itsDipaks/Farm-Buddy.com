@@ -1,6 +1,13 @@
-import { Box, Heading, Image, Stack } from '@chakra-ui/react'
+import { Box, Heading, Image, Stack, Text,Flex } from '@chakra-ui/react'
 import React from 'react'
 import styles from "./daydeals.module.css"
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useMediaQuery } from "react-responsive";
+import { Navigation } from "swiper";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+import "swiper/css/bundle"
 
 
 const DayDealsData=[
@@ -87,23 +94,39 @@ const DayDealsData=[
         oldprice:"₹34.70",
         newprice:"₹31.23",
         off:"10% OFF"
-    },
+    }
 ]
 
 const DayDeals = () => {
+
+    const isBigScreen = useMediaQuery({ query: "(max-width: 100%)" });
+    const isTablet = useMediaQuery({ query: "(max-width: 992px)" });
+    const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
+
+
   return (
-    <div style={{margin:"auto", width:"95%", textAlign:"left", marginTop:"50px"}}>
-        <Stack direction="horizontal" gap="30px" alignItems="center">
-            <Heading fontSize="26px">
-                Deals of the Day
-            </Heading>
-            <Heading fontSize="14px" bg="#f2923e" color="white" padding="7px 15px" borderRadius="5px">
-                13:41 MINS LEFT, HURRY!
-            </Heading>
-        </Stack>
-        <Stack direction="horizontal" gap="20px" marginTop="30px"
-        justify="space-between"  height="325px">
+    
+    <Box p={5} >
+    <Heading p={5} textAlign={"start"} size='lg' color={"#30363C"} fontFamily={'sans-serif'}>Deals of the Day</Heading>
+    <Heading fontSize="14px" bg="#f2923e" color="white" padding="7px 15px" borderRadius="5px">
+    13:41 MINS LEFT, HURRY!
+ </Heading>
+         
+   
+        
+        <Flex justifyContent={"space-between"} p={5}>
+        <Swiper 
+                    slidesPerView={isBigScreen ? 5 : isTablet ? 3 : isMobile ? 1 : 5}
+                    spaceBetween={0}
+
+                    loop={true}
+                    loopFillGroupWithBlank={true}
+
+                    navigation={true}
+                    modules={[Navigation]}
+                    className="mySwiper">
             {DayDealsData.map((el,i) => (
+                <SwiperSlide style={{ gap: "10px", color:"black" }}>
                 <Box key={i}>
                     <Box className={styles.img} padding="24px 16px" width="184px" 
                     height="192px" border="1px solid #f5f5f5" borderRadius="10px" 
@@ -132,9 +155,12 @@ const DayDeals = () => {
                         </Heading>
                     </Stack>
                 </Box>
+                </SwiperSlide>
             ))}
-        </Stack>
-    </div>
+            
+            </Swiper>
+        </Flex>
+    </Box>
   )
 }
 
