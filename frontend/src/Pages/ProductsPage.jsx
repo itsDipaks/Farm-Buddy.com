@@ -1,6 +1,7 @@
 import React,{useEffect} from "react";
 import {useSelector,useDispatch} from 'react-redux'
-import { GetProducts } from "../Redux/Product/Product.action";
+import { GetCategory, GetProducts } from "../Redux/Product/Product.action";
+import axios from 'axios'
 import {
   Box,
   Text,
@@ -25,6 +26,7 @@ import {
 import Style from "./ProductPage.module.css";
 import {useNavigate} from 'react-router-dom'
 import Navbar from "./Navbar/Navbar";
+import { FETCH_PRODUCT_SUCCESS } from "../Redux/Product/Product.types";
 
 const ProductsPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -32,7 +34,7 @@ const ProductsPage = () => {
   const [value, setValue] = React.useState('1')
 
  
-  const product = useSelector((state) => state.product.data);
+  const data = useSelector((state) => state.product.data);
   const dispatch = useDispatch();
   const navigate =useNavigate() 
   
@@ -47,7 +49,28 @@ const ProductsPage = () => {
    //console.log(el._id)
      navigate(`/singleproduct/${el._id}`)
   }
-
+  const handleCat=(e)=>{
+   dispatch(GetCategory())
+ 
+}
+  
+    const handleSortData = (data,type) => {
+      if (type === "lth") {
+        const sorter = (a, b) => {
+          return +a.salePrice - +b.salePrice;
+        };
+       let x= data.sort(sorter);
+       console.log(x)
+        dispatch({ type: FETCH_PRODUCT_SUCCESS, payload: data });
+      } else {
+        const sorter = (a, b) => {
+          return +b.salePrice - +a.salePrice;
+        };
+        data.sort(sorter);
+        dispatch({ type: FETCH_PRODUCT_SUCCESS, payload: data });
+      }
+    };
+  
  
   return (<>
      <Navbar/>
@@ -63,8 +86,13 @@ const ProductsPage = () => {
               <Text mt='20px' mb='15px' fontSize='20px'>Category</Text>
               <Flex>
               <Text>Vicks</Text>
-     <Spacer />
+               <Spacer />
               <Radio  value='1'></Radio>
+              </Flex>
+              <Flex onClick={handleCat}>
+              <Text>Facecare</Text>
+               <Spacer />
+              <Radio  value='2'></Radio>
               </Flex>
               <Divider mt='30px' />
               <Text mt='20px' mb='15px' fontSize='20px'>Sub category</Text>
@@ -121,10 +149,10 @@ const ProductsPage = () => {
               <Flex className={Style.select}>
                 <Text fontSize='18px' mr='20px' mt='5px' className={Style.sortBy}>Sort By:</Text>
                
-                <Select placeholder="Popularity" w='250px' >
+                <Select placeholder="Popularity" w='250px' onClick={()=>handleSortData(data,value)}>
                   <option value="option1">Relevance</option>
-                  <option value="option2">Price high to low</option>
-                  <option value="option3">Price low to high</option>
+                  <option value="htl">Price high to low</option>
+                  <option value="lth">Price low to high</option>
                 </Select>
               </Flex>
             </Box>
@@ -187,7 +215,7 @@ const ProductsPage = () => {
   
         <SimpleGrid columns={[1, 2, 3]} spacing="10px">
         {
-      product.map((el)=>(
+      data.map((el)=>(
         
           <Box
             border="1px"

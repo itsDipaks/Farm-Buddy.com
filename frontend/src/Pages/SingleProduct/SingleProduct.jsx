@@ -27,6 +27,7 @@ const SingleProduct = () => {
   };
 
  const [item,setItem]=useState()
+ const [qty,setQty]=useState()
   const {_id}=useParams() 
   const navigate=useNavigate()
   //console.log("productId",_id)
@@ -39,7 +40,7 @@ const handlePrevPage=()=>{
       .get(`http://localhost:8400/product/singleproduct/${_id}`)
       .then((res) => {
         setItem(res.data);
-        console.log(res.data)
+        //console.log(res.data)
       })
       .catch((err) => {
         console.log("err", err);
@@ -47,12 +48,32 @@ const handlePrevPage=()=>{
   }, []);
 
 
-
-
-  const hanldleSelect=()=>{
-    console.log("v",Select.value)
+const addToCart=()=>{
+  const payload={
+    qty,_id
   }
+  console.log(payload)
+  axios
+        .post(
+          "http://localhost:8400/cart/addtocart",
+          payload,
+          {
+            headers: {
+              'Authorization' : `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+          
+        )
+        .then((res)=>{
+          console.log(res)
+          alert("item added to cart")
+        })
+        .catch((err)=>{
+          console.log(err)
+        })
+}
 
+  
   return (
     <>
     <Navbar/>
@@ -145,7 +166,7 @@ const handlePrevPage=()=>{
                    </Box>
                   <Box mt="25px" mr="100px"  className={Style.select_option}>
                    
-                    <Select placeholder="Qty 0" w="100%"  onClick={()=>hanldleSelect()}>
+                    <Select placeholder="Qty 1" w="100%"  onChange={(e)=>setQty(e.target.value)}>
                     <option value="1"> 1</option>
                     <option value="2"> 2</option>
                     <option value="3"> 3</option>
@@ -153,7 +174,7 @@ const handlePrevPage=()=>{
                   </Select>
                   
           
-                    <Button colorScheme='teal' onClick={()=>addToCart()}>Add To Cart</Button>
+                    <Button colorScheme='teal' onClick={()=>addToCart(_id)}>Add To Cart</Button>
                   
                   </Box>
                   </Box>
