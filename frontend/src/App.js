@@ -6,18 +6,9 @@ function App() {
   return (
     <>
       {/* <Navbar/>  */}
-      <AllRoutes/>
+      <AllRoutes />
       {/* <SingleProduct/> */}
-
-import SinglgeProduct from './Pages/SingleProduct/SingleProduct'
-import ProductPage from './Pages/ProductsPage';
-function App() {
-  return (
-    <> 
-      {/* <AllRoutes/> */}
-      <ProductPage/>
     </>
-
   );
 }
 

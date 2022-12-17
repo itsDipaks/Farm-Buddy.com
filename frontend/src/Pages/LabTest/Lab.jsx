@@ -3,7 +3,9 @@ import { Flex, Hide, Highlight, Image, Show, Text } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/react';
 import Faq from './Faq';
 import { useState } from 'react';
-import { Carousel } from '@trendyol-js/react-carousel';
+import Footer from '../../Components/HomePage/Footer/Footer';
+// import { Carousel } from '@trendyol-js/react-carousel';
+import { Grid, GridItem } from '@chakra-ui/react'
 
 function Lab() {
 
@@ -69,7 +71,35 @@ function Lab() {
 </Show>
 
 <Faq/>
-<Carousel show={3.5} slide={3} swiping={true}>
+
+<Box>
+<Grid templateColumns='repeat(4, 1fr)' gap={6}>
+  <GridItem p='5'  w='100%'>
+    <Image src='https://assets.pharmeasy.in/web-assets/dist/9407515b.svg?dim=0x72&dpr=1.5&q=100'></Image>
+    <Text lineHeight='80px' as='b' >Trusted Labs</Text>
+    <Text color='#939ba7' >Every test booked via PharmEasy is conducted by certified labs that are 100% verified and trustworthy.</Text>
+  </GridItem>
+  <GridItem p='5'  w='100%'>
+    <Image src='https://assets.pharmeasy.in/web-assets/dist/0105ddc1.svg?dim=0x72&dpr=1.5&q=100'></Image>
+    <Text lineHeight='80px' as='b' >Home Visit</Text>
+    <Text color='#939ba7' >With PharmEasy, you get a FREE sample pick-up* by professional phlebotomists from your home or preferred location.</Text>
+  </GridItem>
+  <GridItem p='5'  w='100%'>
+    <Image src='https://assets.pharmeasy.in/web-assets/dist/fc71c500.svg?dim=0x72&dpr=1.5&q=100'></Image>
+    <Text lineHeight='80px' as='b' >Accurate Report</Text>
+    <Text color='#939ba7' >Once collected, samples will be sent to labs for processing. Detailed reports will be shared within a stipulated timeline.
+</Text>
+  </GridItem>
+  <GridItem p='5'  w='100%'>
+    <Image src='https://assets.pharmeasy.in/web-assets/dist/4a11ac5a.svg?dim=0x72&dpr=1.5&q=100'></Image>
+    <Text lineHeight='80px' as='b' >Up to 70% OFF</Text>
+    <Text color='#939ba7' >At PharmEasy, you save at every step! On diagnostic tests, get up to 70% OFF on various tests and test packages.
+</Text>
+  </GridItem>
+</Grid>
+</Box>
+
+{/* <Carousel show={3.5} slide={3} swiping={true}>
     <Highlight color="#2d66c3">We love Web 🌐</Highlight>
     <Highlight color="#f44336">We love Developers 👩🏻‍</Highlight>
     <a target="_blank" href="https://github.com/trendyol/">
@@ -78,7 +108,8 @@ function Lab() {
     <a target="_blank" href="https://trendyol.com/">
         <Highlight color="#f27a1a">This is our website</Highlight>
     </a>
-</Carousel>
+</Carousel> */}
+{/* <Footer/> */}
     </>
   )
 }
