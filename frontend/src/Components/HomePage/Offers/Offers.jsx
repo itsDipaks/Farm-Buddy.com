@@ -21,9 +21,9 @@ import { BiSearchAlt } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 const Offers = () => {
-  const [query, setQuery] = useState("");
-  const [show, setShow] = useState(false);
-  const [data, setData] = useState([]);
+  const [query] = useState("");
+  const [show] = useState(false);
+  const [data] = useState([]);
 
 
 
