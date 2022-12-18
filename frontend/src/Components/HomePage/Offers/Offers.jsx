@@ -110,7 +110,7 @@ const Offers = () => {
     <Box p={5} >
       <div className={styles.backColor}>
         <Stack
-          width={["20%","40%","60%"]}
+          width={["80%","60%","60%"]}
           margin="auto"
           paddingTop="32px"
           // marginBottom={"40px"}
@@ -228,7 +228,7 @@ const Offers = () => {
    
 
    <Swiper 
-           slidesPerView={isBigScreen ? 5 : isTablet ? 4 : isMobile ? 1 : 8}
+           slidesPerView={isBigScreen ? 5 : isTablet ? 4 : isMobile ? 3 : 7}
            spaceBetween={0}
 
            loop={true}

@@ -1,5 +1,6 @@
 import { Image, Stack, Text } from "@chakra-ui/react";
 import React from "react";
+
 import {
   Categories,
   Company,
@@ -11,6 +12,7 @@ import {
 import styles from "./footer.module.css";
 import { BsFacebook, BsInstagram, BsYoutube, BsTwitter } from "react-icons/bs";
 const Footer = () => {
+
   return (
     <div className={styles.container}>
       <Stack direction="horizontal" justify="space-between">
@@ -64,7 +66,11 @@ const Footer = () => {
           <Text fontSize="16px" fontWeight="700">
             Follow us on
           </Text>
-          <Stack direction="horizontal" gap="25px">
+          <Stack
+          style={{ display: "flex", gap:"30px", flexWrap:"wrap", width: "100%"}}
+            direction="horizontal"
+            gap="25px"
+          >
             <BsInstagram
               style={{ width: "25px", height: "25px", cursor: "pointer" }}
             />
@@ -84,14 +90,20 @@ const Footer = () => {
         <Text fontSize="16px" fontWeight="700">
           Our Payment Partners
         </Text>
-        <Stack direction="horizontal" justify="space-between">
-          <Stack direction="horizontal" gap="40px" width="784px" height="24px">
+        <div style={{ display: "flex", }}>
+          <div style={{ display: "flex", gap:"30px", flexWrap:"wrap", width: "100%"}}>
             {Partners.map((el, i) => (
-              <Image key={i} src={el.img} height="18px" />
+              <Image
+                key={i}
+                src={el.img}
+                height="20px"
+                width='30px'
+                // border="1px solid black"
+              />
             ))}
-          </Stack>
-          <Text fontSize="14px">© 2022 PharmEasy. All Rights Reserved</Text>
-        </Stack>
+          </div>
+          <Text style={{width:"350px"}} fontSize="14px">© 2022 PharmBuddy. All Rights Reserved</Text>
+        </div>
       </Stack>
     </div>
   );
