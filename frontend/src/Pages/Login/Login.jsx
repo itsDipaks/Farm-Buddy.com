@@ -79,6 +79,22 @@ const Loginscreen = () =>{
 }
 
 
+const getlocalsdata = (key) => {
+  try {
+      let data = localStorage.getItem(key);
+      data = JSON.parse(data)
+      return data;
+  }catch(error){
+      return null;
+  }
+}
+   
+
+    const saveLocalsdata = (key, data) =>{
+  localStorage.setItem(key,JSON.stringify(data));
+    }
+
+
   const handleSignUp = () => {
     const payload = {
       username: values.username,
@@ -93,7 +109,8 @@ const Loginscreen = () =>{
       if (r.status === 200) {
         setShow(false);
         console.log("Success");
-        console.log(r); 
+        console.log(r);
+        saveLocalsdata("token",r.data.token) 
       } else {
         alert("Incorrect Email Id");
         setShow(true);
