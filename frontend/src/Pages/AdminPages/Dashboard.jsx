@@ -105,18 +105,18 @@ const Dashboard = () => {
           <AiOutlineTeam/>
           <Text pl={["0px","5px",'15px']} className="lhsName">Sales Teams</Text>
           </Flex>
-          <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(4)}>
+          {/* <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(4)}>
           <FcSalesPerformance/>
           <Text pl={["0px","5px",'15px']} className="lhsName">Highest Sales</Text>
-          </Flex>
-          <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(4)}>
+          </Flex> */}
+          {/* <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(4)}>
           <IoBarChartSharp/>
           <Text pl={["0px","5px",'15px']} className="lhsName">Sales Charts</Text>
-          </Flex>
-          <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(4)}>
+          </Flex> */}
+          {/* <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(4)}>
           <SiSimpleanalytics/>
           <Text pl={["0px","5px",'15px']} className="lhsName">Month Report</Text>
-          </Flex>
+          </Flex> */}
         </Box>
       </Box>
 
