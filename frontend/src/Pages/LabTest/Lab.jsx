@@ -9,6 +9,7 @@ import { Grid, GridItem } from '@chakra-ui/react'
 import Texttt from './Texttt';
 // import { Carousel } from '@trendyol-js/react-carousel';
 import Navbar from './../Navbar/Navbar';
+import Carousel from './Carousel';
 
 function Lab() {
 
@@ -81,6 +82,8 @@ function Lab() {
 
 <Texttt/>
 <Faq/>
+
+<Carousel/>
 
 <Box p='20'>
 <Grid templateColumns='repeat(4, 1fr)' gap={6}>
