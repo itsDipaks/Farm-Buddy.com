@@ -20,9 +20,20 @@ import {
   Checkbox,
 } from "@chakra-ui/react";
 import React from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Paymentnavbar from "../../Components/Paymentpage/Paymentnavbar";
+import { GetCartData } from "../../Redux/Cart/Cart.action";
 import styles from "./payment.module.css";
 const Paymentpage = () => {
+
+  const {data,total,loading,error}=useSelector((store)=>store.cart)
+  const dispatch=useDispatch()
+
+useEffect(()=>{
+  dispatch(GetCartData())
+},[])
+
   const {isOpen, onOpen, onClose} = useDisclosure();
   // const btnRef = React.useRef()
 
@@ -60,7 +71,7 @@ const Paymentpage = () => {
                   Up to 3000 cashback points on a minimum transaction of Rs.599.
                   Valid once per user.
                 </Text>
-                <Button colorScheme='teal' className={styles.linkbtn}>Link Wallet</Button>
+                <Button colorScheme='teal' className={styles.linkbtn}>Pay ₹{total} With Paytm</Button>
               </Box>
             </AccordionPanel>
           </AccordionItem>
@@ -87,7 +98,7 @@ const Paymentpage = () => {
                   Up to Rs.600 cashback on a minimum transaction of Rs.399.
                   Valid once per user.
                 </Text>
-                <Button colorScheme='teal' className={styles.linkbtn}>Link Wallet</Button>
+                <Button colorScheme='teal' className={styles.linkbtn}>Pay with ₹{total} AmazonPay</Button>
               </Box>
             </AccordionPanel>
           </AccordionItem>
@@ -114,7 +125,7 @@ const Paymentpage = () => {
                   Up to Rs.650 cashback on Mobikwik. Code: MBK650. Valid only
                   once & on orders above Rs.800.
                 </Text>
-                <Button colorScheme='teal' className={styles.linkbtn}>Link Wallet</Button>
+                <Button colorScheme='teal' className={styles.linkbtn}>Pay witth ₹{total} MobiKwik </Button>
               </Box>
             </AccordionPanel>
           </AccordionItem>
@@ -244,7 +255,7 @@ const Paymentpage = () => {
 
               <Checkbox className={styles.checkbox} defaultChecked>Save this card for future payments</Checkbox>
             <br />
-              <Button className={styles.proceedbtn} colorScheme='teal' variant='outline'>Save</Button>
+              <Button className={styles.proceedbtn} colorScheme='teal' variant='outline'>Pay {total}</Button>
             
             </DrawerBody>
 
@@ -321,9 +332,9 @@ const Paymentpage = () => {
 
 <Box className={styles.pricebox}>
 <h1 className={styles.title1}>Price Breakdown</h1>
-<h2><span>Cart Value</span> <span>3445</span></h2>
+<h2><span>Cart Value</span> <span>{total}</span></h2>
 <h2><span>Delivery charges</span> <span>free</span></h2>
-<h2><span>Amount to be paid</span> <span>1234568</span></h2>
+<h2><span>Amount to be paid</span> <span>{total}</span></h2>
 </Box>
     </div>
     </>

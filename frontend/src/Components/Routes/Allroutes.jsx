@@ -6,13 +6,11 @@ import Dashboard from '../../Pages/AdminPages/Dashboard'
 import UserProfilePage from '../../Pages/AdminPages/UserProfilePage'
 import AdminProfile from '../../Pages/AdminPages/AdminProfile'
 import SingleProductpage from "../../Pages/AdminPages/SingleProductPage"
-import Cartpage from './../../Pages/Cartpage/Cartpage';
-import Paymentpage from './../../Pages/Paymentpage/Paymentpage';
-import Lab from '../../Pages/LabTest/Lab';
-import ProductsPage from './../../Pages/ProductsPage';
+import Cartpage from '../../Pages/Cartpage/Cartpage'
+import Paymentpage from '../../Pages/Paymentpage/Paymentpage'
+// import Lab from '../../Pages/LabTest/Lab'
 import SingleProduct from '../../Pages/SingleProduct/SingleProduct'
-
-
+import ProductsPage from '../../Pages/ProductsPage'
 const AllRoutes = () => {
   return (
   <>
@@ -26,7 +24,7 @@ const AllRoutes = () => {
       <Route path="/adminsingleP" element={<SingleProductpage/>}></Route>
       <Route path="/cartpage" element={<Cartpage/>}></Route>
       <Route path="/payment" element={<Paymentpage/>}></Route>
-      <Route path="/labtest" element={<Lab/>}></Route>
+      {/* <Route path="/labtest" element={<Lab/>}></Route> */}
       <Route path="/productspage" element={<ProductsPage/>}></Route>
       <Route path='/singleproduct/:_id' element={<SingleProduct/>}>SingleProduct</Route>
     </Routes>

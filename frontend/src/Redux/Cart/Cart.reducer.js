@@ -4,6 +4,7 @@ const initial_state={
     loading:false,
     error:false,
     data:[],
+    total:0
     
 }
 
@@ -11,6 +12,7 @@ const initial_state={
 
 
 export const CartReducer=(state=initial_state,{type,payload})=>{
+   
     switch(type){
         case GET_CART_LOADING:{
             return{
@@ -19,10 +21,18 @@ export const CartReducer=(state=initial_state,{type,payload})=>{
             }
         }
         case GET_CART_SUCCSESS:{
+         
+            let amount = payload.reduce((acc, el) => 
+         acc + (el.quantity * el.salePrice)
+            , 0)
+          
+
             return{
+                ...state,
                 loading:false,
                 error:false,
-                data:payload
+                data:payload,
+                total:amount
             }
         }
         case GET_CART_ERROR:{

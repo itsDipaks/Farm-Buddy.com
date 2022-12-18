@@ -9,11 +9,17 @@ const CartSchema = new mongoose.Schema(
       {
         product_Id: {type:String},
         quantity: {type:Number},
-        name:  {type:String},
-        price: {type:Number}
+        productName: {type:String},
+        productImage:{type:String},
+        salePrice: {type:Number},
+        listPrice: {type:Number},
+        category: {type:String},
+        type: {type:String},
+        description: {type:String},
+       
       }
     ],
-
+    cartTotal:{type:Number,default:0},
     active: {
       type: Boolean,
       default: true
