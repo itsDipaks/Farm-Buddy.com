@@ -2,6 +2,12 @@
 .view_cart{
     display: none;
 }
+.addCartBtn2{
+    display: none !important;
+}
+
+ /* ........ For Medium Size Screen ......... */
+ 
    @media only screen and (max-width: 1190px){
     .containter{
         width: 100% !important;
@@ -48,5 +54,12 @@
     }
     .view_cart2{
         display: none;
+    }
+    .addCartBtn1{
+display: none !important;
+    }
+    .addCartBtn2{
+        margin-top: 15px;
+        display: block !important;
     }
    }

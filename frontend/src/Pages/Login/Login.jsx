@@ -26,6 +26,7 @@ import axios from "axios";
 // import { useEffect } from "react";
 // import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { saveLocalsdata } from "../../utils/utils";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -93,7 +94,8 @@ const Loginscreen = () =>{
       if (r.status === 200) {
         setShow(false);
         console.log("Success");
-        console.log(r); 
+        console.log(r);
+       
       } else {
         alert("Incorrect Email Id");
         setShow(true);
@@ -126,6 +128,8 @@ const Loginscreen = () =>{
         // console.log(r.data);
         // console.log(r.data.username);
         setHello(r.data.username)
+        console.log(r.data.token)
+        saveLocalsdata("token",r.data.token) 
 
         onClose()
         // var usernamess = r.data.username;

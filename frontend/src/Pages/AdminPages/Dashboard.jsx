@@ -66,10 +66,10 @@ const Dashboard = () => {
             adminProfile && adminProfile.map((data)=>{
               return(
                 <Flex id='titleBox' p='0px 10px' mb='40px' key={data._id}>
-                <Image src={data.avtar} w='45px' borderRadius='50%'/>
+                <Image src={data.avtar} w='45px' borderRadius='50%' className='productRow2'/>
                 <Box ml={["0px","-12px","0px"]}>
-                <Text pl={5} fontWeight='bold'>{data.firstname}</Text>
-                <Text pl={5} >{data.role}</Text>
+                <Text pl={[0,0,5]} fontWeight='bold'>{data.firstname}</Text>
+                <Text pl={[0,0,5]} >{data.role}</Text>
                 </Box>
                 </Flex>
               )
@@ -81,42 +81,42 @@ const Dashboard = () => {
         <Box id='linkBox'>
           <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow("AllAdmin")}>
           <RiAdminFill/>
-          <Text pl='15px'>Admins</Text>
+          <Text pl={["0px","5px",'15px']} className="lhsName">Admins</Text>
           </Flex>
           <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow("Users")}>
           <FaUserAlt/>
-          <Text pl='15px'>Users</Text>
+          <Text pl={["0px","5px",'15px']} className="lhsName">Users</Text>
           </Flex>
           <hr />
           <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(2)}>
           <BsTagsFill />  
-          <Text pl='15px'>Products</Text>
+          <Text pl={["0px","5px",'15px']} className="lhsName">Products</Text>
           </Flex>
           <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(3)}>
           <FaRupeeSign/>  
-          <Text pl='15px'>Orders</Text>
+          <Text pl={["0px","5px",'15px']} className="lhsName">Orders</Text>
           </Flex>
           <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow('Discounts')}>
           <CiDiscount1/>
-          <Text pl='15px'>Discounts</Text>
+          <Text pl={["0px","5px",'15px']} className="lhsName">Discounts</Text>
           </Flex>
           <hr />
           <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow("SalesTeams")}>
           <AiOutlineTeam/>
-          <Text pl='15px'>Sales Teams</Text>
+          <Text pl={["0px","5px",'15px']} className="lhsName">Sales Teams</Text>
           </Flex>
-          <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(4)}>
+          {/* <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(4)}>
           <FcSalesPerformance/>
-          <Text pl='15px'>Highest Sales</Text>
-          </Flex>
-          <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(4)}>
+          <Text pl={["0px","5px",'15px']} className="lhsName">Highest Sales</Text>
+          </Flex> */}
+          {/* <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(4)}>
           <IoBarChartSharp/>
-          <Text pl='15px'>Sales Charts</Text>
-          </Flex>
-          <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(4)}>
+          <Text pl={["0px","5px",'15px']} className="lhsName">Sales Charts</Text>
+          </Flex> */}
+          {/* <Flex id='usersBox' p='7px 17px' className='linkItem' onClick={()=>setShow(4)}>
           <SiSimpleanalytics/>
-          <Text pl='15px'>Month Report</Text>
-          </Flex>
+          <Text pl={["0px","5px",'15px']} className="lhsName">Month Report</Text>
+          </Flex> */}
         </Box>
       </Box>
 

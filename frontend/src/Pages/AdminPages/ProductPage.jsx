@@ -17,6 +17,7 @@ const ProductPage = () => {
     const [description,setDescription] = useState("")
     const {isOpen,onOpen,onClose} = useDisclosure()
     const [loading,setLoading] = useState(false)
+    const [sort,setSort]=useState("")
     // const {isOpen:isOpenReport,onOpen:onOpenReport,onClose:onCloseReport}=useDisclosure()
     // const cancelRef=useRef()
     const [filter,setFilter]= useState("")
@@ -28,7 +29,7 @@ const getData=()=>{
   setLoading(true)
   axios.get("http://localhost:8400/product/getproducts")
   .then((res)=>{
-    // console.log(res)
+    console.log(res.data)
     setProducts(res.data)
     setLoading(false)
   })
@@ -81,6 +82,7 @@ axios.post("http://localhost:8400/Dashproduct/addproduct",payload,{
       localStorage.setItem("product",JSON.stringify(r))
     }
 
+    
   {/* ..................  Filter by Fatching ........................ */}
 
 const handleFilter=(e)=>{
@@ -112,15 +114,31 @@ const handleActive=(id,status)=>{
  {/* ..................  Handle Womans........................ */}
 
 const handleWomens=()=>{
-  axios.get(`http://localhost:8400/product/getproducts?category=woman`)
+  axios.get(`http://localhost:8400/product/getproducts?type=facecare&category=woman`)
   .then((res)=>{
+    console.log(res.data)
     setProducts(res.data)
   })
 }
+// ...................... Sorting Functionallity Here ..........................
+
+const handleSort=(e)=>{
+    setSort(e.target.value)
+    console.log(sort)
+    axios.get(`http://localhost:8400/product/getproducts?sortbyprice=${sort}`)
+    .then((res)=>{
+      console.log(res)
+      setProducts(res.data)
+    }) 
+    .catch((err)=>{
+      console.log(err)
+    })
+}
+
 
   return (
     <Box>
-      <Flex mb="30px" justifyContent="space-between" alignItems="center" > 
+      <Flex mb="30px" direction={['column','column','row']} justifyContent="space-between" alignItems="center" > 
           <Text fontWeight='bold' pb={5}>All Products : {products.length}</Text>
           <Button bg="white" border="1px solid grey" onClick={onOpen}>+ Add Product</Button>
           </Flex>
@@ -153,19 +171,19 @@ const handleWomens=()=>{
                 </Modal>
  {/* ..................  Filter functionallity ........................ */}
 
-                <Flex justifyContent='space-between' mb={10}>
-              <div>
+                <Flex justifyContent='space-between' direction={['column','column','row']} mb={10}>
+              <div mb={[5,0,0]}>
                 <Button bg="white" border="1px solid grey" mr="10px" onClick={getData} >All</Button>
                 <Button bg="white" border="1px solid grey" mr="10px" className='productRow'>Mens</Button>
                 <Button bg="white" border="1px solid grey" onClick={handleWomens}>Women</Button>
               </div>
-              <Flex gap="10px">
+              <Flex gap="10px" mt={[5,0,0]}>
                 <Select placeholder='Type' onChange={handleFilter}>
                     <option value='babyhelth'>Baby Health</option>
                     <option value='facecare'>Face Care</option>
                     <option value='healthyFoodsAndDrinks'> Food & Drinks</option>
                 </Select>
-                <Select placeholder='Sort by'>
+                <Select onClick={handleSort} placeholder='Sort by'>
                     <option value='desc'>Low To High</option>
                     <option value='asc'>High To Low</option>
                 </Select>
@@ -178,10 +196,10 @@ const handleWomens=()=>{
               <Thead>
                 <Tr>
                   <Th>Image</Th>
-                  <Th>Name</Th>
+                  <Th className='productRow2'>Name</Th>
                   <Th className='productRow'>Price</Th>
                   <Th className='productRow'>Stock</Th>
-                  <Th className='productRow'>Status</Th>
+                  {/* <Th className='productRow'>Status</Th> */}
                   <Th className='productRow'>Remove</Th>
                   <Th>Details</Th>
                 </Tr>
@@ -207,20 +225,20 @@ const handleWomens=()=>{
                       <Td width="60px">
                         <Image src={ele.productImage}/>
                       </Td>
-                        <Td width="40%" padding="5px">
+                        <Td width="40%" padding="5px" className='productRow2'>
                         <p fontSize={15} >{ele.productName}</p>
                         </Td>
                         <Td width="20px" paddding-right="50px"  className='productRow'>
-                        <p>${ele.listPrice}</p>
+                        <p>{ele.listPrice}</p>
                         </Td>
                         <Td  className='productRow'>  
                         <p fontSize={20}>{ele.stocks}pcs</p>
                         </Td>
-                        <Td  className='productRow'>
+                        {/* <Td  className='productRow'>
                         {ele.status?
                             <Box onClick={()=>handleActive(ele._id,ele.status)} _hover={{cursor:"pointer"}} ml="10px" textAlign="center" p="1px" w="75px" bg="rgb(39, 177, 39);" borderRadius="30px" color="white">Block</Box>
                             :<Box onClick={()=>handleActive(ele._id,ele.status)} _hover={{cursor:"pointer"}} ml="10px" textAlign="center" p="1px" w="75px" bg="rgb(238, 68, 68);" borderRadius="30px" color="white">Unblock</Box>}
-                        </Td>
+                        </Td> */}
                         <Td fontSize='25px'  className='productRow' _hover={{color:"red",cursor:"pointer"}}>  
                         <DeleteIcon onClick={()=>handleDelete(ele._id)} />
                         </Td>

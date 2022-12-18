@@ -5,16 +5,17 @@ import { Link } from 'react-router-dom'
 import axios  from 'axios'
 import { useState } from 'react'
 
+const d=[]
+let product=JSON.parse(localStorage.getItem("product"))
+d.push(product)
 const SingleProductPage = () => {
   const [productName,setProductName]=useState("")
   const [type,setType]=useState("")
   const [category,setCategory]=useState("")
   const [listPrice,setListPrice] = useState("")
   const {isOpen,onOpen,onClose}= useDisclosure()
-  const data=[]
-  let product=JSON.parse(localStorage.getItem("product"))
-  data.push(product)
-  console.log(product)
+  const [data,setData]=useState(d)
+  console.log(data)
 
 
 
@@ -22,8 +23,7 @@ const SingleProductPage = () => {
 
 const handlePrice=()=>{
   let newPricec=prompt("Enter New Quantity")
-  if (newPricec === 0) return;
-  axios.patch(`http://localhost:8400/Dashproduct/edite/${product._id}`,{salePrice :newPricec},{
+  axios.patch(`http://localhost:8400/Dashproduct/edite/${product._id}`,{salePrice:newPricec},{
     headers:{
       authorization:`Bearer ${localStorage.getItem("admintoken")}`
     }}
@@ -31,11 +31,59 @@ const handlePrice=()=>{
   .then((res)=>{
     console.log(res)
    alert("Inventory Updated");
+   getData()
   })
   .catch((err)=>{
    console.log(err)
   })
  }
+
+ // .............................  Edit List Price Method .......................
+ const handleListPrice=()=>{
+  let newListPrice = prompt("Enter New Quantity")
+  axios.patch(`http://localhost:8400/Dashproduct/edite/${product._id}`,{listPrice:newListPrice},{
+    headers:{
+      authorization:`Bearer ${localStorage.getItem("admintoken")}`
+    }}
+  )
+  .then((res)=>{
+    console.log(res)
+   alert("Inventory Updated");
+   getData()
+  })
+  .catch((err)=>{
+   console.log(err)
+  })
+ }
+
+ const handleStocks=()=>{
+  let newStock = prompt("Enter New Quantity")
+  axios.patch(`http://localhost:8400/Dashproduct/edite/${product._id}`,{stocks:newStock},{
+    headers:{
+      authorization:`Bearer ${localStorage.getItem("admintoken")}`
+    }}
+  )
+  .then((res)=>{
+    console.log(res)
+   alert("Inventory Updated");
+   getData()
+  })
+  .catch((err)=>{
+   console.log(err)
+  })
+ }
+
+// .............................  Geting Updated Data Method .......................
+
+ const getData=()=>{
+  axios.get(`http://localhost:8400/product/singleproduct/${product._id}`)
+  .then((res)=>{
+    const r=[]
+    r.push(res.data)
+    setData(r)
+  })
+ }
+
 
 
 
@@ -53,6 +101,7 @@ axios.patch(`http://localhost:8400/Dashproduct/edite/${product._id}`,payload,{
   )
   .then((res)=>{
     console.log(res)
+    getData()
    alert("Inventory Updated");
   })
 }
@@ -106,12 +155,12 @@ axios.patch(`http://localhost:8400/Dashproduct/edite/${product._id}`,payload,{
                         <Text> <b> Sale Price : </b>${ele.salePrice}</Text><FiEdit onClick={handlePrice}/>
                         </Flex>
                         <Flex>
-                        <Text> <b> List Price :</b> ${ele.listPrice}</Text><FiEdit/>
+                        <Text> <b> List Price :</b> ${ele.listPrice}</Text><FiEdit onClick={handleListPrice}/>
                         </Flex>
                         <Flex>
-                          <Text> <b>Stock : </b> {ele.stocks} pcs</Text><FiEdit/>
+                          <Text> <b>Stock : </b> {ele.stocks} pcs</Text><FiEdit onClick={handleStocks}/>
                         </Flex>
-                        <Text> <b>Type :</b>  {ele.type}</Text>
+                        <Text onClick={getData}> <b>Type :</b>  {ele.type}</Text>
                         <Flex>
                         <Text> <b>Category :</b>  {ele.category}</Text><FiEdit/>
                         </Flex>

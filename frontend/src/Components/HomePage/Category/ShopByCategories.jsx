@@ -1,5 +1,13 @@
-import { Box, Heading, Stack } from '@chakra-ui/react'
+import { Box, Heading, Stack, Text, color, Flex } from '@chakra-ui/react'
 import React from 'react'
+
+import { useMediaQuery } from "react-responsive";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+import "swiper/css/bundle"
 
 
 const ShopByCategoriesData = [
@@ -64,15 +72,33 @@ const ShopByCategoriesData = [
 
 
     const ShopByCategories = () => {
+
+        const isBigScreen = useMediaQuery({ query: "(max-width: 100%)" });
+      const isTablet = useMediaQuery({ query: "(max-width: 992px)" });
+      const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
+
         return (
-          <div style={{margin:"auto", width:"95%"}}>
-              <Heading fontSize="26px" textAlign="left" marginTop="60px">
-              Shop By Categories
-              </Heading>
+
+            
+         
+              <Box p={5} >
+       <Heading p={5} textAlign={"start"} size='lg' color={"#30363C"} fontFamily={'sans-serif'}>SHop By Category</Heading>
+            
              
-              <Stack direction="horizontal" gap="30px"
-              justify="space-between" overflow="scroll" marginTop="25px">
+              <Flex justifyContent={"space-between"} p={5}>
+
+                <Swiper 
+                    slidesPerView={isBigScreen ? 5 : isTablet ? 3 : isMobile ? 1 : 6}
+                    spaceBetween={0}
+
+                    loop={true}
+                    loopFillGroupWithBlank={true}
+
+                    navigation={true}
+                    modules={[Navigation]}
+                    className="mySwiper">
                   {ShopByCategoriesData.map((el,i) => (
+                    <SwiperSlide style={{ gap: "10px", color:"black" }}>
                       <Box key={i} width="180px" height="212px">
                           <img style={{borderRadius:"5px",width:"180px", height:"172px",cursor:"pointer"}} src={el.img}
                           alt=''/>
@@ -80,9 +106,11 @@ const ShopByCategoriesData = [
                               <p style={{fontWeight:"500"}}>{el.heading}</p>
                           </Box>
                       </Box>
+                      </SwiperSlide>
                   ))}
-              </Stack>
-          </div>
+                  </Swiper>
+                  </Flex>
+                  </Box>
         )
       }
 

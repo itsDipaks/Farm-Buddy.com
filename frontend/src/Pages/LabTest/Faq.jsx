@@ -12,8 +12,8 @@ import {
 function Faq() {
   return (
     <>
-    <Text as='b'>Frequently Asked Questions</Text>
-    <Box pt={10} margin={'auto'} width={'80%'} >    <Accordion allowToggle>
+    <Text ml={'20'} as='b'>Frequently Asked Questions</Text>
+    <Box pt={10} margin={'auto'} width={'86%'} >    <Accordion allowToggle>
   <AccordionItem  borderRadius={'10px'}  border={'1px solid grey'} >
     <h2>
       <AccordionButton>

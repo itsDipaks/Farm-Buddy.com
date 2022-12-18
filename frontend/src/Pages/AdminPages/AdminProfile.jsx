@@ -42,13 +42,13 @@ useEffect(()=>{
   //.................... Admin Profile Update Method .....................//
 
   const handleUpdate=()=>{
-    const payload={
-      firstname,
-      lastname,
-      role,
-      avtar
-    }
-    axios.patch("http://localhost:8400/adminUpdate",payload,{
+    // const payload={
+    //   firstname,
+    //   lastname,
+    //   role,
+    //   avtar
+    // }
+    axios.patch("http://localhost:8400/adminUpdate",{firstname:firstname,lastname:lastname,role:role,avtar:avtar},{
       headers:{
         authorization:`Bearer ${localStorage.getItem("admintoken")}`
       }
@@ -150,15 +150,6 @@ const handleLogout=()=>{
 
 
 
-
-
-                {/* <Flex id='titleBox' p='0px 10px' mb='40px' key={data._id}>
-                <Image src={data.avtar} w='45px' borderRadius='50%'/>
-                <Box>
-                <Text pl={5} fontWeight='bold'>{data.firstname}</Text>
-                <Text pl={5} >{data.role}</Text>
-                </Box>
-                </Flex> */}
                 </>
               )
             })
