@@ -26,6 +26,7 @@ import axios from "axios";
 // import { useEffect } from "react";
 // import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { saveLocalsdata } from "../../utils/utils";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -79,22 +80,6 @@ const Loginscreen = () =>{
 }
 
 
-const getlocalsdata = (key) => {
-  try {
-      let data = localStorage.getItem(key);
-      data = JSON.parse(data)
-      return data;
-  }catch(error){
-      return null;
-  }
-}
-   
-
-    const saveLocalsdata = (key, data) =>{
-  localStorage.setItem(key,JSON.stringify(data));
-    }
-
-
   const handleSignUp = () => {
     const payload = {
       username: values.username,
@@ -110,7 +95,7 @@ const getlocalsdata = (key) => {
         setShow(false);
         console.log("Success");
         console.log(r);
-        saveLocalsdata("token",r.data.token) 
+       
       } else {
         alert("Incorrect Email Id");
         setShow(true);
@@ -143,6 +128,8 @@ const getlocalsdata = (key) => {
         // console.log(r.data);
         // console.log(r.data.username);
         setHello(r.data.username)
+        console.log(r.data.token)
+        saveLocalsdata("token",r.data.token) 
 
         onClose()
         // var usernamess = r.data.username;
