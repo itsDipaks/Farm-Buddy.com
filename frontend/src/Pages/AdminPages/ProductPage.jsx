@@ -29,7 +29,7 @@ const getData=()=>{
   setLoading(true)
   axios.get("http://localhost:8400/product/getproducts")
   .then((res)=>{
-    // console.log(res)
+    console.log(res.data)
     setProducts(res.data)
     setLoading(false)
   })
@@ -82,6 +82,7 @@ axios.post("http://localhost:8400/Dashproduct/addproduct",payload,{
       localStorage.setItem("product",JSON.stringify(r))
     }
 
+    
   {/* ..................  Filter by Fatching ........................ */}
 
 const handleFilter=(e)=>{
@@ -113,14 +114,17 @@ const handleActive=(id,status)=>{
  {/* ..................  Handle Womans........................ */}
 
 const handleWomens=()=>{
-  axios.get(`http://localhost:8400/product/getproducts?category=woman`)
+  axios.get(`http://localhost:8400/product/getproducts?type=facecare&category=woman`)
   .then((res)=>{
+    console.log(res.data)
     setProducts(res.data)
   })
 }
+// ...................... Sorting Functionallity Here ..........................
 
 const handleSort=(e)=>{
     setSort(e.target.value)
+    console.log(sort)
     axios.get(`http://localhost:8400/product/getproducts?sortbyprice=${sort}`)
     .then((res)=>{
       console.log(res)

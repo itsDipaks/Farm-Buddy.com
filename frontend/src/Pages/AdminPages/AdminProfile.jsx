@@ -42,13 +42,13 @@ useEffect(()=>{
   //.................... Admin Profile Update Method .....................//
 
   const handleUpdate=()=>{
-    const payload={
-      firstname,
-      lastname,
-      role,
-      avtar
-    }
-    axios.patch("http://localhost:8400/adminUpdate",payload,{
+    // const payload={
+    //   firstname,
+    //   lastname,
+    //   role,
+    //   avtar
+    // }
+    axios.patch("http://localhost:8400/adminUpdate",{firstname:firstname,lastname:lastname,role:role,avtar:avtar},{
       headers:{
         authorization:`Bearer ${localStorage.getItem("admintoken")}`
       }

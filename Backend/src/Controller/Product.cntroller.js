@@ -65,6 +65,7 @@ const GetProducts = async (req, res) => {
 const GetSingleProduct=async(req,res)=>{
     //Product Id From Params
     const product_Id=req.params.product_Id
+    console.log(product_Id)
     try{
         const singlepraduct=await ProductModel.findOne({_id:product_Id})
         if(singlepraduct){
