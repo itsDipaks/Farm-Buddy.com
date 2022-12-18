@@ -7,7 +7,7 @@ const CartRouter=Router()
 
 CartRouter.post("/addtocart",UserAuthenticate,CartController.Addtocart)
 
-CartRouter.delete("/delproduct/:prodid",UserAuthenticate)
+CartRouter.delete("/delproduct/:product_Id",UserAuthenticate,CartController.Deletecartitem)
 
 CartRouter.patch("/edite/:prodid",UserAuthenticate)
 
