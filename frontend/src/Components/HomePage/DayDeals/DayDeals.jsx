@@ -119,7 +119,7 @@ const DayDeals = () => {
                     slidesPerView={isBigScreen ? 5 : isTablet ? 3 : isMobile ? 1 : 5}
                     spaceBetween={0}
 
-                    loop={true}
+                    loop={false}
                     loopFillGroupWithBlank={true}
 
                     navigation={true}

@@ -71,7 +71,7 @@ const HealthConcern = () => {
                     slidesPerView={isBigScreen ? 6 : isTablet ? 3 : isMobile ? 2 : 6}
                     spaceBetween={0}
 
-                    loop={true}
+                    loop={false}
                     loopFillGroupWithBlank={true}
 
                     navigation={true}

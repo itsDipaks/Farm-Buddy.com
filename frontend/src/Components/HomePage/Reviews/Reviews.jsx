@@ -70,9 +70,9 @@ const Reviews = () => {
         <Swiper
           slidesPerView={isBigScreen ? 4 : isTablet ? 2 : isMobile ? 2 : 4}
           spaceBetween={0}
-          loop={true}
+          loop={false}
           loopFillGroupWithBlank={true}
-          // navigation={true}
+          navigation={false}
           modules={[Navigation]}
           className="mySwiper"
         >

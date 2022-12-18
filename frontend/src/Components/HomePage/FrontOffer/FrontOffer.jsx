@@ -36,7 +36,7 @@ const FrontOffer = () => {
            loop={true}
            loopFillGroupWithBlank={true}
 
-          //  navigation={true}
+           navigation={false}
            modules={[Navigation]}
            className="mySwiper">
         {FrontOfferData.map((el, i) => (

@@ -49,7 +49,7 @@ const PaymentOffers = () => {
                     loop={true}
                     loopFillGroupWithBlank={true}
 
-                    navigation={true}
+                    navigation={false}
                     modules={[Navigation]}
                     className="mySwiper">
             {PaymentOffersData.map((el, i) => (

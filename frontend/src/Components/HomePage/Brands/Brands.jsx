@@ -97,7 +97,7 @@ const Brands = () => {
         <Swiper
           slidesPerView={isBigScreen ? 7 : isTablet ? 3 : isMobile ? 2 : 7}
           spaceBetween={0}
-          loop={true}
+          loop={false}
           loopFillGroupWithBlank={true}
           navigation={true}
           modules={[Navigation]}

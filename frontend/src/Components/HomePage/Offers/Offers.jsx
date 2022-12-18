@@ -231,11 +231,11 @@ const Offers = () => {
            slidesPerView={isBigScreen ? 5 : isTablet ? 4 : isMobile ? 3 : 7}
            spaceBetween={0}
 
-           loop={true}
+           loop={false}
            loopFillGroupWithBlank={true}
 
-          //  navigation={true}
-          //  modules={[Navigation]}
+           navigation={false}
+           modules={[Navigation]}
            className="mySwiper">
           {OffersData.map((item, i) => (
             <SwiperSlide style={{ gap: "10px", color:"black" }}>
