@@ -6,6 +6,7 @@ import { useMediaQuery } from "react-responsive";
 import { Navigation } from "swiper";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { Link } from 'react-router-dom';
 
 import "swiper/css/bundle"
 
@@ -128,11 +129,13 @@ const DayDeals = () => {
             {DayDealsData.map((el,i) => (
                 <SwiperSlide style={{ gap: "10px", color:"black" }}>
                 <Box key={i}>
+                    <Link to="/productspage">
                     <Box className={styles.img} padding="24px 16px" width="184px" 
                     height="192px" border="1px solid #f5f5f5" borderRadius="10px" 
                     style={{display:"flex", alignItems:"center"}}>
                         <Image style={{borderRadius:"5px",cursor:"pointer"}} src={el.img}/>
                     </Box>
+                    </Link>
                     <Heading fontSize="15px" marginTop="12px" fontWeight="600">
                         {el.heading}
                     </Heading>
