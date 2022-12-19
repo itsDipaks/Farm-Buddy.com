@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./Payment.module.css";
+import logo from "../../Utils/Images/logo .png"
 const Paymentnavbar = () => {
   return (
     <div className={styles.nav}>
       <img
-        src="https://assets.pharmeasy.in/web-assets/dist/fca22bc9.png"
+        src={logo}
         alt=""
       />
 

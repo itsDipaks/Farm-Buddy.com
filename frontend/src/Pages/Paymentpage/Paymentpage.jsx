@@ -10,7 +10,6 @@ import {
   Input,
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
@@ -24,18 +23,19 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Paymentnavbar from "../../Components/Paymentpage/Paymentnavbar";
 import { GetCartData } from "../../Redux/Cart/Cart.action";
 import styles from "./payment.module.css";
 const Paymentpage = () => {
 
-  const {data,total,loading,error}=useSelector((store)=>store.cart)
+  const {total}=useSelector((store)=>store.cart)
   const dispatch=useDispatch()
   const grandtotal = total && total.toFixed(2);
 useEffect(()=>{
   dispatch(GetCartData())
 },[])
-
+const navigate=useNavigate()
   const {isOpen, onOpen, onClose} = useDisclosure();
   // const btnRef = React.useRef()
 
@@ -51,8 +51,11 @@ useEffect(()=>{
 }
 
 
+
+
 const handeldsubmit=()=>{
 alert("Payment Sucess ")
+navigate("/paymentsucess")
 
 }
 
@@ -147,7 +150,8 @@ const handlePay=()=>{
                 <Text>
                   Up to Rs.650 cashback on Mobikwik. Code: MBK650. Valid only
                   once & on orders above Rs.800.
-                </Text>
+                </Text>ls
+                
                 <Button colorScheme='teal' className={styles.linkbtn}>Pay witth ₹{grandtotal} MobiKwik </Button>
               </Box>
             </AccordionPanel>
