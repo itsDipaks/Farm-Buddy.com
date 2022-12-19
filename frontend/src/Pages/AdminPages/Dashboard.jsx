@@ -1,4 +1,4 @@
-import { Box,Text,Flex,Button,Image} from '@chakra-ui/react'
+import { Box,Text,Flex,Button,Image, Heading} from '@chakra-ui/react'
 import React from 'react'
 import "./Dashboard.css"
 import {BsTagsFill} from 'react-icons/bs'
@@ -8,7 +8,7 @@ import {FcSalesPerformance} from "react-icons/fc"
 import {SiSimpleanalytics} from "react-icons/si"
 import { useEffect } from 'react'
 import {IoBarChartSharp} from "react-icons/io5"
-import { useState } from 'react'
+import { useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {AiOutlineTeam} from 'react-icons/ai'
 import axios from "axios"
@@ -26,10 +26,24 @@ const Dashboard = () => {
   const [adminProfile,setAdminProfile]=useState("")
   const [show,setShow]=useState("Users")
   const navigate = useNavigate()
+  const [usershow,setUserShow]=useState("")
+  let r=`Bearer ${localStorage.getItem("admintoken")}`
 
+
+
+  const getShow=()=>{
+    if(r=="Bearer null"){
+      setUserShow("show")
+    }else{
+      setUserShow("Hide")
+    }
+  }
+  // useEffect(()=>{
+  //   getShow()
+  // },[])
 
   
-// Fetching Admin Profile data from here
+  // Fetching Admin Profile data from here
 
   const getProfile=()=>{
     axios.get(`${BaseUrl}adminDetails`,{
@@ -39,19 +53,32 @@ const Dashboard = () => {
     })
     .then((res)=>{
       console.log(res.data.Data)
-        setAdminProfile(res.data.Data)
+      setAdminProfile(res.data.Data)
     })
     .catch(function (err){
       console.log(err)
     })
   }
-
+  
   useEffect(()=>{
-   getProfile()
+    getShow()
+    getProfile()
   },[])
+  
+  if(usershow=="show"){
+    return(
+      <Box w="30%" m='auto'>
+      <Heading p={10}>Please Login</Heading>
+      <Link to="/adminlogin">
+      <Button ml={5}>Login</Button>
+      </Link>
+      </Box>
+    )
+  }
+
 
   const handleLogout=()=>{
-    localStorage.setItem("admintoken","")
+    localStorage.setItem("admintoken",null)
     navigate("/adminlogin")
   }
 
