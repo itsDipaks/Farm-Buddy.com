@@ -11,6 +11,7 @@ import Paymentpage from '../../Pages/Paymentpage/Paymentpage'
 import SingleProduct from '../../Pages/SingleProduct/SingleProduct'
 import ProductsPage from '../../Pages/ProductsPage'
 import PrivateRoute from './PrivateRoute'
+import OrderProcess from '../../Pages/Paymentpage/OrderProcess'
 const AllRoutes = () => {
   return (
   <>
@@ -25,6 +26,7 @@ const AllRoutes = () => {
       <Route path="/cartpage" element={<PrivateRoute><Cartpage/></PrivateRoute>}></Route>
       <Route path="/payment" element={<PrivateRoute><Paymentpage/></PrivateRoute>}></Route>
       <Route path="/productspage" element={<ProductsPage/>}></Route>
+      <Route path="/paymentsucess" element={<PrivateRoute><OrderProcess/></PrivateRoute>}></Route>
       <Route path='/singleproduct/:_id' element={<SingleProduct/>}>SingleProduct</Route>
     </Routes>
     </>

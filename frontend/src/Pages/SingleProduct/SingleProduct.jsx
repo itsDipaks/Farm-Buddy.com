@@ -19,6 +19,9 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import { getlocalsdata } from "../../Utils/utils";
+import { useSelector } from "react-redux";
+import { GetCartData } from "../../Redux/Cart/Cart.action";
+import { useDispatch } from "react-redux";
 
 const SingleProduct = () => {
   const property = {
@@ -31,6 +34,14 @@ const SingleProduct = () => {
   const {_id}=useParams() 
   const navigate=useNavigate()
 
+  const {data} = useSelector((store) => store.cart);
+
+  const cartproducts = data && data;
+
+  const dispatch = useDispatch();
+  const GetCartVal = () => {
+    dispatch(GetCartData());
+  };
 
 const handlePrevPage=()=>{
   navigate('/productspage')
@@ -46,6 +57,7 @@ const handlePrevPage=()=>{
       .catch((err) => {
         console.log("err", err);
       });
+      GetCartVal()
   }, []);
 
 
@@ -61,6 +73,7 @@ const addToCart=()=>{
   category,type,description
 
   }
+
 console.log(payload)
  const token=getlocalsdata("token")
   console.log(payload)
@@ -83,11 +96,16 @@ console.log(payload)
         .catch((err)=>{
           console.log(err)
         })
+
+      
 }
 
   const viewcart=()=>{
     navigate("/cartpage")
   }
+ 
+
+
   return (
     <>
     <Navbar/>
@@ -258,7 +276,7 @@ console.log(payload)
               mt="6px"
               color="rgb(79,88,104)"
             >
-              3 Items in Cart
+           {cartproducts && cartproducts.length} Items in Cart
             </Heading>
             {/* view cart buttton 2 */}
        

@@ -8,7 +8,7 @@ import { HiOutlineUser } from "react-icons/hi";
 import { TbDiscount2, TbPrescription } from "react-icons/tb";
 import PincodeDrawer from "../PincodeDrawer/PincodeDrawer";
 import Login from "../Login/Login";
-import Logo from "../../Utils/Images/Logo.jpeg"
+import Logo from "../../Utils/Images/logo .png"
 import { Box, Button, Hide } from "@chakra-ui/react";
 
 const Navbar = (props) => {

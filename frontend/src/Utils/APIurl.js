@@ -1,1 +1,1 @@
-export const BaseUrl="http://localhost:8400/"
+export const BaseUrl="https://cute-cyan-salmon-tie.cyclic.app/"
