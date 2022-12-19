@@ -30,7 +30,7 @@ axios.post(`${BaseUrl}adminlogin`,payload)
     console.log(res.data.token)
     alert(res.data.msg)
     localStorage.setItem("admintoken",res.data.token)
-    navigate("/")
+    navigate("/dashboard")
 })
 .catch(function (err){
     alert(err.response.data.msg)

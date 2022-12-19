@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useMediaQuery } from "react-responsive";
 import { Navigation } from "swiper";
 import "swiper/css/pagination";
+import { Link } from "react-router-dom";
 import "swiper/css/navigation";
 
 import "swiper/css/bundle";
@@ -105,6 +106,7 @@ const Brands = () => {
         >
           {BrandsData.map((el, i) => (
             <SwiperSlide style={{ gap: "10px", color: "black" }}>
+              <Link to='/productspage'>
               <Box key={i} width="180px" height="212px">
                 <img
                   style={{
@@ -120,6 +122,7 @@ const Brands = () => {
                   <p style={{ fontWeight: "500" }}>{el.heading}</p>
                 </Box>
               </Box>
+                </Link>
             </SwiperSlide>
           ))}
         </Swiper>

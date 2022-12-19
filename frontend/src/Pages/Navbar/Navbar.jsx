@@ -8,6 +8,7 @@ import { HiOutlineUser } from "react-icons/hi";
 import { TbDiscount2, TbPrescription } from "react-icons/tb";
 import PincodeDrawer from "../PincodeDrawer/PincodeDrawer";
 import Login from "../Login/Login";
+import Logo from "../../Utils/Images/Logo.jpeg"
 import { Box, Button, Hide } from "@chakra-ui/react";
 
 const Navbar = (props) => {
@@ -31,8 +32,10 @@ const Navbar = (props) => {
           <img
             style={{ cursor: "pointer" }}
             onClick={GoToHomePage}
-            src="https://assets.pharmeasy.in/apothecary/images/logo_big.svg?dim=256x0"
+            src={Logo}
             alt=""
+            width="40px"
+            // height="40px"
           />
         </Box>
         <Box className={styles.LinkDiv}>
@@ -70,7 +73,7 @@ const Navbar = (props) => {
             </Hide>
             <div className={styles.links2Icons}>
               <TbPrescription style={{ fontSize: "20px", marginRight: "10px" }} />
-              <Link _hover={{ 'text-decoration-line': 'underline','text-decoration-style': 'dotted'}} href="#offers" style={{ fontSize: "14px", fontWeight: "500" }}>
+              <Link to="/dashboard" _hover={{ 'text-decoration-line': 'underline','text-decoration-style': 'dotted'}} href="#offers" style={{ fontSize: "14px", fontWeight: "500" }}>
                 Admin
               </Link>
             </div>

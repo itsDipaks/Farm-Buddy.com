@@ -53,6 +53,12 @@ useEffect(()=>{
 
 const handeldsubmit=()=>{
 alert("Payment Sucess ")
+
+}
+
+const handlePay=()=>{
+  alert("Order Successfull")
+  onClose()
 }
   return (
 
@@ -273,7 +279,7 @@ alert("Payment Sucess ")
 
               <Checkbox className={styles.checkbox} defaultChecked>Save this card for future payments</Checkbox>
             <br />
-              <Button type="submit" className={styles.proceedbtn} colorScheme='teal' variant='outline'>Pay {grandtotal}</Button>
+              <Button onClick={handlePay} type="submit" className={styles.proceedbtn} colorScheme='teal' variant='outline'>Pay {grandtotal}</Button>
               </FormControl>
             </DrawerBody>
 
