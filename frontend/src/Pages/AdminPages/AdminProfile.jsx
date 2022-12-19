@@ -6,6 +6,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { useDisclosure } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
+import { BaseUrl } from '../../Utils/APIurl'
 // import {AdminProfileCover} from "../../Components/Images/AdminProfileCover"
 
 
@@ -21,7 +22,7 @@ const AdminProfile = () => {
   //.................... Admin Profile Get Method .....................//
 
 const getProfile=()=>{
-    axios.get("http://localhost:8400/adminDetails",{
+    axios.get(`${BaseUrl}adminDetails`,{
         headers:{
         authorization:`Bearer ${localStorage.getItem("admintoken")}`
         }
@@ -48,7 +49,7 @@ useEffect(()=>{
     //   role,
     //   avtar
     // }
-    axios.patch("http://localhost:8400/adminUpdate",{firstname:firstname,lastname:lastname,role:role,avtar:avtar},{
+    axios.patch(`${BaseUrl}adminUpdate`,{firstname:firstname,lastname:lastname,role:role,avtar:avtar},{
       headers:{
         authorization:`Bearer ${localStorage.getItem("admintoken")}`
       }

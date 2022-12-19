@@ -6,6 +6,7 @@ import { DeleteIcon} from '@chakra-ui/icons'
 import { Link } from 'react-router-dom'
 import { Flex,Button,Text,Table, Th, Thead, Tr,Tbody,Td,Image,Box,Spinner,Alert,AlertDescription,AlertDialog,AlertDialogContent,AlertDialogOverlay,AlertDialogHeader,AlertDialogBody,AlertDialogFooter, useDisclosure } from '@chakra-ui/react'
 import { useRef } from 'react'
+import { BaseUrl } from '../../Utils/APIurl'
 
 const UsersPage = () => {
   const [users,setUsers]=useState([])
@@ -20,7 +21,7 @@ const UsersPage = () => {
 
 const getData=()=>{
   setLoading(true)
-  axios.get('http://localhost:8400/allusers')
+  axios.get(`${BaseUrl}allusers`)
   .then((res)=>{
     console.log(res.data.Data)
     setUsers(res.data.Data)
@@ -40,7 +41,7 @@ useEffect(()=>{
   //....................  User Delete Method .....................//
 
 const handleDelete=(userID)=>{
-  axios.delete(`http://localhost:8400/deleteuser/${userID}`)
+  axios.delete(`${BaseUrl}deleteuser/${userID}`)
   .then((res)=>{
     getData()
   })

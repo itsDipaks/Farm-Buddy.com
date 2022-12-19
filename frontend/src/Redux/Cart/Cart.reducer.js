@@ -7,10 +7,6 @@ const initial_state={
     total:0
     
 }
-
-
-
-
 export const CartReducer=(state=initial_state,{type,payload})=>{
    
     switch(type){
@@ -23,10 +19,11 @@ export const CartReducer=(state=initial_state,{type,payload})=>{
         case GET_CART_SUCCSESS:{
          
             let amount = payload.reduce((acc, el) => 
-         acc + (el.quantity * el.salePrice)
-            , 0)
+         acc + (el.quantity*el.salePrice)
+            , 0
+            )
           
-
+            console.log(payload)
             return{
                 ...state,
                 loading:false,

@@ -19,6 +19,7 @@ import OrdersPage from './OrdersPage'
 import AllAdminPage from './AllAdminPage'
 import SalesTeam from './SalesTeam'
 import Discounts from './Discounts'
+import { BaseUrl } from '../../Utils/APIurl'
 
 
 const Dashboard = () => {
@@ -45,7 +46,7 @@ const Dashboard = () => {
   // Fetching Admin Profile data from here
 
   const getProfile=()=>{
-    axios.get("http://localhost:8400/adminDetails",{
+    axios.get(`${BaseUrl}adminDetails`,{
       headers:{
         authorization:`Bearer ${localStorage.getItem("admintoken")}`
       }

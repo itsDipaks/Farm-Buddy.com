@@ -68,32 +68,33 @@ const handleHealthyAndFoodCat=(e)=>{
 
 // .........Sorting method .............
 
-    const handleSortData = (data,type) => {
-      if (type === "lth") {
-        const sorter = (a, b) => {
-          return +a.salePrice - +b.salePrice;
-        };
-       let x= data.sort(sorter);
-       console.log(x)
-        dispatch({ type: FETCH_PRODUCT_SUCCESS, payload: data });
-      } else {
-        const sorter = (a, b) => {
-          return +b.salePrice - +a.salePrice;
-        };
-        data.sort(sorter);
-        dispatch({ type: FETCH_PRODUCT_SUCCESS, payload: data });
-      }
+    const handleSortData = (value) => {
+
+      dispatch(GetFacecareCategory(value))
+   
+      // if (type === "lth") {
+      //   const sorter = (a, b) => {
+      //     return +a.salePrice - +b.salePrice;
+      //   };
+      //  let x= data.sort(sorter);
+      //  console.log(x)
+      //   dispatch({ type: FETCH_PRODUCT_SUCCESS, payload: data });
+      // } else {
+      //   const sorter = (a, b) => {
+      //     return +b.salePrice - +a.salePrice;
+      //   };
+      //   data.sort(sorter);
+      //   dispatch({ type: FETCH_PRODUCT_SUCCESS, payload: data });
+      // }
     };
   
  
   return (<>
      <Navbar/>
-       
     <Box display="flex" w="70%" m="auto" className={Style.main}>
       <Box  height="500px" w="30%" padding='25px' className={Style.main1}>
         <Box w='90%'>
        
-      
       <Heading size="sm" fontSize="30px" color='rgb(79,88,104)'>
                 Filter
               </Heading>
@@ -170,10 +171,10 @@ const handleHealthyAndFoodCat=(e)=>{
               <Flex className={Style.select}>
                 <Text fontSize='18px' mr='20px' mt='5px' className={Style.sortBy}>Sort By:</Text>
                
-                <Select placeholder="Popularity" w='250px' onClick={()=>handleSortData(data,value)}>
+                <Select placeholder="Popularity" w='250px' onClick={(e)=>handleSortData(e.target.value)}>
                   <option value="option1">Relevance</option>
-                  <option value="htl">Price high to low</option>
-                  <option value="lth">Price low to high</option>
+                  <option value="asc">Price high to low</option>
+                  <option value="dsc">Price low to high</option>
                 </Select>
               </Flex>
             </Box>
@@ -259,7 +260,7 @@ const handleHealthyAndFoodCat=(e)=>{
               {el.productName}
             </Heading>
             <Flex mt="10px">
-              <Text color='gray.500'>MRP ₹{el.listPrice}</Text>
+              <Text color='gray.500' textDecoration="line-through">MRP ₹{el.listPrice}</Text>
               <Text
                 ml="10px"
                 bg="rgb(249,140,142)"

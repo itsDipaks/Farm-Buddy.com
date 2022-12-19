@@ -1,15 +1,9 @@
-import AllRoutes from './Components/Routes/Allroutes';
-import Lab from './Pages/LabTest/Lab';
-import SingleProduct from './Pages/SingleProduct/SingleProduct';
-import Navbar from './Pages/Navbar/Navbar';
+import AllRoutes from "./Components/Routes/Allroutes";
 function App() {
   return (
-    <> 
-      {/* <AllRoutes/> */}
-      <Navbar/>
-      {/* <Lab/> */}
+    <>
+      <AllRoutes />
     </>
   );
 }
-
 export default App;

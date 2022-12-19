@@ -2,13 +2,13 @@ import React from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { AiOutlineMobile } from "react-icons/ai";
 import styles from "./navbar.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsCart2 } from "react-icons/bs";
 import { HiOutlineUser } from "react-icons/hi";
 import { TbDiscount2, TbPrescription } from "react-icons/tb";
 import PincodeDrawer from "../PincodeDrawer/PincodeDrawer";
 import Login from "../Login/Login";
-import { Box, Button, Hide, Link } from "@chakra-ui/react";
+import { Box, Button, Hide } from "@chakra-ui/react";
 
 const Navbar = (props) => {
   const navigate = useNavigate();
@@ -76,7 +76,7 @@ const Navbar = (props) => {
             </div>
             <div className={styles.links2Icons}>
               <BsCart2 style={{ fontSize: "20px", marginRight: "10px" }} />
-              <Link _hover={{ 'text-decoration-line': 'underline','text-decoration-style': 'dotted'}} href="#" style={{ fontSize: "14px", fontWeight: "500" }}>
+              <Link to="/cartpage" _hover={{ 'text-decoration-line': 'underline','text-decoration-style': 'dotted'}} href="#" style={{ fontSize: "14px", fontWeight: "500" }}>
                 Cart
               </Link>
             </div>
