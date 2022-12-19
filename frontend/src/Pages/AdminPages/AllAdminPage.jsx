@@ -4,6 +4,7 @@ import { useState,useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Spinner } from '@chakra-ui/react'
+import { BaseUrl } from '../../Utils/APIurl'
 
 const AllAdminPage = () => {
     const [admins,setAdmins]= useState([])
@@ -12,7 +13,7 @@ const AllAdminPage = () => {
 
     const getData=()=>{
       setLoading(true)
-      axios.get('http://localhost:8400/alladmins')
+      axios.get(`${BaseUrl}alladmins`)
       .then((res)=>{
         console.log(res.data.Data)
         setAdmins(res.data.Data)

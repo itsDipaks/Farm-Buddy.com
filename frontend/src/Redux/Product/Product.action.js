@@ -1,5 +1,9 @@
 import {FETCH_PRODUCT_REQUEST,FETCH_PRODUCT_SUCCESS,FETCH_PRODUCT_FAILURE} from './Product.types'
 import axios from 'axios'
+import { BaseUrl } from '../../Utils/APIurl'
+
+
+
 export const productReuquest=()=>{
     return{
    type:FETCH_PRODUCT_REQUEST
@@ -21,10 +25,10 @@ export const productFailure=(error)=>{
 
 // ........... Get All Poducts ..................
 
-export const GetProducts=(params)=>(dispatch)=>{
+export const GetProducts=()=>(dispatch)=>{
     dispatch(productReuquest())
     return axios
-    .get('http://localhost:8400/product/getproducts',params)
+    .get(`${BaseUrl}product/getproducts`)
     .then((res)=>{
         dispatch(productSuccess(res.data))
     })
@@ -35,10 +39,10 @@ export const GetProducts=(params)=>(dispatch)=>{
 }
 
 // ............ Get Face care Category data ...............
-export const GetFacecareCategory=()=>(dispatch)=>{
+export const GetFacecareCategory=(value)=>(dispatch)=>{
     dispatch(productReuquest())
     return axios
-    .get(`http://localhost:8400/product/getproducts?type=facecare`)
+    .get(`${BaseUrl}product/getproducts?type=facecare&price=${value}`)
     .then((res)=>{
         dispatch(productSuccess(res.data))
     })
@@ -53,7 +57,7 @@ export const GetFacecareCategory=()=>(dispatch)=>{
 export const GetBabyHelthCategory=()=>(dispatch)=>{
     dispatch(productReuquest())
     return axios
-    .get(`http://localhost:8400/product/getproducts?type=babyhelth`)
+    .get(`${BaseUrl}product/getproducts?type=babyhelth`)
     .then((res)=>{
         dispatch(productSuccess(res.data))
     })
@@ -69,7 +73,7 @@ export const GetBabyHelthCategory=()=>(dispatch)=>{
 export const GetHealthyFoodDrinksCategory=()=>(dispatch)=>{
     dispatch(productReuquest())
     return axios
-    .get(`http://localhost:8400/product/getproducts?type=healthyFoodsAndDrinks`)
+    .get(`${BaseUrl}product/getproducts?type=healthyFoodsAndDrinks&sortbyprice:asc`)
     .then((res)=>{
         dispatch(productSuccess(res.data))
     })

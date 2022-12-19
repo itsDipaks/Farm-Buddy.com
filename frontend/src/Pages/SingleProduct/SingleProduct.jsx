@@ -18,6 +18,7 @@ import { BsStarFill } from "react-icons/bs";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
+import { getlocalsdata } from "../../Utils/utils";
 
 const SingleProduct = () => {
   const property = {
@@ -25,12 +26,12 @@ const SingleProduct = () => {
     rating: 3,
   };
 
- const [item,setItem]=useState()
+ const [item,setItem]=useState({})
  const [qty,setQty]=useState()
   const {_id}=useParams() 
   const navigate=useNavigate()
 
-  
+
 const handlePrevPage=()=>{
   navigate('/productspage')
 }
@@ -40,19 +41,28 @@ const handlePrevPage=()=>{
       .get(`http://localhost:8400/product/singleproduct/${_id}`)
       .then((res) => {
         setItem(res.data);
-        console.log(res.data)
+    
       })
       .catch((err) => {
         console.log("err", err);
       });
   }, []);
 
+
+  const {listPrice,salePrice,productImage,productName,category,type,description}=item
+
+
 //  .............Add To Cart method ...............
 
 const addToCart=()=>{
   const payload={
-    qty,_id
+    quantity:qty,product_Id:_id,
+  listPrice,salePrice,productImage,productName,
+  category,type,description
+
   }
+console.log(payload)
+ const token=getlocalsdata("token")
   console.log(payload)
   axios
         .post(
@@ -60,21 +70,24 @@ const addToCart=()=>{
           payload,
           {
             headers: {
-              'Authorization' : `Bearer ${localStorage.getItem("token")}`,
+              token : token,
             },
           }
           
         )
         .then((res)=>{
-          console.log(res)
+        
           alert("item added to cart")
+          
         })
         .catch((err)=>{
           console.log(err)
         })
 }
 
-  
+  const viewcart=()=>{
+    navigate("/cartpage")
+  }
   return (
     <>
     <Navbar/>
@@ -175,12 +188,12 @@ const addToCart=()=>{
                   </Select>
                   
           
-                    <Button colorScheme='teal'mt='15px'  fontSize='20px' onClick={()=>addToCart(_id)} className={Style.addCartBtn1}>Add To Cart</Button>
+                    <Button colorScheme='teal'mt='15px'  fontSize='20px' onClick={()=>addToCart(_id,listPrice,salePrice,productImage,productName)} className={Style.addCartBtn1}>Add To Cart</Button>
                   
                   </Box>
                  
                   </Box>
-                  <Button colorScheme='teal'  fontSize='20px' onClick={()=>addToCart(_id)} className={Style.addCartBtn2}>Add To Cart</Button>
+                  <Button colorScheme='teal'  fontSize='20px' onClick={()=>addToCart(_id,listPrice,salePrice,productImage,productName)} className={Style.addCartBtn2}>Add To Cart</Button>
                 </Box>
               </Box>
             </Box>
@@ -249,7 +262,7 @@ const addToCart=()=>{
             </Heading>
             {/* view cart buttton 2 */}
        
-            <Button colorScheme="teal" w="100%" fontSize="20px" mt="20px" >
+            <Button onClick={viewcart} colorScheme="teal" w="100%" fontSize="20px" mt="20px" >
               View Cart{" "}
             </Button>
         

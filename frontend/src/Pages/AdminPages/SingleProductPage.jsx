@@ -4,6 +4,7 @@ import {FiEdit} from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import axios  from 'axios'
 import { useState } from 'react'
+import { BaseUrl } from '../../Utils/APIurl'
 
 const d=[]
 let product=JSON.parse(localStorage.getItem("product"))
@@ -23,7 +24,7 @@ const SingleProductPage = () => {
 
 const handlePrice=()=>{
   let newPricec=prompt("Enter New Quantity")
-  axios.patch(`http://localhost:8400/Dashproduct/edite/${product._id}`,{salePrice:newPricec},{
+  axios.patch(`${BaseUrl}Dashproduct/edite/${product._id}`,{salePrice:newPricec},{
     headers:{
       authorization:`Bearer ${localStorage.getItem("admintoken")}`
     }}
@@ -76,7 +77,7 @@ const handlePrice=()=>{
 // .............................  Geting Updated Data Method .......................
 
  const getData=()=>{
-  axios.get(`http://localhost:8400/product/singleproduct/${product._id}`)
+  axios.get(`${BaseUrl}product/singleproduct/${product._id}`)
   .then((res)=>{
     const r=[]
     r.push(res.data)
@@ -94,7 +95,7 @@ const handleEdit=()=>{
       category,
       listPrice
   }
-axios.patch(`http://localhost:8400/Dashproduct/edite/${product._id}`,payload,{
+axios.patch(`${BaseUrl}Dashproduct/edite/${product._id}`,payload,{
     headers:{
       authorization:`Bearer ${localStorage.getItem("admintoken")}`
     }}
@@ -116,7 +117,7 @@ axios.patch(`http://localhost:8400/Dashproduct/edite/${product._id}`,payload,{
           </Flex>
         </Box>
         <Link to="/" >
-      <Text>Dashboard > Product Desc</Text>
+      <Text>Dashboard  Product Desc</Text>
       </Link>
     <Box w='70%' m="auto" mt={30} boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px" borderRadius="5px" p={10}>
     <Modal isOpen={isOpen} onClose={onClose} scrollBehavior="inside">

@@ -6,6 +6,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { DeleteIcon } from '@chakra-ui/icons'
 import { useRef } from 'react'
+import { BaseUrl } from '../../Utils/APIurl'
 
 const ProductPage = () => {
     const [products,setProducts] = useState([])
@@ -27,7 +28,7 @@ console.log(filter)
 
 const getData=()=>{
   setLoading(true)
-  axios.get("http://localhost:8400/product/getproducts")
+  axios.get(`${BaseUrl}product/getproducts`)
   .then((res)=>{
     console.log(res.data)
     setProducts(res.data)
@@ -42,7 +43,7 @@ const getData=()=>{
    {/* ..................  Product Delete Method Here ........................ */}
 
 const handleDelete=(prodid)=>{
-  axios.delete(`http://localhost:8400/Dashproduct/delproduct/${prodid}`,{
+  axios.delete(`${BaseUrl}Dashproduct/delproduct/${prodid}`,{
     headers:{
       authorization:`Bearer ${localStorage.getItem("admintoken")}`
     }
@@ -59,7 +60,7 @@ const handleAdd=()=>{
     const payload={
       productName,salePrice,listPrice,category,type,description
     }
-axios.post("http://localhost:8400/Dashproduct/addproduct",payload,{
+axios.post(`${BaseUrl}Dashproduct/addproduct`,payload,{
   headers:{
     authorization:`Bearer ${localStorage.getItem("admintoken")}`
   }
@@ -87,7 +88,7 @@ axios.post("http://localhost:8400/Dashproduct/addproduct",payload,{
 
 const handleFilter=(e)=>{
     setFilter(e.target.value)
-  axios.get(`http://localhost:8400/product/getproducts?type=${filter}`)
+  axios.get(`${BaseUrl}product/getproducts?type=${filter}`)
   .then((res)=>{
     setProducts(res.data)
   })
@@ -97,7 +98,7 @@ const handleFilter=(e)=>{
 
 const handleActive=(id,status)=>{
   console.log(id,status)
-  axios.patch(`http://localhost:8400/Dashproduct/edite/${id}`,{status:!status},{
+  axios.patch(`${BaseUrl}Dashproduct/edite/${id}`,{status:!status},{
     headers:{
       authorization:`Bearer ${localStorage.getItem("admintoken")}`
     }
@@ -114,7 +115,7 @@ const handleActive=(id,status)=>{
  {/* ..................  Handle Womans........................ */}
 
 const handleWomens=()=>{
-  axios.get(`http://localhost:8400/product/getproducts?type=facecare&category=woman`)
+  axios.get(`${BaseUrl}product/getproducts?type=facecare&category=woman`)
   .then((res)=>{
     console.log(res.data)
     setProducts(res.data)
@@ -125,7 +126,7 @@ const handleWomens=()=>{
 const handleSort=(e)=>{
     setSort(e.target.value)
     console.log(sort)
-    axios.get(`http://localhost:8400/product/getproducts?sortbyprice=${sort}`)
+    axios.get(`${BaseUrl}product/getproducts?price=${sort}`)
     .then((res)=>{
       console.log(res)
       setProducts(res.data)

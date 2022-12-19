@@ -26,7 +26,10 @@ import axios from "axios";
 // import { useEffect } from "react";
 // import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { saveLocalsdata } from "../../utils/utils";
+import { saveLocalsdata } from "../../Utils/utils";
+import { BaseUrl } from "../../Utils/APIurl";
+
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -90,7 +93,7 @@ const Loginscreen = () =>{
       age: values.age,
       // profileimage: values.profileimage,
     };
-    axios.post("http://localhost:8400/userauth/signup", payload).then((r) => {
+    axios.post(`${BaseUrl}userauth/signup`, payload).then((r) => {
       if (r.status === 200) {
         setShow(false);
         console.log("Success");
@@ -121,7 +124,7 @@ const Loginscreen = () =>{
     };
 
 
-    axios.post("http://localhost:8400/userauth/login", payload).then((r) => {
+    axios.post(`${BaseUrl}userauth/login`, payload).then((r) => {
       if (r.status === 200) {
         console.log('success');
         console.log(r);

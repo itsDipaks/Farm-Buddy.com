@@ -8,7 +8,7 @@ const CartSchema = new mongoose.Schema(
     products: [
       {
         product_Id: {type:String},
-        quantity: {type:Number},
+        quantity: {type:Number,default:1},
         productName: {type:String},
         productImage:{type:String},
         salePrice: {type:Number},
@@ -16,7 +16,6 @@ const CartSchema = new mongoose.Schema(
         category: {type:String},
         type: {type:String},
         description: {type:String},
-       
       }
     ],
     cartTotal:{type:Number,default:0},

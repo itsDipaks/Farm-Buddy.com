@@ -18,8 +18,10 @@ import {
   useDisclosure,
   FormLabel,
   Checkbox,
+  FormControl,
 } from "@chakra-ui/react";
 import React from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Paymentnavbar from "../../Components/Paymentpage/Paymentnavbar";
@@ -29,7 +31,7 @@ const Paymentpage = () => {
 
   const {data,total,loading,error}=useSelector((store)=>store.cart)
   const dispatch=useDispatch()
-
+  const grandtotal = total && total.toFixed(2);
 useEffect(()=>{
   dispatch(GetCartData())
 },[])
@@ -37,6 +39,21 @@ useEffect(()=>{
   const {isOpen, onOpen, onClose} = useDisclosure();
   // const btnRef = React.useRef()
 
+  const [values,setValues] = useState({
+    cartnumber:"",
+    name:"",
+    valid:"",
+    cvv:"",
+    gender:"",
+})
+  const handleChange = (e) => {
+    setValues({...values,[e.target.name]:e.target.value})
+}
+
+
+const handeldsubmit=()=>{
+alert("Payment Sucess ")
+}
   return (
 
     <>
@@ -71,7 +88,7 @@ useEffect(()=>{
                   Up to 3000 cashback points on a minimum transaction of Rs.599.
                   Valid once per user.
                 </Text>
-                <Button colorScheme='teal' className={styles.linkbtn}>Pay ₹{total} With Paytm</Button>
+                <Button colorScheme='teal' className={styles.linkbtn}>Pay ₹{grandtotal} With Paytm</Button>
               </Box>
             </AccordionPanel>
           </AccordionItem>
@@ -98,7 +115,7 @@ useEffect(()=>{
                   Up to Rs.600 cashback on a minimum transaction of Rs.399.
                   Valid once per user.
                 </Text>
-                <Button colorScheme='teal' className={styles.linkbtn}>Pay with ₹{total} AmazonPay</Button>
+                <Button colorScheme='teal' className={styles.linkbtn}>Pay with ₹{grandtotal} AmazonPay</Button>
               </Box>
             </AccordionPanel>
           </AccordionItem>
@@ -125,7 +142,7 @@ useEffect(()=>{
                   Up to Rs.650 cashback on Mobikwik. Code: MBK650. Valid only
                   once & on orders above Rs.800.
                 </Text>
-                <Button colorScheme='teal' className={styles.linkbtn}>Pay witth ₹{total} MobiKwik </Button>
+                <Button colorScheme='teal' className={styles.linkbtn}>Pay witth ₹{grandtotal} MobiKwik </Button>
               </Box>
             </AccordionPanel>
           </AccordionItem>
@@ -236,46 +253,32 @@ useEffect(()=>{
             <DrawerHeader className={styles.drawerheader}>Enter New Card</DrawerHeader>
 
             <DrawerBody>
+              <FormControl onSubmit={handeldsubmit}>
               <FormLabel className={styles.lable}>Card Number</FormLabel>
-              <Input  className={styles.inputfeild} type="email" placeholder="1234-5678-9568-5564" />
+              <Input  className={styles.inputfeild}   onChange={handleChange} type="cartnumber" placeholder="1234-5678-9568-5564" />
               <FormLabel className={styles.lable}>Name on Card</FormLabel>
-              <Input  className={styles.inputfeild} type="email" placeholder="eg.Dipak Pawar" />
+              <Input  className={styles.inputfeild}  onChange={handleChange}  name="name"  placeholder="eg.Dipak Pawar" />
 
               <Box className={styles.validbox}>
                 <div>
                   {" "}
                   <FormLabel className={styles.lable}>Valid Through</FormLabel>
-                  <Input  className={styles.inputfeild} type="email" placeholder="MM/YY" />
+                  <Input  className={styles.inputfeild} name="valid" onChange={handleChange} placeholder="MM/YY" />
                 </div>
                 <div>
                   <FormLabel className={styles.lable}>CVV</FormLabel>
-                  <Input  className={styles.inputfeild} type="email" placeholder="123" />
+                  <Input  className={styles.inputfeild} name="cvv" placeholder="123" />
                 </div>
               </Box>
 
               <Checkbox className={styles.checkbox} defaultChecked>Save this card for future payments</Checkbox>
             <br />
-              <Button className={styles.proceedbtn} colorScheme='teal' variant='outline'>Pay {total}</Button>
-            
+              <Button type="submit" className={styles.proceedbtn} colorScheme='teal' variant='outline'>Pay {grandtotal}</Button>
+              </FormControl>
             </DrawerBody>
 
           </DrawerContent>
         </Drawer>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -332,9 +335,9 @@ useEffect(()=>{
 
 <Box className={styles.pricebox}>
 <h1 className={styles.title1}>Price Breakdown</h1>
-<h2><span>Cart Value</span> <span>{total}</span></h2>
+<h2><span>Cart Value</span> <span>{grandtotal}</span></h2>
 <h2><span>Delivery charges</span> <span>free</span></h2>
-<h2><span>Amount to be paid</span> <span>{total}</span></h2>
+<h2><span>Amount to be paid</span> <span>{grandtotal}</span></h2>
 </Box>
     </div>
     </>

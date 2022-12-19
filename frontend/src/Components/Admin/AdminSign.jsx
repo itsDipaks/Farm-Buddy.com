@@ -10,6 +10,7 @@ import { useState } from 'react'
 import axios from "axios"
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import { BaseUrl } from '../../Utils/APIurl'
 
 const AdminSign = () => {
   const [firstname,setFirstName]=useState("")
@@ -31,7 +32,7 @@ const handleSubmit=()=>{
       password
     }
     // Signup request with payload
-axios.post("http://localhost:8400/adminsignup",payload)
+axios.post(`${BaseUrl}adminsignup`,payload)
 .then((res)=>{
   alert(res.data.msg)
 })

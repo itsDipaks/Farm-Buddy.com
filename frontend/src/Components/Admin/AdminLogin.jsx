@@ -11,6 +11,7 @@ import { useState } from 'react'
 import axios from "axios"
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import { BaseUrl } from '../../Utils/APIurl'
 
 const AdminLogin = () => {
     const [email,setEmail]=useState("")
@@ -24,7 +25,7 @@ const handleSubmit=()=>{
         email,
         password
     }
-axios.post("http://localhost:8400/adminlogin",payload)
+axios.post(`${BaseUrl}adminlogin`,payload)
 .then((res)=>{
     console.log(res.data.token)
     alert(res.data.msg)
