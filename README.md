@@ -1,7 +1,7 @@
 #  PHARMBUDDY
 This was a collaborative project made by 5 members Executed in 5 days.
 <br/>
-Team lead- Dipak Kumar<br/>
+Team lead- Dipak Pawar<br/>
 Member-1: Ravi Sharma<br/>
 Member-2: Anand<br/>
 Member-3: Sachin Choudary<br/>
