@@ -22,6 +22,7 @@ import { getlocalsdata } from "../../Utils/utils";
 import { useSelector } from "react-redux";
 import { GetCartData } from "../../Redux/Cart/Cart.action";
 import { useDispatch } from "react-redux";
+import { BaseUrl } from "../../Utils/APIurl";
 
 const SingleProduct = () => {
   const property = {
@@ -33,7 +34,7 @@ const SingleProduct = () => {
  const [qty,setQty]=useState()
   const {_id}=useParams() 
   const navigate=useNavigate()
-
+  const [isLoading,setIsLoading]=useState(false)
   const {data} = useSelector((store) => store.cart);
 
   const cartproducts = data && data;
@@ -48,14 +49,16 @@ const handlePrevPage=()=>{
 }
 //  ............ Get Single Product data............
   useEffect(() => {
+    setIsLoading(true)
     axios
-      .get(`http://localhost:8400/product/singleproduct/${_id}`)
+      .get(`${BaseUrl}/product/singleproduct/${_id}`)
       .then((res) => {
         setItem(res.data);
-    
+        setIsLoading(false)
       })
       .catch((err) => {
         console.log("err", err);
+        setIsLoading(false)
       });
       GetCartVal()
   }, []);
@@ -71,15 +74,11 @@ const addToCart=()=>{
     quantity:qty,product_Id:_id,
   listPrice,salePrice,productImage,productName,
   category,type,description
-
-  }
-
-console.log(payload)
+}
  const token=getlocalsdata("token")
-  console.log(payload)
   axios
         .post(
-          "http://localhost:8400/cart/addtocart",
+          `${BaseUrl}/cart/addtocart`,
           payload,
           {
             headers: {
@@ -89,20 +88,16 @@ console.log(payload)
           
         )
         .then((res)=>{
-        
           alert("item added to cart")
-          
         })
         .catch((err)=>{
           console.log(err)
-        })
-
-      
+        })     
 }
 
-  const viewcart=()=>{
-    navigate("/cartpage")
-  }
+const viewcart=()=>{
+  navigate("/cartpage")
+}
  
 
 
@@ -121,6 +116,7 @@ console.log(payload)
             {/* Image and Description box */}
             <Box display='flex' className={Style.img_desc_box}>
               <Box w="30%" h="280px"  className={Style.img_box}>
+               
                 <Image className={Style.imgg}
                 border="1px solid gray" 
                 borderRadius='8px'
@@ -129,6 +125,9 @@ console.log(payload)
                   src={item?.productImage}
                   alt="Dan Abramov"
                 />
+                 {
+                  
+                }
               </Box>
               <Box  w="70%" p="20px" ml='10px' className={Style.desc}>
                 <Heading
