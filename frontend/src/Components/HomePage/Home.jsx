@@ -7,7 +7,7 @@ import OffersBanner from "./OffersBanner/OffersBanner";
 import PaymentOffers from "./PaymentOffers/PaymentOffers";
 import HealthConcern from './HealthConcern/HealthConcern';
 import DayDeals from './DayDeals/DayDeals';
-import Footer from "./Footer/Footer";
+import Footer from '../../Components/HomePage/Footer/footer'
 import Navbar from "../../Pages/Navbar/Navbar";
 import Reviews from "./Reviews/Reviews";
 

@@ -20,7 +20,7 @@ import {
   DrawerContent,
   DrawerCloseButton,
   Button,
-  useDisclosure, RadioGroup, Stack, DrawerBody
+  useDisclosure, RadioGroup, Stack, DrawerBody,Spinner
 } from "@chakra-ui/react";
 import Style from "./ProductPage.module.css";
 import {useNavigate} from 'react-router-dom'
@@ -34,6 +34,8 @@ const ProductsPage = () => {
 
  
   const data = useSelector((state) => state.product.data);
+  const {isLoading}=useSelector((state)=>state.product)
+  console.log(isLoading)
   const dispatch = useDispatch();
   const navigate =useNavigate() 
   
@@ -88,6 +90,10 @@ const handleHealthyAndFoodCat=(e)=>{
       // }
     };
   
+// if(isLoading){
+//   
+//     }
+
  
   return (<>
      <Navbar/>
@@ -237,8 +243,9 @@ const handleHealthyAndFoodCat=(e)=>{
   
         <SimpleGrid columns={[1, 2, 3]} spacing="10px">
         {
+          isLoading? 
+          <Spinner thickness='4px' mt={200} ml={300} speed='0.65s' emptyColor='gray.200' color='blue.500' size='xl'/>:
       data.map((el)=>(
-        
           <Box
             border="1px"
             borderColor="gray.300"
